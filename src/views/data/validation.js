@@ -67,3 +67,18 @@ export const generalSearchValidationSchma = Yup.object().shape({
   search_input: Yup.string().required("د تذکرې/تلفن/آیډي شمیره اړینه ده"),
   target: Yup.string().required(" د لټون ډول اړین دی"),
 });
+
+export const proforamvaIncorporationValidationSchema = Yup.object().shape({
+  // ltd_license_number: Yup.string().required("د شرکت د جواز نمبر اړین دی"),
+  // introduced_by: Yup.string().required("د ملاقاتونو  ډول اړین دی"),
+});
+
+export const proformaCompanyValidationSchema = Yup.object().shape({
+  // ltd_license_number: Yup.string().required("د شرکت د جواز نمبر اړین دی"),
+  // introduced_by: Yup.string().required("د ملاقاتونو  ډول اړین دی"),
+});
+
+export const medicineDetailsValidationSchema = Yup.object().shape({
+  // ltd_license_number: Yup.string().required("د شرکت د جواز نمبر اړین دی"),
+  // introduced_by: Yup.string().required("د ملاقاتونو  ډول اړین دی"),
+});

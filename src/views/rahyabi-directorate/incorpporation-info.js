@@ -4,6 +4,8 @@ import * as Yup from "yup";
 import { Button } from "antd";
 import { Input, InputNumber } from "formik-antd";
 import MultiStepFormContext from "./MultiStepFormContext";
+import { currencytypeOptions } from "../data/global-data";
+import { proforamvaIncorporationValidationSchema } from "../data/validation";
 import {
   CButton,
   CCol,
@@ -13,20 +15,22 @@ import {
   CCardBody,
 } from "@coreui/react";
 const LtdInfo = () => {
-  const currencytypeOptions = [
-    { value: "افغانی", label: "افغانی" },
-    { value: "دالر (امریکایی)", label: "امریکایي دالر" },
-  ];
-  const LtdInfoValidationSchema = Yup.object().shape({
-    // ltd_license_number: Yup.string().required("د شرکت د جواز نمبر اړین دی"),
-    // introduced_by: Yup.string().required("د ملاقاتونو  ډول اړین دی"),
-  });
-  const [isSearchTriggered, setIsSearchTriggered] = useState(false);
+  const {
+    incorporationDetails,
+    setIncorporationDetails,
+    companyDetails,
+    next,
+  } = useContext(MultiStepFormContext);
+
+  const [isSearchTriggered, setIsSearchTriggered] = useState(
+    incorporationDetails.appointment_type.length > 1 ? true : false
+  );
   const [isIncorporationExist, setIsIncorporationExist] = useState(true);
   const [existuserData, setExistedUserData] = useState({});
 
-  const searchVisitor = async (values) => {
+  const handleIncorporationSearch = async (values) => {
     setIsSearchTriggered(true);
+
     // const data = { tazkera_number: values.tazkera_number };
     // try {
     //   const response = await searchVisitorApi(data);
@@ -45,8 +49,8 @@ const LtdInfo = () => {
     // }
   };
 
-  const { details, setDetails, next } = useContext(MultiStepFormContext);
-  console.log("deataiallls", details);
+  console.log("Incorporation Details", incorporationDetails);
+  console.log("kambany Details", companyDetails);
   return (
     <>
       <CRow
@@ -55,9 +59,9 @@ const LtdInfo = () => {
         }}
       >
         <CCol xs={12}>
-          <CCardBody>
+          <CCardBody className="m-0 p-0">
             <Formik
-              onSubmit={searchVisitor}
+              onSubmit={handleIncorporationSearch}
               initialValues={{ tazkera_number: "" }}
               // validationSchema={visitorSearchValidationSchema}
               enableReinitialize={true}
@@ -128,116 +132,99 @@ const LtdInfo = () => {
             {/* Search Result */}
 
             {isSearchTriggered && (
-              <div className="  border rounded mt-5 mb-5  ">
-                <CCardBody className="p-0" style={{ minHeight: "200px" }}>
+              <div className="  border rounded mt-5 mb-5 p-2">
+                <CCardBody className="p-0 mx-0" style={{ minHeight: "200px" }}>
                   <>
                     <h4
-                      className="px-3 py-2 "
+                      className="px-3  py-2 rounded"
                       style={{ backgroundColor: "#00aae4" }}
                     >
-                      {" "}
-                      د شرکت په اړه معلومات
+                      د شرکت اړه معلومات
                     </h4>
                     {isIncorporationExist && (
-                      <div className="">
-                        <CRow md={12} className=" pt-3 px-3">
-                          <CCol md={6} className="d-flex">
-                            <CCol md={3} className="">
-                              <p className="">د شرکت نوم:</p>
-                            </CCol>
-                            <CCol md={9} className="">
-                              {" "}
-                              <strong className="mx-2 bg-warning rounded p-1">
-                                {/* {existuserData?.name} */}
-                                عمر غزنی غفاری لیمیتید
-                              </strong>
-                            </CCol>
+                      <div className="my-3">
+                        <CRow className="px-3 py-2  d-flex">
+                          <CCol md={2} className="">
+                            <p className=" mb-1">د شرکت نوم:</p>
                           </CCol>
-                          <CCol md={6} className="d-flex">
-                            <CCol md={4} className="">
-                              <p className="">د تجارتي جواز د اعتبار نیټه:</p>
-                            </CCol>
-                            <CCol md={9}>
-                              {" "}
-                              <strong className="">
-                                {" "}
-                                {/* {existuserData?.tazkera_number} */}
-                                04-06-1404
-                              </strong>
-                            </CCol>
+                          <CCol md={4} className="">
+                            <strong className="mx-2  bg-warning rounded p-1">
+                              {/* {companyData?.name} */}
+                              عمر غزنی غفاری لیمیتید
+                            </strong>
+                          </CCol>
+                          <div className="spacess"></div>
+                          <CCol md={3} className="">
+                            <p className=" m-0">د تجارتي جواز د اعتبار نیټه:</p>
+                          </CCol>
+                          <CCol md={3}>
+                            <strong className="m-0 p-0">
+                              {/* {companyData?.tazkera_number} */}
+                              04-06-1404
+                            </strong>
                           </CCol>
                         </CRow>
-                        <CRow md={12} className=" px-3">
-                          <CCol md={6} className="d-flex">
-                            <CCol md={3} className="">
-                              <p className="">د شرکت د جواز نمبر:</p>
-                            </CCol>
-                            <CCol md={9} className="">
-                              {" "}
-                              <strong className="mx-2">
-                                {/* {existuserData?.name} */}
-                                90890
-                              </strong>
-                            </CCol>
+                        <CRow className="px-3 pb-2  d-flex">
+                          <CCol md={2} className="">
+                            <p className=" mb-0">د شرکت د جواز نمبر:</p>
                           </CCol>
-                          <CCol md={6} className="d-flex">
-                            <CCol md={3} className="">
-                              <p className="">ولایت:</p>
-                            </CCol>
-                            <CCol md={9} className="">
-                              <strong className="">
-                                {/* {existuserData?.contact} */}
-                                کابل
-                              </strong>
-                            </CCol>
+                          <CCol md={4} className="">
+                            <strong className="mx-2">
+                              {/* {companyData?.name} */}
+                              90890
+                            </strong>
+                          </CCol>
+                          <div className="spacess"></div>
+                          <CCol md={3} className="">
+                            <p className="mb-0">ولایت:</p>
+                          </CCol>
+                          <CCol md={3} className="">
+                            <strong className="">
+                              {/* {companyData?.contact} */}
+                              کابل
+                            </strong>
                           </CCol>
                         </CRow>
-                        <CRow md={12} className="  px-3">
-                          <CCol md={6} className="d-flex">
-                            <CCol md={3} className="">
-                              <p className=""> پته:</p>
-                            </CCol>
-                            <CCol md={9} className="">
-                              <strong className="">
-                                {/* {existuserData?.father_name} */}
-                                هوتل پروان شمشاد مارکیټ
-                              </strong>
-                            </CCol>
+                        <CRow className="px-3 pb-2  d-flex">
+                          <CCol md={2} className="">
+                            <p className=" mb-0"> پته:</p>
                           </CCol>
-                          <CCol md={6} className="d-flex">
-                            <CCol md={3} className="">
-                              <p className="">د اړیکې شمیره:</p>
-                            </CCol>
-                            <CCol md={9} className="">
-                              <strong className="">
-                                {/* {existuserData?.occupation} */}
-                                077564654656
-                              </strong>
-                            </CCol>
+                          <CCol md={4} className="">
+                            <strong className="">
+                              {/* {companyData?.father_name} */}
+                              هوتل پروان شمشاد مارکیټ
+                            </strong>
+                          </CCol>
+                          <div className="spacess"></div>
+                          <CCol md={3} className="">
+                            <p className="">د اړیکې شمیره:</p>
+                          </CCol>
+                          <CCol md={3} className="">
+                            <strong className="">
+                              {/* {companyData?.occupation} */}
+                              077564654656
+                            </strong>
                           </CCol>
                         </CRow>
-                        <CRow md={12} className="  px-3">
-                          <CCol md={6} className="d-flex">
-                            <CCol md={3} className="">
-                              <p className="">برښنالیک:</p>
-                            </CCol>
-                            <CCol md={9} className="">
-                              <strong className="">
-                                {/* {existuserData?.email} */}
-                                parviz@farma.gov.af
-                              </strong>
-                            </CCol>
+                        <CRow className="px-3 pb-2  d-flex">
+                          <CCol md={2} className="">
+                            <p className=" mb-0">برښنالیک:</p>
                           </CCol>
-                          <CCol md={6} className="d-flex">
-                            <CCol md={3} className="">
-                              <p className="">د ویبسایټ لینک:</p>
-                            </CCol>
-                            <CCol md={9} className="">
-                              <strong className="">
-                                {/* {existuserData?.occupation} */}
-                                ghafari.frama.com
-                              </strong>
-                            </CCol>
+                          <CCol md={4} className="">
+                            <strong className="">
+                              {/* {companyData?.email} */}
+                              parviz@farma.gov.af
+                            </strong>
+                          </CCol>
+                          <div className="spacess"></div>
+                          <CCol md={3} className="">
+                            <p className=" mb-0">د ویبسایټ لینک:</p>
+                          </CCol>
+                          <CCol md={3} className="">
+                            <strong className="">
+                              {/* {companyData?.occupation} */}
+                              ghafari.frama.com
+                            </strong>
                           </CCol>
                         </CRow>
                       </div>
@@ -257,12 +244,12 @@ const LtdInfo = () => {
 
       {isSearchTriggered && (
         <Formik
-          initialValues={details}
+          initialValues={incorporationDetails}
           onSubmit={(values) => {
-            setDetails(values);
+            setIncorporationDetails(values);
             next();
           }}
-          validationSchema={LtdInfoValidationSchema}
+          validationSchema={proforamvaIncorporationValidationSchema}
         >
           {({
             handleSubmit,
@@ -277,7 +264,7 @@ const LtdInfo = () => {
                 <CRow className="justify-content-center my-3">
                   <CCol md={4} className="">
                     <label className="form-label mx-2" htmlFor="subject">
-                      د پروفورمې د انوایس مجموعي قیمت
+                      د انوایس مجموعي قیمت
                       <span
                         style={{
                           color: "red",
@@ -359,8 +346,11 @@ const LtdInfo = () => {
                   </CCol>
 
                   <CCol md={4} className="">
-                    <label className="form-label mx-2" htmlFor="subject">
-                      د اقلامو مجموعي تعداد
+                    <label
+                      className="form-label mx-2"
+                      htmlFor="number_of_total_items"
+                    >
+                      د اقلامو تعداد
                       <span
                         style={{
                           color: "red",
@@ -373,24 +363,28 @@ const LtdInfo = () => {
                     </label>
                     <input
                       type="number"
-                      id="introduced_by"
-                      name="introduced_by"
+                      id="number_of_total_items"
+                      name="number_of_total_items"
                       className={`form-control form-select ${
-                        errors.introduced_by && touched.introduced_by
+                        errors.number_of_total_items &&
+                        touched.number_of_total_items
                           ? "is-invalid form-select    "
                           : ""
                       }`}
-                      value={values.introduced_by}
+                      value={values.number_of_total_items}
                       onChange={(e) => {
                         const newValue = Math.min(
                           Math.max(parseInt(e.target.value), 1),
-                          100
+                          50
                         );
-                        setFieldValue("introduced_by", newValue);
+                        setFieldValue("number_of_total_items", newValue);
                       }}
-                      onBlur={() => setFieldTouched("introduced_by", true)}
+                      onBlur={() =>
+                        setFieldTouched("number_of_total_items", true)
+                      }
                     />
-                    {errors.introduced_by && touched.introduced_by ? (
+                    {errors.number_of_total_items &&
+                    touched.number_of_total_items ? (
                       <div className="invalid-feedback d-block errorMessageStyle mr-2">
                         {errors.introduced_by}
                       </div>

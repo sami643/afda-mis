@@ -15,24 +15,31 @@ import {
 import { useState } from "react";
 import { Steps } from "antd";
 import { Provider } from "./MultiStepFormContext";
-import LtdInfo from "./ltd-info";
+import LtdInfo from "./incorpporation-info";
 import CompanyDetails from "./company-details";
 import MedicineDetails from "./medicine-details";
 import Reviews from "./form-review";
 
 const { Step } = Steps;
 
-const detailsInitialState = {
+const ltdInitialState = {
   ltd_license_number: "",
   age: "",
   profession: "",
   appointment_type: "",
+  introduced_by: "",
 };
 
-const addressInitialState = {
+const companyInitialState = {
+  address1: "",
+  address2: "",
+  medicine_export_purpose: "",
+};
+const medicineInitialState = {
   address1: "",
   address2: "",
   city: "",
+  introduced_by: "",
 };
 
 const renderStep = (step) => {
@@ -51,15 +58,18 @@ const renderStep = (step) => {
 };
 
 const ProformaRegistration = () => {
-  const [details, setDetails] = useState(detailsInitialState);
-  const [address, setAddress] = useState(addressInitialState);
+  const [incorporationDetails, setIncorporationDetails] =
+    useState(ltdInitialState);
+  const [companyDetails, setCompanyDetails] = useState(companyInitialState);
+  const [medicineDetails, setMedicineDetails] = useState(medicineInitialState);
   const [currentStep, setCurrentStep] = useState(0);
 
   const next = () => {
     if (currentStep === 3) {
       setCurrentStep(0);
-      setDetails(detailsInitialState);
-      setAddress(addressInitialState);
+      setIncorporationDetails(ltdInitialState);
+      setCompanyDetails(companyInitialState);
+      setMedicineDetails(medicineInitialState);
       return;
     }
     setCurrentStep(currentStep + 1);
@@ -75,7 +85,16 @@ const ProformaRegistration = () => {
           </CCardHeader>
           <CCardBody className="m-5 ">
             <Provider
-              value={{ details, setDetails, next, prev, address, setAddress }}
+              value={{
+                incorporationDetails,
+                setIncorporationDetails,
+                next,
+                prev,
+                companyDetails,
+                setCompanyDetails,
+                medicineDetails,
+                setMedicineDetails,
+              }}
             >
               <Steps current={currentStep}>
                 <Step title={"د شرکت معلومات"} />

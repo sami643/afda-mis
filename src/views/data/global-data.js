@@ -42,3 +42,13 @@ export const provicesGlobalOptions = [
   { name: "هرات", label: "هرات" },
   { name: "هلمند", label: "هلمند" },
 ];
+
+export const currencytypeOptions = [
+  { value: "افغانی", label: "افغانی" },
+  { value: "دالر (امریکایی)", label: "امریکایي دالر" },
+];
+
+export const drugExportgoalOptions = [
+  { value: "د اسنانانو د استفادې وړ", label: "د اسنانانو د استفادې وړ" },
+  { value: "د حیواناتو د استفادې وړ", label: "د حیواناتو د استفادې وړ" },
+];
