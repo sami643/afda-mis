@@ -1,0 +1,270 @@
+.dataTables_filter {
+  text-align: end !important;
+}
+
+.dataTables_filter input {
+  width: 90% !important;
+  margin-right: 10px;
+}
+.dataTables_filter label {
+  width: 90% !important;
+}
+
+/* Hide specific columns on small screens */
+@media screen and (max-width: 588px) {
+  .table th:nth-child(4),
+  .table td:nth-child(4),
+  .table th:nth-child(5),
+  .table td:nth-child(5),
+  .table th:nth-child(6),
+  .table td:nth-child(6) {
+    display: none;
+  }
+  .dataTables_filter input {
+    width: 80% !important; /* Adjust the width as needed */
+  }
+}
+
+/* Hide specific columns on smaller screens */
+@media screen and (max-width: 364px) {
+  .table th:nth-child(3),
+  .table td:nth-child(3),
+  .table th:nth-child(4),
+  .table td:nth-child(4),
+  .table th:nth-child(5),
+  .table td:nth-child(5),
+  .table th:nth-child(6),
+  .table td:nth-child(6) {
+    display: none;
+  }
+  .dataTables_filter input {
+    width: 60% !important; /* Adjust the width as needed */
+  }
+}
+
+.meetingview {
+  border-radius: 4px 4px 0px 0px;
+  background-color: rgb(72, 190, 240);
+}
+
+.meetingViewModal {
+  width: 800px !important;
+  z-index: 999;
+  margin-left: 150px !important;
+}
+
+.ant-modal-close {
+  left: auto !important;
+  right: 10 !important;
+}
+
+.auto-suggest-container {
+  position: relative;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: #484abf; /* Remove focus outline */
+}
+
+.input-field:focus {
+  border-color: #173553; /* Change the border color on focus */
+  box-shadow: 0 0 0 5px rgba(130, 166, 246, 0.5); /* Add a light blue shadow on focus */
+}
+.suggestion-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  box-shadow: 0 2px 4px rgba(64, 95, 161, 0.5);
+}
+
+.suggestion-item {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.4s;
+}
+
+.suggestion-item:hover {
+  background-color: #f5f5f5;
+}
+
+#directorate {
+  width: 100%; /* Set the width to 100% to fill its container */
+}
+
+#directorate option {
+  /* Add styling here to adjust the appearance of options */
+  width: 60%;
+}
+
+div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+#dtOrderExample_info {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+#dtOrderExample {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+#dtOrderExample_filter {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+#dtOrderExample_length {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+/* Date Picker */
+#react-time-range {
+  width: 200px !important;
+}
+
+#start-component span {
+  display: none;
+}
+
+#end-component span {
+  display: none;
+}
+
+#react-time-range {
+  width: 175px;
+}
+
+.StartAndEndLabel {
+  width: 180px;
+  margin-right: 10px;
+}
+.StartAndEndLabel_Top {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+/* Charts */
+/* #weeklyStatistics {
+  background-color: #484abf;
+  margin: 5px;
+  border-radius: 6px;
+}
+
+#dailyStatistics {
+  background-color: #4cb42c;
+  margin: 5px;
+  border-radius: 6px;
+}
+#monthlyStatistics {
+  background-color: #ef1717;
+  margin: 5px;
+  border-radius: 6px;
+} */
+
+.StatisticsButton {
+  background-color: rgb(72, 190, 240);
+}
+
+.activeDash :hovar {
+  background-color: rgb(22, 134, 182);
+  border-bottom: 2px solid rgb(46, 11, 77);
+}
+.activeDash {
+  background-color: rgb(22, 134, 182);
+  border-bottom: 2px solid rgb(46, 11, 77);
+}
+
+.btn-group a:hovar {
+  background-color: black;
+}
+.timeRangeLabel {
+  margin-top: -20px !important;
+}
+
+@media screen and (max-width: 800px) {
+  .timeRangeLabel {
+    margin-top: 10px !important;
+  }
+}
+
+.cancelledstatus {
+  background-color: rgb(147, 232, 247);
+}
+
+.toast-1 {
+  width: "550px" !important;
+  margin-top: 50% !important;
+}
+
+.toast-2 {
+  width: "550px" !important;
+  margin-top: 10% !important;
+}
+.toastButton {
+  color: rgb(255, 255, 255) !important;
+  font-size: 17px !important;
+}
+
+.toastBody {
+  background-color: rgb(236, 235, 235);
+}
+
+.toastBody_1 {
+  background-color: rgb(236, 235, 235);
+  font-size: 22px;
+}
+
+.toastHeader {
+  color: black;
+  font-size: 27px;
+}
+
+.bg-completed {
+  background-color: hsl(
+    111,
+    98%,
+    53%
+  ) !important; /* Replace with your desired background color */
+}
+
+.bg-approved {
+  background-color: #41b883 !important; /* Replace with your desired background color */
+}
+
+.bg-cancelled {
+  background-color: #a8cdda !important; /* Replace with your desired background color */
+  width: 10% !important;
+}
+
+.bg-Rejected {
+  background-color: #ff0000 !important; /* Replace with your desired background color */
+}
+
+.bg-pending {
+  background-color: #ffff00 !important; /* Replace with your desired background color */
+}
+
+.bg-initial {
+  background-color: #ffff00 !important; /* Replace with your desired background color */
+}
+.bg-received {
+  background-color: #41b883 !important; /* Replace with your desired background color */
+}
+
+.bg-check_out {
+  background-color: #61fa45 !important;
+}

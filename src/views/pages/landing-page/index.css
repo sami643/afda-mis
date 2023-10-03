@@ -1,0 +1,83 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.landingNavBar {
+  font-size: 22px !important;
+  font-weight: 700;
+}
+
+.landingNavBarDiv {
+  font-size: 22px !important;
+}
+@media only screen and (max-width: 960px) {
+  .landingNavBar {
+    margin-inline: 25%;
+    font-size: 3vw !important;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .landingNavBar {
+    margin-inline: 0%;
+    margin-right: 15%;
+    font-size: 3vw !important;
+  }
+}
+
+@media only screen and (max-width: 260px) {
+  .landingNavBar {
+    display: none !important;
+  }
+}
+/* 
+.landingNavBarContainer {
+  background-color: blueviolet;
+} */
+
+.partOne {
+  min-height: 40vw;
+  background-color: #00e5fa;
+}
+
+.chairmanMessage {
+  font-size: 18px;
+}
+
+.textStyleClass {
+  /* color: #ffff00; */
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.chairManPic {
+  margin-bottom: 40px;
+}
+
+@media only screen and (max-width: 600px) {
+  .chairmanMessage {
+    font-size: 3vw;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .chairmanMessage {
+    font-size: 4vw;
+  }
+}
+
+.PartTwo {
+  min-height: 40vw;
+  background-color: #10cddf;
+}
+

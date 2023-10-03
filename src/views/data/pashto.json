@@ -1,0 +1,44 @@
+{
+  "sEmptyTable": "هیڅ ریکارډ په لست کې شتون نه لري",
+  "sInfo": "  _TOTAL_ ریکارډونه",
+  "sInfoEmpty": "0 ریف له ",
+  "sInfoFiltered": " له ټولو  _MAX_ ریکارډونو څخه",
+  "sInfoPostFix": "",
+  "sInfoThousands": ",",
+  "sLengthMenu": "ښودل _MENU_ ریکارډ",
+  "sLoadingRecords": "در حال بارگزاری...",
+  "sProcessing": "در حال پردازش...",
+  "sSearch": "لټون:",
+  "sZeroRecords": "هیڅ ریکارډ و نه موندل شو",
+  "oPaginate": {
+    "sFirst": "اولین",
+    "sLast": "آخرین",
+    "sNext": "وروسته",
+    "sPrevious": "مخکنی"
+  },
+  "oAria": {
+    "sSortAscending": ": فعال سازی ښودل به صورت صعودی",
+    "sSortDescending": ": فعال سازی ښودل به صورت نزولی"
+  },
+  "lengthMenu": "ښودل _MENU_ ریکارډ",
+  "paginate": {
+    "first": "اولین",
+    "last": "آخرین",
+    "next": "وروسته",
+    "previous": "مخکنی"
+  },
+  "buttons": {
+    "print": "چاپ",
+    "colvis": "ښودل ستون‌ها",
+    "copy": "کپی",
+    "copyTitle": "کپی به حافظه",
+    "copySuccess": {
+      "_": "کپی شد %d ریکارډ",
+      "1": "کپی شد 1 ریکارډ"
+    }
+  },
+  "show50": "ښودل 50 ریکارډونه",
+  "show100": "ښودل 100 ریکارډونه",
+  "showAll": "د ټولو ښودل",
+  "entries": "ریکارډونه"
+}
