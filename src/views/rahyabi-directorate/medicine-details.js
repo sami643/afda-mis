@@ -15,10 +15,13 @@ import {
 } from "@coreui/react";
 
 const MedicineDetailsFunc = () => {
-  // ... (other parts of your code)
-  const { medicineDetails, setMedicineDetails, next, prev } =
-    useContext(MultiStepFormContext);
-  const [formFields, setFormFields] = useState([{ name: "", age: "" }]);
+  const {
+    medicineDetails,
+    setMedicineDetails,
+    incorporationDetails,
+    next,
+    prev,
+  } = useContext(MultiStepFormContext);
 
   const handleFormChange = (event, index) => {
     let data = [...formFields];
@@ -26,25 +29,11 @@ const MedicineDetailsFunc = () => {
     setFormFields(data);
   };
 
-  const submit = (e) => {
-    e.preventDefault();
-    console.log(formFields);
-  };
-
-  const addFields = () => {
-    let object = {
-      name: "",
-      age: "",
-    };
-
-    setFormFields([...formFields, object]);
-  };
-
-  const removeFields = (index) => {
-    let data = [...formFields];
-    data.splice(index, 1);
-    setFormFields(data);
-  };
+  const x = incorporationDetails.number_of_total_items;
+  let totalNumberOfInputs = [];
+  for (let i = 0; i < x; i++) {
+    totalNumberOfInputs.push(i + 1);
+  }
 
   return (
     <>
@@ -56,134 +45,298 @@ const MedicineDetailsFunc = () => {
         }}
         validationSchema={medicineDetailsValidationSchema}
       >
-        <div className={"details__wrapper my-5"}>
-          <CRow className="mb-5 ">
-            <CCol md={12} className="mb-5">
-              <table class="table table-striped border mt-5 ">
+        {({
+          handleSubmit,
+          errors,
+          values,
+          setFieldValue,
+          setFieldTouched,
+          touched,
+        }) => (
+          <Form>
+            <div className={"details__wrapper my-5"}>
+              <table
+                className="table table-striped border mt-5  "
+                style={{ minWidth: "500px" }}
+              >
                 <thead className="">
-                  <tr >
+                  <tr className="">
                     <th
                       colSpan="9"
-                      style={{ backgroundColor: "#00aae4" }}
-                      className="p-3"
+                      style={{
+                        backgroundColor: "#00aae4",
+                        border: "1px solid #C0C0C0",
+                      }}
+                      className="px-3 py-2"
                     >
                       <h3>د تورید کیدونکي درملو لست</h3>
                     </th>
                   </tr>
-                  <tr>
-                    <th style={{ width: "1%", border: "1px solid gray" }}>
+                  <tr className="">
+                    <th style={{ width: "1%", border: "1px solid #C0C0C0" }}>
                       شمیره
                     </th>
-                    <th style={{ width: "10%", border: "1px solid gray" }}>
+                    <th style={{ width: "10%", border: "1px solid #C0C0C0" }}>
                       د درملو نوم
                     </th>
-                    <th style={{ width: "5%", border: "1px solid gray" }}>
+                    <th style={{ width: "5%", border: "1px solid #C0C0C0" }}>
                       شکل
                     </th>
-                    <th style={{ width: "10%", border: "1px solid gray" }}>
+                    <th style={{ width: "10%", border: "1px solid #C0C0C0" }}>
                       واحد
                     </th>
-                    <th style={{ width: "10%", border: "1px solid gray" }}>
+                    <th style={{ width: "10%", border: "1px solid #C0C0C0" }}>
                       مقدار فی واحد
                     </th>
-                    <th style={{ width: "10%", border: "1px solid gray" }}>
+                    <th style={{ width: "10%", border: "1px solid #C0C0C0" }}>
                       تعداد واحد
                     </th>
-                    <th style={{ width: "10%", border: "1px solid gray" }}>
+                    <th style={{ width: "10%", border: "1px solid #C0C0C0" }}>
                       قیمت فی واحد
                     </th>
-                    <th style={{ width: "10%", border: "1px solid gray" }}>
+                    <th style={{ width: "10%", border: "1px solid #C0C0C0" }}>
                       قیمت مجموعی
                     </th>
                   </tr>
                 </thead>
-                <tbody>
-                  {formFields.map((form, index) => (
+                <tbody
+                  style={{
+                    width: "768px",
+                  }}
+                  className="tableBody"
+                >
+                  {totalNumberOfInputs.map((form, index) => (
                     <tr key={index}>
                       <td>{index + 1}</td>
                       <td>
                         <input
-                          style={{ width: "100%" }}
-                          name="age"
-                          // placeholder="Age"
-                          onChange={(event) => handleFormChange(event, index)}
-                          value={form.age || ""}
+                          type="text"
+                          id="number_of_person"
+                          name="number_of_person"
+                          style={{
+                            direction: "rtl",
+                            textAlign: "right",
+                            minWidth: "280px",
+                          }}
+                          className={`form-control form-select- ${
+                            errors.number_of_person && touched.number_of_person
+                              ? "is-invalid form-select-    "
+                              : ""
+                          }`}
+                          value={values.number_of_person}
+                          onChange={(e) =>
+                            setFieldValue("number_of_person", e.target.value)
+                          }
+                          onBlur={() =>
+                            setFieldTouched("number_of_person", true)
+                          }
                         />
+                        {errors.number_of_person && touched.number_of_person ? (
+                          <div className="invalid-feedback d-block errorMessageStyle mr-2">
+                            {errors.number_of_person}
+                          </div>
+                        ) : null}
                       </td>
 
                       <td>
                         <input
-                          style={{ width: "100%" }}
-                          name="unit"
-                          // placeholder="Unit"
-                          onChange={(event) => handleFormChange(event, index)}
-                          value={form.unit || ""}
+                          type="text"
+                          id="number_of_person"
+                          name="number_of_person"
+                          style={{
+                            direction: "rtl",
+                            textAlign: "right",
+                            minWidth: "80px",
+                          }}
+                          className={`form-control form-select- ${
+                            errors.number_of_person && touched.number_of_person
+                              ? "is-invalid form-select-    "
+                              : ""
+                          }`}
+                          value={values.number_of_person}
+                          onChange={(e) =>
+                            setFieldValue("number_of_person", e.target.value)
+                          }
+                          onBlur={() =>
+                            setFieldTouched("number_of_person", true)
+                          }
                         />
+                        {errors.number_of_person && touched.number_of_person ? (
+                          <div className="invalid-feedback d-block errorMessageStyle mr-2">
+                            {errors.number_of_person}
+                          </div>
+                        ) : null}
                       </td>
                       <td>
                         <input
-                          style={{ width: "100%" }}
-                          name="type"
-                          // placeholder="Type"
-                          onChange={(event) => handleFormChange(event, index)}
-                          value={form.type || ""}
+                          type="text"
+                          id="number_of_person"
+                          name="number_of_person"
+                          style={{
+                            direction: "rtl",
+                            textAlign: "right",
+                            minWidth: "80px",
+                          }}
+                          className={`form-control form-select-g ${
+                            errors.number_of_person && touched.number_of_person
+                              ? "is-invalid form-select-    "
+                              : ""
+                          }`}
+                          value={values.number_of_person}
+                          onChange={(e) =>
+                            setFieldValue("number_of_person", e.target.value)
+                          }
+                          onBlur={() =>
+                            setFieldTouched("number_of_person", true)
+                          }
                         />
+                        {errors.number_of_person && touched.number_of_person ? (
+                          <div className="invalid-feedback d-block errorMessageStyle mr-2">
+                            {errors.number_of_person}
+                          </div>
+                        ) : null}
                       </td>
                       <td>
                         <input
-                          style={{ width: "100%" }}
-                          name="form"
-                          // placeholder="Form"
-                          onChange={(event) => handleFormChange(event, index)}
-                          value={form.form || ""}
+                          type="text"
+                          id="number_of_person"
+                          name="number_of_person"
+                          style={{
+                            direction: "rtl",
+                            textAlign: "right",
+                            minWidth: "0px",
+                          }}
+                          className={`form-control form-select-l ${
+                            errors.number_of_person && touched.number_of_person
+                              ? "is-invalid form-select-    "
+                              : ""
+                          }`}
+                          value={values.number_of_person}
+                          onChange={(e) =>
+                            setFieldValue("number_of_person", e.target.value)
+                          }
+                          onBlur={() =>
+                            setFieldTouched("number_of_person", true)
+                          }
                         />
+                        {errors.number_of_person && touched.number_of_person ? (
+                          <div className="invalid-feedback d-block errorMessageStyle mr-2">
+                            {errors.number_of_person}
+                          </div>
+                        ) : null}
                       </td>
                       <td>
                         <input
-                          style={{ width: "100%" }}
-                          name="amountOfUnit"
-                          // placeholder="Amount of Unit"
-                          onChange={(event) => handleFormChange(event, index)}
-                          value={form.amountOfUnit || ""}
+                          type="number"
+                          id="number_of_person"
+                          name="number_of_person"
+                          style={{
+                            direction: "rtl",
+                            textAlign: "right",
+                            minWidth: "60px",
+                          }}
+                          className={`form-control form-select-l ${
+                            errors.number_of_person && touched.number_of_person
+                              ? "is-invalid form-select-    "
+                              : ""
+                          }`}
+                          value={values.number_of_person}
+                          onChange={(e) =>
+                            setFieldValue("number_of_person", e.target.value)
+                          }
+                          onBlur={() =>
+                            setFieldTouched("number_of_person", true)
+                          }
                         />
+                        {errors.number_of_person && touched.number_of_person ? (
+                          <div className="invalid-feedback d-block errorMessageStyle mr-2">
+                            {errors.number_of_person}
+                          </div>
+                        ) : null}
                       </td>
                       <td>
                         <input
-                          style={{ width: "100%" }}
-                          name="price"
-                          // placeholder="Price"
-                          onChange={(event) => handleFormChange(event, index)}
-                          value={form.price || ""}
+                          type="number"
+                          id="number_of_person"
+                          name="number_of_person"
+                          style={{
+                            direction: "rtl",
+                            textAlign: "right",
+                            minWidth: "60px",
+                          }}
+                          className={`form-control form-select-l ${
+                            errors.number_of_person && touched.number_of_person
+                              ? "is-invalid form-select-    "
+                              : ""
+                          }`}
+                          value={values.number_of_person}
+                          onChange={(e) =>
+                            setFieldValue("number_of_person", e.target.value)
+                          }
+                          onBlur={() =>
+                            setFieldTouched("number_of_person", true)
+                          }
                         />
+                        {errors.number_of_person && touched.number_of_person ? (
+                          <div className="invalid-feedback d-block errorMessageStyle mr-2">
+                            {errors.number_of_person}
+                          </div>
+                        ) : null}
                       </td>
+
                       <td>
-                        <button onClick={() => removeFields(index)}>
-                          Remove
-                        </button>
+                        <input
+                          type="number"
+                          id="number_of_person"
+                          name="number_of_person"
+                          style={{
+                            direction: "rtl",
+                            textAlign: "right",
+                            minWidth: "80px",
+                          }}
+                          className={`form-control form-select-l ${
+                            errors.number_of_person && touched.number_of_person
+                              ? "is-invalid form-select-    "
+                              : ""
+                          }`}
+                          value={values.number_of_person}
+                          onChange={(e) =>
+                            setFieldValue("number_of_person", e.target.value)
+                          }
+                          onBlur={() =>
+                            setFieldTouched("number_of_person", true)
+                          }
+                        />
+                        {errors.number_of_person && touched.number_of_person ? (
+                          <div className="invalid-feedback d-block errorMessageStyle mr-2">
+                            {errors.number_of_person}
+                          </div>
+                        ) : null}
                       </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
-            </CCol>
-          </CRow>
-
-          <button onClick={addFields}>Add More</button>
-          <br />
-          <button onClick={submit}>Submit</button>
-        </div>
-        {/* ... (rest of your Formik component) */}
+            </div>
+            <div
+              className={
+                "form__item button__items d-flex justify-content-between"
+              }
+            >
+              <Button type={"default"} onClick={prev}>
+                شاته
+              </Button>
+              <CButton
+                type="submit"
+                className="btn-sm btn px-4 py-2"
+                onClick={next}
+              >
+                مخته
+              </CButton>
+            </div>
+          </Form>
+        )}
       </Formik>
-      <div
-        className={"form__item button__items d-flex justify-content-between"}
-      >
-        <Button type={"default"} onClick={prev}>
-          شاته
-        </Button>
-        <CButton type="submit" className="btn-sm btn px-4 py-2" onClick={next}>
-          مخته
-        </CButton>
-      </div>
     </>
   );
 };

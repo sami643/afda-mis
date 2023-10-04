@@ -7,3 +7,8 @@
     display: block;
   }
 }
+
+.tableBody {
+  width: 800px;
+  overflow-x: "scroll";
+}

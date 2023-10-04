@@ -40,6 +40,8 @@ const medicineInitialState = {
   address2: "",
   city: "",
   introduced_by: "",
+  name_of_medicine: "",
+  name: "",
 };
 
 const renderStep = (step) => {

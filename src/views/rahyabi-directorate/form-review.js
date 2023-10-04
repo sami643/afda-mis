@@ -1,39 +1,368 @@
 import { Button, Col, Row } from "antd";
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import MultiStepFormContext from "./MultiStepFormContext";
+import "datatables.net-bs4";
+import $ from "jquery";
+import "datatables.net-bs4/css/dataTables.bootstrap4.min.css";
+import pashtolang from "./../data/pashto.json";
+import medicineIcon from "./../../assets/images/1529570.png";
+import "./../data/views.css";
+import {
+  CButton,
+  CCol,
+  CRow,
+  CCard,
+  CCardHeader,
+  CCardBody,
+  CSpinner,
+} from "@coreui/react";
 
 const Review = () => {
-  const { details, address, next, prev } = useContext(MultiStepFormContext);
+  const [listData, setListData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const tableRef = useRef(null);
+
+  // useEffect(() => {
+  //   const dataTable = $(tableRef.current).DataTable({
+  //     order: [[0, "desc"]],
+  //     pageLength: 25,
+  //     language: pashtolang,
+  //   });
+  //   $(".dataTables_length").addClass("bs-select");
+
+  //   return () => {
+  //     dataTable.destroy();
+  //   };
+  // }, [listData]);
+
+  const {
+    incorporationDetails,
+    medicineDetails,
+    companyDetails,
+    address,
+    next,
+    prev,
+  } = useContext(MultiStepFormContext);
+
+  useEffect(() => {
+    // gettingCancelledAppointment().then(() => {
+    //   setLoading(false);
+    // });
+  }, []);
+
   return (
-    <div className={"details__wrapper"}>
-      <Row>
-        <Col span={24}>
-          <h1>Details</h1>
-          <p>Name: {details.name}</p>
-          <p>Age: {details.age}</p>
-          <p>Profession: {details.profession}</p>
-          <p>د ملاقات ډول: {details.appointment_type}</p>
-        </Col>
-        <Col span={24}>
-          <h1>Address</h1>
-          <p>Address-1: {address.address1}</p>
-          {address.address2 && <p>Address-2: {address.address2}</p>}
-          <p>City: {address.city}</p>
+    <>
+      <Row className="mt-5">
+        <CCol md={12}>
+          <div className="  border rounded mt-5 mb-4 p-2">
+            <CCardBody className="p-0 mx-0" style={{ minHeight: "200px" }}>
+              <>
+                <h4
+                  className="px-3  py-2 rounded"
+                  style={{ backgroundColor: "#00aae4" }}
+                >
+                  د شرکت اړه معلومات
+                </h4>
+
+                <div className="my-3">
+                  <CRow className="px-3 py-2  d-flex">
+                    <CCol md={2} className="">
+                      <p className=" mb-1">د شرکت نوم:</p>
+                    </CCol>
+                    <CCol md={4} className="">
+                      <strong className="mx-2  bg-warning rounded p-1">
+                        {/* {companyData?.name} */}
+                        عمر غزنی غفاری لیمیتید
+                      </strong>
+                    </CCol>
+                    <div className="spacess"></div>
+                    <CCol md={3} className="">
+                      <p className=" m-0">د تجارتي جواز د اعتبار نیټه:</p>
+                    </CCol>
+                    <CCol md={3}>
+                      <strong className="m-0 p-0">
+                        {/* {companyData?.tazkera_number} */}
+                        04-06-1404
+                      </strong>
+                    </CCol>
+                  </CRow>
+                  <CRow className="px-3 pb-2  d-flex">
+                    <CCol md={2} className="">
+                      <p className=" mb-0">د شرکت د جواز نمبر:</p>
+                    </CCol>
+                    <CCol md={4} className="">
+                      <strong className="mx-2">
+                        {/* {companyData?.name} */}
+                        90890
+                      </strong>
+                    </CCol>
+                    <div className="spacess"></div>
+                    <CCol md={3} className="">
+                      <p className="mb-0">ولایت:</p>
+                    </CCol>
+                    <CCol md={3} className="">
+                      <strong className="">
+                        {/* {companyData?.contact} */}
+                        کابل
+                      </strong>
+                    </CCol>
+                  </CRow>
+                  <CRow className="px-3 pb-2  d-flex">
+                    <CCol md={2} className="">
+                      <p className=" mb-0"> پته:</p>
+                    </CCol>
+                    <CCol md={4} className="">
+                      <strong className="">
+                        {/* {companyData?.father_name} */}
+                        هوتل پروان شمشاد مارکیټ
+                      </strong>
+                    </CCol>
+                    <div className="spacess"></div>
+                    <CCol md={3} className="">
+                      <p className="">د اړیکې شمیره:</p>
+                    </CCol>
+                    <CCol md={3} className="">
+                      <strong className="">
+                        {/* {companyData?.occupation} */}
+                        077564654656
+                      </strong>
+                    </CCol>
+                  </CRow>
+                  <CRow className="px-3 pb-2  d-flex">
+                    <CCol md={2} className="">
+                      <p className=" mb-0">برښنالیک:</p>
+                    </CCol>
+                    <CCol md={4} className="">
+                      <strong className="">
+                        {/* {companyData?.email} */}
+                        parviz@farma.gov.af
+                      </strong>
+                    </CCol>
+                    <div className="spacess"></div>
+                    <CCol md={3} className="">
+                      <p className=" mb-0">د ویبسایټ لینک:</p>
+                    </CCol>
+                    <CCol md={3} className="">
+                      <strong className="">
+                        {/* {companyData?.occupation} */}
+                        ghafari.frama.com
+                      </strong>
+                    </CCol>
+                  </CRow>
+                </div>
+              </>
+            </CCardBody>
+          </div>
+        </CCol>
+        <CCol md={12}>
+          <div className="  border rounded mt-1 mb-5 p-2 mx-0 ">
+            <CCardBody className="p-0 mx-0" style={{ minHeight: "200px" }}>
+              <>
+                <h4
+                  className="px-3 bg-warning py-2 rounded"
+                  // style={{ backgroundColor: "#00aae4" }}
+                >
+                  د تولیدي کمپنۍ په اړه معلومات
+                </h4>
+                <div className="my-3">
+                  <CRow className="px-3 py-2  d-flex">
+                    <CCol md={2} className="">
+                      <p className=" mb-1">د کمپنۍ نوم:</p>
+                    </CCol>
+                    <CCol md={4} className="">
+                      <strong
+                        className="mx-2 rounded p-1"
+                        style={{ backgroundColor: "#00aae4" }}
+                      >
+                        {/* {companyData?.name} */}
+                        Mediun Farma
+                      </strong>
+                    </CCol>
+                    <div className="spacess"></div>
+                    <CCol md={2} className="">
+                      <p className=" m-0">هیواد:</p>
+                    </CCol>
+                    <CCol md={4}>
+                      <strong className="m-0 p-0">
+                        {/* {companyData?.tazkera_number} */}
+                        پاکستان
+                      </strong>
+                    </CCol>
+                  </CRow>
+                  <CRow className="px-3 pb-2  d-flex">
+                    <CCol md={2} className="">
+                      <p className=" mb-0">ولایت :</p>
+                    </CCol>
+                    <CCol md={4} className="">
+                      <strong className="mx-2">
+                        {/* {companyData?.name} */}
+                        لاهور
+                      </strong>
+                    </CCol>
+                    <div className="spacess"></div>
+                    <CCol md={2} className="">
+                      <p className="mb-0">پته:</p>
+                    </CCol>
+                    <CCol md={4} className="">
+                      <strong className="">
+                        {/* {companyData?.contact} */}
+                        Johar Town, Phase-3, Lahore
+                      </strong>
+                    </CCol>
+                  </CRow>
+                  <CRow className="px-3 pb-2  d-flex">
+                    <CCol md={2} className="">
+                      <p className=" mb-0"> د اړیکې شمیره:</p>
+                    </CCol>
+                    <CCol md={4} className="">
+                      <strong className="">
+                        {/* {companyData?.father_name} */}
+                        00924654654656
+                      </strong>
+                    </CCol>
+                    <div className="spacess"></div>
+                    <CCol md={2} className="">
+                      <p className=" mb-0">برښنالیک:</p>
+                    </CCol>
+                    <CCol md={4} className="">
+                      <strong className="">
+                        {/* {companyData?.occupation} */}
+                        parviz@farma.gov.af
+                      </strong>
+                    </CCol>
+                  </CRow>
+                  <CRow className="px-3 pb-2  d-flex">
+                    <div className="spacess"></div>
+                    <CCol md={2} className="">
+                      <p className=" mb-0">د ویبسایټ لینک:</p>
+                    </CCol>
+                    <CCol md={4} className="">
+                      <strong className="">
+                        {/* {companyData?.occupation} */}
+                        ghafari.frama.com
+                      </strong>
+                    </CCol>
+                  </CRow>
+                </div>
+              </>
+            </CCardBody>
+          </div>
+        </CCol>
+
+        <CCol md={12}>
+          <div className="  border rounded mt-1 mb-5 p-2 mx-0 ">
+            <CCardBody className="p-0 mx-0" style={{ minHeight: "150px" }}>
+              <>
+                <h4
+                  className="px-3 bg-warning py-2 rounded"
+                  // style={{ backgroundColor: "#00aae4" }}
+                >
+                  د پروفورمې نور مشخصات
+                </h4>
+                <div className="mt-3">
+                  <CRow className="px-3 py-2  d-flex">
+                    <CCol md={2} className="">
+                      <p className=" mb-1">د انوایس مجموعی قیمت:</p>
+                    </CCol>
+                    <CCol md={4} className="">
+                      <strong
+                        className="mx-2 rounded p-1"
+                        // style={{ backgroundColor: "#00aae4" }}
+                      >
+                        {/* {companyData?.name} */}
+                        ۲۳۴۳۲۴۳۲
+                      </strong>
+                    </CCol>
+                    <div className="spacess"></div>
+                    <CCol md={2} className="">
+                      <p className=" m-0">د پیسو ډول:</p>
+                    </CCol>
+                    <CCol md={4}>
+                      <strong className="m-0 p-0">
+                        {/* {companyData?.tazkera_number} */}
+                        افغانی
+                      </strong>
+                    </CCol>
+                  </CRow>
+                  <CRow className="px-3 pb-2  d-flex">
+                    <CCol md={2} className="">
+                      <p className=" mb-0">د اقلامو تعداد :</p>
+                    </CCol>
+                    <CCol md={4} className="">
+                      <strong className="mx-2">
+                        {/* {companyData?.name} */}
+                        12
+                      </strong>
+                    </CCol>
+                    <div className="spacess"></div>
+                    <CCol md={2} className="">
+                      <p className="mb-0">د محصولاتو د تورید هدف:</p>
+                    </CCol>
+                    <CCol md={4} className="">
+                      <strong className="">
+                        {/* {companyData?.contact} */}د انسانی استفادې لپاره
+                      </strong>
+                    </CCol>
+                  </CRow>
+                </div>
+              </>
+            </CCardBody>
+          </div>
+        </CCol>
+
+        <CCol className="container">
+          <CCardHeader>
+            <h4> د درملو اقلام</h4>
+          </CCardHeader>
+
+          <table
+            ref={tableRef}
+            id="dtOrderExample"
+            className=" table table-striped table-bordered table-sm"
+            width="100%"
+          >
+            <thead>
+              <tr>
+                <th className="text-center">شمیره</th>
+                <th className="text-center">د درملو نوم</th>
+                <th className="text-center">شکل</th>
+                <th className="text-center">واحد</th>
+                <th className="text-center">مقدار فی واحد</th>
+                <th className="text-center">تعداد واحد</th>
+                <th className="text-center">قیمت فی واحد</th>
+                <th className="text-center">قیمت مجموعی</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {listData.map((item, index) => (
+                <tr key={index}>
+                  <td> {index + 1}</td>
+                  <td>item.visitor.name</td>
+                  <td>item.directorate?.name</td>
+                  <td>item.reason</td>
+                  <td className="text-center">ljlkj</td>
+                  <td>item.visitor.contact</td>
+                  <td className="text-center">hgh</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
           <div
             className={
-              "form__item button__items d-flex justify-content-between"
+              "form__item button__items d-flex justify-content-between mt-5"
             }
           >
             <Button type={"default"} onClick={prev}>
-              Back
+              شاته
             </Button>
             <Button type={"primary"} onClick={next}>
-              Confirm
+              تصدیق او ثبت
             </Button>
           </div>
-        </Col>
+        </CCol>
       </Row>
-    </div>
+    </>
   );
 };
 export default Review;

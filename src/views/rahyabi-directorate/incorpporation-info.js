@@ -386,7 +386,7 @@ const LtdInfo = () => {
                     {errors.number_of_total_items &&
                     touched.number_of_total_items ? (
                       <div className="invalid-feedback d-block errorMessageStyle mr-2">
-                        {errors.introduced_by}
+                        {errors.number_of_total_items}
                       </div>
                     ) : null}
                   </CCol>

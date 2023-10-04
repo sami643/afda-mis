@@ -8,7 +8,6 @@ import {
 } from "@coreui/react";
 import React, { useEffect, useRef, useState } from "react";
 import { Button, Modal } from "antd";
-import axios from "axios";
 import $ from "jquery";
 import "datatables.net-bs4";
 import "datatables.net-bs4/css/dataTables.bootstrap4.min.css";
