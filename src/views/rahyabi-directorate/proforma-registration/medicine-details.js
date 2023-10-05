@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import MultiStepFormContext from "./MultiStepFormContext";
 import { Formik, Form } from "formik";
 import { Input, InputNumber } from "formik-antd";
-import { medicineDetailsValidationSchema } from "../data/validation";
+import { medicineDetailsValidationSchema } from "../../data/validation";
 
 import {
   CButton,

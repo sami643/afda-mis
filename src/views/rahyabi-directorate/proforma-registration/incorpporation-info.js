@@ -4,8 +4,8 @@ import * as Yup from "yup";
 import { Button } from "antd";
 import { Input, InputNumber } from "formik-antd";
 import MultiStepFormContext from "./MultiStepFormContext";
-import { currencytypeOptions } from "../data/global-data";
-import { proforamvaIncorporationValidationSchema } from "../data/validation";
+import { currencytypeOptions } from "../../data/global-data";
+import { proforamvaIncorporationValidationSchema } from "../../data/validation";
 import {
   CButton,
   CCol,

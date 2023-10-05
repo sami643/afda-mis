@@ -55,6 +55,15 @@
   margin-left: 150px !important;
 }
 
+.proformaSubmitModal_1 {
+  width: 800px !important;
+  margin-top: 70px;
+}
+
+.proformaSubmitModal_2{
+min-height: 300px;
+}
+
 .ant-modal-close {
   left: auto !important;
   right: 10 !important;

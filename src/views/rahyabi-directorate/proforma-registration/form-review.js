@@ -1,12 +1,13 @@
-import { Button, Col, Row } from "antd";
+import { Col, Row } from "antd";
 import React, { useContext, useState, useEffect, useRef } from "react";
 import MultiStepFormContext from "./MultiStepFormContext";
 import "datatables.net-bs4";
+import { Button, Modal } from "antd";
 import $ from "jquery";
 import "datatables.net-bs4/css/dataTables.bootstrap4.min.css";
-import pashtolang from "./../data/pashto.json";
-import medicineIcon from "./../../assets/images/1529570.png";
-import "./../data/views.css";
+// import pashtolang from "./../data/pashto.json";
+
+import "./../../data/views.css";
 import {
   CButton,
   CCol,
@@ -21,6 +22,20 @@ const Review = () => {
   const [listData, setListData] = useState([]);
   const [loading, setLoading] = useState(true);
   const tableRef = useRef(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [appointmentModalData, setAppointmentModalData] = useState({});
+
+  const showModal = (item) => {
+    setIsModalOpen(true);
+    setAppointmentModalData(item);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+    next();
+  };
 
   // useEffect(() => {
   //   const dataTable = $(tableRef.current).DataTable({
@@ -356,12 +371,42 @@ const Review = () => {
             <Button type={"default"} onClick={prev}>
               شاته
             </Button>
-            <Button type={"primary"} onClick={next}>
+            <Button type={"primary"} onClick={() => showModal()}>
               تصدیق او ثبت
             </Button>
           </div>
         </CCol>
       </Row>
+
+      <Modal
+        open={isModalOpen}
+        onCancel={handleCancel}
+        footer={null}
+        maskClosable={false}
+        className="proformaSubmitModal_1"
+      >
+        <div className="  border rounded mt-2 mb-3 mt-4 proformaSubmitModal_2 ">
+          <h3 className="text-center mt-5 mb-5">
+            ستاسو پروفورمه په بریالیتوب سره ثبت شوه!
+          </h3>
+
+          <CRow md={12} className="pt-5 px-3 ">
+            <CCol md={6} className="text-center ">
+              <CButton
+                className="px-5 my-2 mx-2"
+                onClick={() => {
+                  handleCancel();
+                }}
+              >
+                تړل
+              </CButton>
+            </CCol>
+            <CCol md={6} className="text-center">
+              <CButton className="px-4 my-2 mx-2">د پروفورمې ډانلود</CButton>
+            </CCol>
+          </CRow>
+        </div>
+      </Modal>
     </>
   );
 };

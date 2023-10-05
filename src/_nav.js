@@ -689,6 +689,12 @@ export const head_user = [
     to: "/rahyabi/proforma-register",
     icon: <CIcon icon={cilMagnifyingGlass} customClassName="nav-icon" />,
   },
+  {
+    component: CNavItem,
+    name: <FormattedMessage id="Proforma View" />,
+    to: "/rahyabi/proforma/proforma-view",
+    icon: <CIcon icon={cilMagnifyingGlass} customClassName="nav-icon" />,
+  },
 ];
 
 // Appointments

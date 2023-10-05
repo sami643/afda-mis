@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Formik, Form } from "formik";
 import { Button } from "antd";
 import MultiStepFormContext from "./MultiStepFormContext";
-import { drugExportgoalOptions } from "../data/global-data";
+import { drugExportgoalOptions } from "../../data/global-data";
 import "./style.css";
 import {
   CButton,
@@ -12,7 +12,7 @@ import {
   CCardHeader,
   CCardBody,
 } from "@coreui/react";
-import { proformaCompanyValidationSchema } from "../data/validation";
+import { proformaCompanyValidationSchema } from "../../data/validation";
 const CompanyDetailsFunc = () => {
   const {
     companyDetails,
@@ -301,7 +301,7 @@ const CompanyDetailsFunc = () => {
             <Form>
               <div className={"details__wrapper my-5"}>
                 <CRow className="mb-5">
-                  <CCol md={4} className="mb-5">
+                  <CCol md={6} className="mb-5">
                     <label className="form-label mx-2" htmlFor="subject">
                       د محصولاتو د تورید موخه
                       <span
@@ -345,6 +345,24 @@ const CompanyDetailsFunc = () => {
                         {errors.medicine_export_purpose}
                       </div>
                     ) : null}
+                  </CCol>
+
+                  <CCol md={6} className="">
+                    <label className="form-label mx-3" htmlFor="subject">
+                      د انوایس ضمیمه
+                    </label>
+                    <input
+                      class="form-control form-control-l"
+                      id="attachment"
+                      name="attachment"
+                      type="file"
+                      onChange={(event) => {
+                        setFieldValue(
+                          "attachment",
+                          event.currentTarget.files[0]
+                        );
+                      }}
+                    />
                   </CCol>
                 </CRow>
                 <div

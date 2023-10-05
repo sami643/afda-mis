@@ -43,9 +43,6 @@ const CancelledAppointment = () => {
     setIsModalOpen(true);
     setAppointmentModalData(item);
   };
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
   const handleCancel = () => {
     setIsModalOpen(false);
   };
