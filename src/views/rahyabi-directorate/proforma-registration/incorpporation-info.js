@@ -227,6 +227,27 @@ const LtdInfo = () => {
                             </strong>
                           </CCol>
                         </CRow>
+                        <CRow className="px-3 pb-2  d-flex">
+                          <CCol md={2} className="">
+                            <p className=" mb-0">د شرکت نماینده:</p>
+                          </CCol>
+                          <CCol md={4} className="">
+                            <strong className="">
+                              {/* {companyData?.email} */}
+                              احمد رحیم
+                            </strong>
+                          </CCol>
+                          <div className="spacess"></div>
+                          <CCol md={3} className="">
+                            <p className=" mb-0">د نماینده د تذکرې شمیره:</p>
+                          </CCol>
+                          <CCol md={3} className="">
+                            <strong className="">
+                              {/* {companyData?.occupation} */}
+                              564654654
+                            </strong>
+                          </CCol>
+                        </CRow>
                       </div>
                     )}
                     {!isIncorporationExist && (
@@ -387,6 +408,47 @@ const LtdInfo = () => {
                     touched.number_of_total_items ? (
                       <div className="invalid-feedback d-block errorMessageStyle mr-2">
                         {errors.number_of_total_items}
+                      </div>
+                    ) : null}
+                  </CCol>
+                </CRow>
+                <CRow className="my-3">
+                  <CCol md={4} className="">
+                    <label className="form-label mx-2" htmlFor="subject">
+                      متفرقه مصارف
+                      <span
+                        style={{
+                          color: "red",
+                          marginInline: "5px",
+                          paddingTop: "5px",
+                        }}
+                      >
+                        *
+                      </span>
+                    </label>
+                    <input
+                      type="number"
+                      id="introduced_by"
+                      name="introduced_by"
+                      className={`form-control form-select ${
+                        errors.introduced_by && touched.introduced_by
+                          ? "is-invalid form-select    "
+                          : ""
+                      }`}
+                      value={values.introduced_by}
+                      onChange={(e) =>
+                        setFieldValue("introduced_by", e.target.value)
+                      }
+                      onBlur={() => setFieldTouched("introduced_by", true)}
+                    />
+                    {errors.introduced_by && touched.introduced_by ? (
+                      <div className="invalid-feedback d-block errorMessageStyle mr-2">
+                        {errors.introduced_by}
+                      </div>
+                    ) : null}
+                    {errors.appointment_type && touched.appointment_type ? (
+                      <div className="invalid-feedback  errorMessageStyle mr-2 mb-3 mt-0">
+                        {errors.appointment_type}
                       </div>
                     ) : null}
                   </CCol>
