@@ -82,13 +82,12 @@ const Typography = React.lazy(() =>
 );
 
 // Rahyaabi Directorates
+
 const ProFormaRegistration = React.lazy(() =>
   import("./views/rahyabi-directorate/proforma-registration/proforma-register")
 );
 const ProformaView = React.lazy(() =>
-  import(
-    "./views/rahyabi-directorate/proforma-veiw/proforma-view"
-  )
+  import("./views/rahyabi-directorate/proforma-veiw/proforma-view")
 );
 
 // Base
@@ -279,6 +278,7 @@ const routes = [
   },
 
   // Rahyaabi Directorate
+
   {
     path: "/rahyabi/proforma-register",
     name: "ProformaRegistration",

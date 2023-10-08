@@ -64,6 +64,10 @@ const ProformaRegistration = () => {
     useState(ltdInitialState);
   const [companyDetails, setCompanyDetails] = useState(companyInitialState);
   const [medicineDetails, setMedicineDetails] = useState(medicineInitialState);
+  const [isLTDProfroma, setIsLTDProforma] = useState(false);
+  const [isNGOProforma, setIsNGOProforma] = useState(false);
+
+  const [proformaType, setProformaType] = useState("");
   const [currentStep, setCurrentStep] = useState(0);
 
   const next = () => {
@@ -96,10 +100,16 @@ const ProformaRegistration = () => {
                 setCompanyDetails,
                 medicineDetails,
                 setMedicineDetails,
+                setProformaType,
+                proformaType,
+                isLTDProfroma,
+                setIsLTDProforma,
+                isNGOProforma,
+                setIsNGOProforma,
               }}
             >
               <Steps current={currentStep}>
-                <Step title={"د شرکت معلومات"} />
+                <Step title={"د شرکت/موسسې معلومات"} />
                 <Step title={"د کمپنی معلومات"} />
                 <Step title={"د درملو معلومات"} />
                 <Step title={"تأیید او ثبت"} />

@@ -52,3 +52,22 @@ export const drugExportgoalOptions = [
   { value: "د اسنانانو د استفادې وړ", label: "د اسنانانو د استفادې وړ" },
   { value: "د حیواناتو د استفادې وړ", label: "د حیواناتو د استفادې وړ" },
 ];
+export const proformaTypeOptions = [
+  {
+    value: "licensed medicine proforma",
+    label: "د مجاز درملو پروفورمه",
+  },
+  {
+    value: "َunder controlled medicine proforma",
+    label: "د کنترول لاندې درملو پروفورمه",
+  },
+  {
+    value: "medical product proforma",
+    label: "د طبی محصولاتو پروفورمه",
+  },
+];
+
+export const providerOptions = [
+  { value: "LTD", label: "داخلی شرکت" },
+  { value: "NGO", label: "موسسه" },
+];

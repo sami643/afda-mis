@@ -55,6 +55,11 @@ const Review = () => {
     medicineDetails,
     companyDetails,
     address,
+    proformaType,
+    isLTDProfroma,
+
+    isNGOProforma,
+
     next,
     prev,
   } = useContext(MultiStepFormContext);
@@ -76,7 +81,9 @@ const Review = () => {
                   className="px-3  py-2 rounded"
                   style={{ backgroundColor: "#00aae4" }}
                 >
-                  د شرکت اړه معلومات
+                  {proformaType === "NGO medicine proforma"
+                    ? "د موسسې اړوند معلومات"
+                    : "   د شرکت اړه معلومات"}
                 </h4>
 
                 <div className="my-3">

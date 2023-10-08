@@ -19,6 +19,10 @@ const MedicineDetailsFunc = () => {
     medicineDetails,
     setMedicineDetails,
     incorporationDetails,
+    proformaType,
+    isLTDProfroma,
+    isNGOProforma,
+
     next,
     prev,
   } = useContext(MultiStepFormContext);
