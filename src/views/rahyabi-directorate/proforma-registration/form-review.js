@@ -57,9 +57,7 @@ const Review = () => {
     address,
     proformaType,
     isLTDProfroma,
-
     isNGOProforma,
-
     next,
     prev,
   } = useContext(MultiStepFormContext);
@@ -332,11 +330,21 @@ const Review = () => {
           </div>
         </CCol>
 
+        {/* Medicine*/}
         <CCol className="container">
           <CCardHeader>
-            <h4> د درملو اقلام</h4>
+            {proformaType.proformaType === "medical product proforma" && (
+              <h4> د صحي محصولاتو لست</h4>
+            )}
+            {proformaType.proformaType ===
+              "under controlled medicine proforma" && (
+              <h4> د تر کنټرول لاندې درملو لست</h4>
+            )}
+            {proformaType.proformaType ===
+              "under controlled medicine proforma" && (
+              <h4> د مجاز درملو لست</h4>
+            )}
           </CCardHeader>
-
           <table
             ref={tableRef}
             id="dtOrderExample"
@@ -344,16 +352,29 @@ const Review = () => {
             width="100%"
           >
             <thead>
-              <tr>
-                <th className="text-center">شمیره</th>
-                <th className="text-center">د درملو نوم</th>
-                <th className="text-center">شکل</th>
-                <th className="text-center">واحد</th>
-                <th className="text-center">مقدار فی واحد</th>
-                <th className="text-center">تعداد واحد</th>
-                <th className="text-center">قیمت فی واحد</th>
-                <th className="text-center">قیمت مجموعی</th>
-              </tr>
+              {proformaType.proformaType === "medical product proforma" ? (
+                <tr className="">
+                  <th className="text-center">شماره</th>
+                  <th className="text-center">د محصول مشخصات</th>
+                  <th className="text-center">مودل</th>
+                  <th className="text-center">تولیدي کمپنۍ</th>
+                  <th className="text-center">هیواد</th>
+                  <th className="text-center">تعداد</th>
+                  <th className="text-center">د فی واحد قیمت</th>
+                  <th className="text-center">مجموعی قیمت</th>
+                </tr>
+              ) : (
+                <tr className="">
+                  <th className="text-center">شمیره</th>
+                  <th className="text-center">د درملو نوم</th>
+                  <th className="text-center">شکل</th>
+                  <th className="text-center">واحد</th>
+                  <th className="text-center">مقدار فی واحد</th>
+                  <th className="text-center">تعداد واحد</th>
+                  <th className="text-center">قیمت فی واحد</th>
+                  <th className="text-center">قیمت مجموعی</th>
+                </tr>
+              )}
             </thead>
 
             <tbody>
@@ -368,6 +389,22 @@ const Review = () => {
                   <td className="text-center">hgh</td>
                 </tr>
               ))}
+              <tr>
+                <td colSpan={7} className="text-center">
+                  <h5>مجموعي مصارف</h5>
+                </td>
+                <td>
+                  <b>2132$</b>
+                </td>
+              </tr>
+              <tr>
+                <td colSpan={7} className="text-center">
+                  <h5> متفرقه مصارف</h5>
+                </td>
+                <td>
+                  <b>220$</b>
+                </td>
+              </tr>
             </tbody>
           </table>
           <div

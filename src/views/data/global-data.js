@@ -63,11 +63,18 @@ export const proformaTypeOptions = [
   },
   {
     value: "medical product proforma",
-    label: "د طبی محصولاتو پروفورمه",
+    label: "د صحي محصولاتو پروفورمه",
   },
 ];
 
-export const providerOptions = [
+export const importerOptions = [
   { value: "LTD", label: "داخلی شرکت" },
   { value: "NGO", label: "موسسه" },
+];
+
+export const medicalProductOptions = [
+  { value: "وسایل او لوازم", label: "وسایل او لوازم" },
+  { value: "د درملو خام مواد", label: "د درملو خام مواد" },
+  { value: "بهداشتي او آرایشی مواد", label: "بهداشتي او آرایشي مواد" },
+  { value: "لابراتواري ریجینت او توکي", label: "لابراتواري ریجنت او توکي" },
 ];

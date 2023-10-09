@@ -4,7 +4,7 @@ import MultiStepFormContext from "./MultiStepFormContext";
 import { Formik, Form } from "formik";
 import { Input, InputNumber } from "formik-antd";
 import { medicineDetailsValidationSchema } from "../../data/validation";
-
+import "./proforma-register-style.css";
 import {
   CButton,
   CCol,
@@ -58,9 +58,9 @@ const MedicineDetailsFunc = () => {
           touched,
         }) => (
           <Form>
-            <div className={"details__wrapper my-5"}>
+            <div class="table-wrapper">
               <table
-                className="table table-striped border mt-5  "
+                className="customers border mt-5  "
                 style={{ minWidth: "500px" }}
               >
                 <thead className="">
@@ -73,41 +73,75 @@ const MedicineDetailsFunc = () => {
                       }}
                       className="px-3 py-2"
                     >
-                      <h3>د تورید کیدونکي درملو لست</h3>
+                      {proformaType.proformaType ===
+                      "medical product proforma" ? (
+                        <h3>د تورید کیدونکي صحي محصولاتو لست</h3>
+                      ) : (
+                        <h3>د تورید کیدونکي درملو لست</h3>
+                      )}
                     </th>
                   </tr>
-                  <tr className="">
-                    <th style={{ width: "1%", border: "1px solid #C0C0C0" }}>
-                      شمیره
-                    </th>
-                    <th style={{ width: "10%", border: "1px solid #C0C0C0" }}>
-                      د درملو نوم
-                    </th>
-                    <th style={{ width: "5%", border: "1px solid #C0C0C0" }}>
-                      شکل
-                    </th>
-                    <th style={{ width: "10%", border: "1px solid #C0C0C0" }}>
-                      واحد
-                    </th>
-                    <th style={{ width: "10%", border: "1px solid #C0C0C0" }}>
-                      مقدار فی واحد
-                    </th>
-                    <th style={{ width: "10%", border: "1px solid #C0C0C0" }}>
-                      تعداد واحد
-                    </th>
-                    <th style={{ width: "10%", border: "1px solid #C0C0C0" }}>
-                      قیمت فی واحد
-                    </th>
-                    <th style={{ width: "10%", border: "1px solid #C0C0C0" }}>
-                      قیمت مجموعی
-                    </th>
-                  </tr>
+                  {proformaType.proformaType === "medical product proforma" ? (
+                    <tr className="">
+                      <th style={{ width: "1%", border: "1px solid #C0C0C0" }}>
+                        شماره
+                      </th>
+                      <th style={{ width: "10%", border: "1px solid #C0C0C0" }}>
+                        د محصول مشخصات
+                      </th>
+                      <th style={{ width: "10%", border: "1px solid #C0C0C0" }}>
+                        مودل
+                      </th>
+                      <th style={{ width: "10%", border: "1px solid #C0C0C0" }}>
+                        تولیدي کمپنۍ
+                      </th>
+                      <th style={{ width: "10%", border: "1px solid #C0C0C0" }}>
+                        هیواد
+                      </th>
+                      <th style={{ width: "10%", border: "1px solid #C0C0C0" }}>
+                        تعداد
+                      </th>
+                      <th style={{ width: "10%", border: "1px solid #C0C0C0" }}>
+                        د فی واحد قیمت
+                      </th>
+                      <th style={{ width: "10%", border: "1px solid #C0C0C0" }}>
+                        مجموعی قیمت
+                      </th>
+                    </tr>
+                  ) : (
+                    <tr className="">
+                      <th style={{ width: "1%", border: "1px solid #C0C0C0" }}>
+                        شمیره
+                      </th>
+                      <th style={{ width: "10%", border: "1px solid #C0C0C0" }}>
+                        د درملو نوم
+                      </th>
+                      <th style={{ width: "5%", border: "1px solid #C0C0C0" }}>
+                        شکل
+                      </th>
+                      <th style={{ width: "10%", border: "1px solid #C0C0C0" }}>
+                        واحد
+                      </th>
+                      <th style={{ width: "10%", border: "1px solid #C0C0C0" }}>
+                        مقدار فی واحد
+                      </th>
+                      <th style={{ width: "10%", border: "1px solid #C0C0C0" }}>
+                        تعداد واحد
+                      </th>
+                      <th style={{ width: "10%", border: "1px solid #C0C0C0" }}>
+                        قیمت فی واحد
+                      </th>
+                      <th style={{ width: "10%", border: "1px solid #C0C0C0" }}>
+                        قیمت مجموعی
+                      </th>
+                    </tr>
+                  )}
                 </thead>
                 <tbody
                   style={{
                     width: "768px",
                   }}
-                  className="tableBody"
+                  className="table-wrapper"
                 >
                   {totalNumberOfInputs.map((form, index) => (
                     <tr key={index}>
@@ -208,7 +242,7 @@ const MedicineDetailsFunc = () => {
                           style={{
                             direction: "rtl",
                             textAlign: "right",
-                            minWidth: "0px",
+                            minWidth: "70px",
                           }}
                           className={`form-control form-select-l ${
                             errors.number_of_person && touched.number_of_person
@@ -237,7 +271,7 @@ const MedicineDetailsFunc = () => {
                           style={{
                             direction: "rtl",
                             textAlign: "right",
-                            minWidth: "60px",
+                            minWidth: "80px",
                           }}
                           className={`form-control form-select-l ${
                             errors.number_of_person && touched.number_of_person
@@ -266,7 +300,7 @@ const MedicineDetailsFunc = () => {
                           style={{
                             direction: "rtl",
                             textAlign: "right",
-                            minWidth: "60px",
+                            minWidth: "80px",
                           }}
                           className={`form-control form-select-l ${
                             errors.number_of_person && touched.number_of_person
@@ -319,9 +353,27 @@ const MedicineDetailsFunc = () => {
                       </td>
                     </tr>
                   ))}
+
+                  <tr>
+                    <td colSpan={7} className="text-center">
+                      <h5>مجموعي مصارف</h5>
+                    </td>
+                    <td>
+                      <b>2132$</b>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colSpan={7} className="text-center">
+                      <h5> متفرقه مصارف</h5>
+                    </td>
+                    <td>
+                      <b>220$</b>
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </div>
+
             <div
               className={
                 "form__item button__items d-flex justify-content-between"

@@ -8,11 +8,12 @@ import {
   currencytypeOptions,
   proformaTypeOptions,
   provicesGlobalOptions,
-  providerOptions,
+  importerOptions,
 } from "../../data/global-data";
 import {
   proforamvaIncorporationValidationSchema,
-  proformaTypeValidationSchema,
+  importerAndProformaTypeValidationSchema,
+  incorporationSearchValidationSchema,
 } from "../../data/validation";
 import {
   CButton,
@@ -31,8 +32,6 @@ const LtdInfo = () => {
     proformaType,
     isLTDProfroma,
     setIsLTDProforma,
-    // isLTDMedicalProductProforma,
-    // setLTDMedicalProductProforma,
     isNGOProforma,
     setIsNGOProforma,
 
@@ -50,11 +49,11 @@ const LtdInfo = () => {
   };
 
   const handleProformaTypeFunc = (values) => {
-    0(values);
-    if (values.provider === "LTD") {
+    setProformaType(values);
+    if (values.importer === "LTD") {
       setIsLTDProforma(true);
       setIsNGOProforma(false);
-    } else if (values.provider === "NGO") {
+    } else if (values.importer === "NGO") {
       setIsNGOProforma(true);
       setIsLTDProforma(false);
     }
@@ -71,9 +70,9 @@ const LtdInfo = () => {
       >
         <CCol style={{ minHeight: !isLTDProfroma ? "350px" : null }}>
           <Formik
-            initialValues={{ provider: "", proformaType: "" }}
+            initialValues={{ importer: "", proformaType: "" }}
             onSubmit={handleProformaTypeFunc}
-            validationSchema={proformaTypeValidationSchema}
+            validationSchema={importerAndProformaTypeValidationSchema}
           >
             {({
               handleSubmit,
@@ -87,7 +86,7 @@ const LtdInfo = () => {
                 <div className={"details__wrapper mt-5"}>
                   <CRow className=" justify-content-center">
                     <CCol md={8} className="mt-5">
-                      <label className="form-label mx-2" htmlFor="provider">
+                      <label className="form-label mx-2" htmlFor="importer">
                         تورید کوونکی
                         <span
                           style={{
@@ -100,14 +99,14 @@ const LtdInfo = () => {
                         </span>
                       </label>
                       <select
-                        id="provider"
-                        value={values.provider}
+                        id="importer"
+                        value={values.importer}
                         name="appointment_type"
                         onChange={(e) => {
-                          setFieldValue("provider", e.target.value);
+                          setFieldValue("importer", e.target.value);
                         }}
                         className={`form-control form-select-l ${
-                          errors.provider && touched.provider
+                          errors.importer && touched.importer
                             ? "is-invalid form-select    "
                             : ""
                         }`}
@@ -115,7 +114,7 @@ const LtdInfo = () => {
                       >
                         <option>وټاکئ/انتخاب</option>
 
-                        {providerOptions.map((option) => {
+                        {importerOptions.map((option) => {
                           return (
                             <option key={option.value} value={option.value}>
                               {option.label}
@@ -123,9 +122,9 @@ const LtdInfo = () => {
                           );
                         })}
                       </select>
-                      {errors.provider && touched.provider ? (
-                        <div className="invalid-feedback  errorMessageStyle mr-2 mb-3 mt-0">
-                          {errors.provider}
+                      {errors.importer && touched.importer ? (
+                        <div className="invalid-feedback  errorMessageStyle mx-3 mb-3 mt-0">
+                          {errors.importer}
                         </div>
                       ) : null}
                     </CCol>
@@ -168,7 +167,7 @@ const LtdInfo = () => {
                         })}
                       </select>
                       {errors.proformaType && touched.proformaType ? (
-                        <div className="invalid-feedback  errorMessageStyle mr-2 mb-3 mt-0">
+                        <div className="invalid-feedback  errorMessageStyle mx-3 mb-3 mt-0">
                           {errors.proformaType}
                         </div>
                       ) : null}
@@ -192,8 +191,8 @@ const LtdInfo = () => {
             <CCardBody className="m-0 p-0">
               <Formik
                 onSubmit={handleIncorporationSearch}
-                initialValues={{ tazkera_number: "" }}
-                // validationSchema={visitorSearchValidationSchema}
+                initialValues={{ license_number: "" }}
+                validationSchema={incorporationSearchValidationSchema}
                 enableReinitialize={true}
               >
                 {({
@@ -209,7 +208,10 @@ const LtdInfo = () => {
                   <Form>
                     <CRow className="justify-content-center mt-5">
                       <CCol md={8} className=" mb-5">
-                        <label className="form-label mr-5" htmlFor="subject">
+                        <label
+                          className="form-label mr-5"
+                          htmlFor="license_number"
+                        >
                           د شرکت د جواز شمیره
                           <span
                             style={{
@@ -223,35 +225,35 @@ const LtdInfo = () => {
                         </label>
                         <input
                           type="text"
-                          id="tazkera_number"
-                          name="tazkera_number"
+                          id="license_number"
+                          name="license_number"
                           className={`form-control form-select-lg ${
-                            errors.tazkera_number && touched.tazkera_number
+                            errors.license_number && touched.license_number
                               ? "is-invalid form-select-lg    "
                               : ""
                           }`}
-                          value={values.tazkera_number}
+                          value={values.license_number}
                           onChange={(e) =>
-                            setFieldValue("tazkera_number", e.target.value)
+                            setFieldValue("license_number", e.target.value)
                           }
-                          onBlur={() => setFieldTouched("tazkera_number", true)}
+                          onBlur={() => setFieldTouched("license_number", true)}
                         />
-                        {errors.tazkera_number && touched.tazkera_number ? (
-                          <div className="invalid-feedback d-block errorMessageStyle mr-2">
-                            {errors.tazkera_number}
+                        {errors.license_number && touched.license_number ? (
+                          <div className="invalid-feedback d-block errorMessageStyle mx-3">
+                            {errors.license_number}
                           </div>
                         ) : null}
                       </CCol>
                     </CRow>
 
-                    <CRow className="justify-content-center mx-5">
+                    <CRow className="justify-content-center ">
                       <CCol md={8} className=" text-end mt-">
                         <CButton
                           type="submit"
                           className="btn-sm btn  px-4 py-2 mb-4 "
                           onClick={() => setExistedUserData("")}
                         >
-                          لټون
+                          د جواز لټون
                         </CButton>
                       </CCol>
                     </CRow>
@@ -940,11 +942,10 @@ const LtdInfo = () => {
                         }`}
                         value={values.number_of_total_items}
                         onChange={(e) => {
-                          const newValue = Math.min(
-                            Math.max(parseInt(e.target.value), 1),
-                            50
+                          setFieldValue(
+                            "number_of_total_items",
+                            e.target.value
                           );
-                          setFieldValue("number_of_total_items", newValue);
                         }}
                         onBlur={() =>
                           setFieldTouched("number_of_total_items", true)
@@ -1106,7 +1107,7 @@ const LtdInfo = () => {
                     >
                       <option>وټاکئ/انتخاب</option>
 
-                      {proformaTypeOptions.map((option) => {
+                      {currencytypeOptions.map((option) => {
                         return (
                           <option key={option.value} value={option.value}>
                             {option.label}

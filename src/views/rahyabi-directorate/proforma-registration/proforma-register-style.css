@@ -1,0 +1,44 @@
+.spacess {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  .spacess {
+    padding: 10px;
+    display: block;
+  }
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  margin-top: 22px;
+  padding-bottom: 20px;
+  margin-bottom: 5%;
+}
+
+table th {
+  position: relative;
+
+  background-color: #83b7e2;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  /* outline: 0.1px solid black; */
+  /* border: 1px solid black; */
+}
+
+table td {
+  border: 1px solid #363636;
+  padding: 5px;
+  background-color: rgb(240, 240, 240);
+}
+
+#medicine th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  color: rgb(12, 2, 2);
+}
+
+#customers th {
+  border: 1px solid #4d4646;
+  padding: 8px;
+}

@@ -3,7 +3,7 @@ import Imarat_Logo from "./../../../assets/images/imarat_logo.png";
 import AFDA_Logo from "./../../../assets/images/afda_logo.png";
 import React from "react";
 import { Divider } from "antd";
-import "./style.css";
+import "./proforma-view-style.css";
 
 const ProformaView = () => {
   return (
@@ -168,216 +168,217 @@ const ProformaView = () => {
               </tr>
             </table>
           </div>
-          <div class="outer-wrapper ">
-            <div class="table-wrapper">
-              <table id="customers">
-                <thead>
-                  <tr className="text-center">
-                    <th colSpan={9}>
-                      <h3>د توریدي درملو لست</h3>
-                    </th>
-                  </tr>
-                </thead>
-                <thead>
-                  <th>شماره</th>
-                  <th>د درملو مشخصات</th>
-                  <th>شکل</th>
-                  <th>واحد</th>
-                  <th>مقدار فی واحد</th>
-                  <th>تعداد واحد</th>
-                  <th>قیمت فی واحد</th>
-                  <th>تعداد واحد</th>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>4</td>
-                    <td>
-                      <h4>Esomaprazole</h4>
-                    </td>
-                    <td>Capsole</td>
-                    <td>
-                      <h3>بسته</h3>
-                    </td>
-                    <td>1x24</td>
-                    <td>
-                      <h5>188990</h5>
-                    </td>
-                    <td>180000</td>
-                    <td>
-                      <h5>234</h5>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>5</td>
-                    <td>
-                      <h4>Esomaprazole</h4>
-                    </td>
-                    <td>Capsole</td>
-                    <td>
-                      <h3>بسته</h3>
-                    </td>
-                    <td>1x24</td>
-                    <td>
-                      <h5>188990</h5>
-                    </td>
-                    <td>180000</td>
-                    <td>
-                      <h5>234</h5>
-                    </td>
-                  </tr>
 
-                  <tr>
-                    <td>6</td>
-                    <td>
-                      <h4>Esomaprazole</h4>
-                    </td>
-                    <td>Capsole</td>
-                    <td>
-                      <h3>بسته</h3>
-                    </td>
-                    <td>1x24</td>
-                    <td>
-                      <h5>188990</h5>
-                    </td>
-                    <td>180000</td>
-                    <td>
-                      <h5>234</h5>
-                    </td>
-                  </tr>
+          <div class="table-wrapper">
+            <table id="customers">
+              <thead>
+                <tr className="text-center">
+                  <th colSpan={9}>
+                    <h4>
+                      <b>د توریدي درملو لست</b>
+                    </h4>
+                  </th>
+                </tr>
+              </thead>
+              <thead>
+                <th className="medicine_table_head">شماره</th>
+                <th className="medicine_table_head">د درملو مشخصات</th>
+                <th className="medicine_table_head">شکل</th>
+                <th className="medicine_table_head">واحد</th>
+                <th className="medicine_table_head">مقدار فی واحد</th>
+                <th className="medicine_table_head">تعداد واحد</th>
+                <th className="medicine_table_head">قیمت فی واحد</th>
+                <th className="medicine_table_head">تعداد واحد</th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>4</td>
+                  <td>
+                    <h4>Esomaprazole</h4>
+                  </td>
+                  <td>Capsole</td>
+                  <td>
+                    <h3>بسته</h3>
+                  </td>
+                  <td>1x24</td>
+                  <td>
+                    <h5>188990</h5>
+                  </td>
+                  <td>180000</td>
+                  <td>
+                    <h5>234</h5>
+                  </td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>
+                    <h4>Esomaprazole</h4>
+                  </td>
+                  <td>Capsole</td>
+                  <td>
+                    <h3>بسته</h3>
+                  </td>
+                  <td>1x24</td>
+                  <td>
+                    <h5>188990</h5>
+                  </td>
+                  <td>180000</td>
+                  <td>
+                    <h5>234</h5>
+                  </td>
+                </tr>
 
-                  <tr>
-                    <td>7</td>
-                    <td>
-                      <h4>Esomaprazole</h4>
-                    </td>
-                    <td>Capsole</td>
-                    <td>
-                      <h3>بسته</h3>
-                    </td>
-                    <td>1x24</td>
-                    <td>
-                      <h5>188990</h5>
-                    </td>
-                    <td>180000</td>
-                    <td>
-                      <h5>234</h5>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>8</td>
-                    <td>
-                      <h4>Esomaprazole</h4>
-                    </td>
-                    <td>Capsole</td>
-                    <td>
-                      <h3>بسته</h3>
-                    </td>
-                    <td>1x24</td>
-                    <td>
-                      <h5>188990</h5>
-                    </td>
-                    <td>180000</td>
-                    <td>
-                      <h5>234</h5>
-                    </td>
-                  </tr>
+                <tr>
+                  <td>6</td>
+                  <td>
+                    <h4>Esomaprazole</h4>
+                  </td>
+                  <td>Capsole</td>
+                  <td>
+                    <h3>بسته</h3>
+                  </td>
+                  <td>1x24</td>
+                  <td>
+                    <h5>188990</h5>
+                  </td>
+                  <td>180000</td>
+                  <td>
+                    <h5>234</h5>
+                  </td>
+                </tr>
 
-                  <tr>
-                    <td>9</td>
-                    <td>
-                      <h4>Esomaprazole</h4>
-                    </td>
-                    <td>Capsole</td>
-                    <td>
-                      <h3>بسته</h3>
-                    </td>
-                    <td>1x24</td>
-                    <td>
-                      <h5>188990</h5>
-                    </td>
-                    <td>180000</td>
-                    <td>
-                      <h5>234</h5>
-                    </td>
-                  </tr>
+                <tr>
+                  <td>7</td>
+                  <td>
+                    <h4>Esomaprazole</h4>
+                  </td>
+                  <td>Capsole</td>
+                  <td>
+                    <h3>بسته</h3>
+                  </td>
+                  <td>1x24</td>
+                  <td>
+                    <h5>188990</h5>
+                  </td>
+                  <td>180000</td>
+                  <td>
+                    <h5>234</h5>
+                  </td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td>
+                    <h4>Esomaprazole</h4>
+                  </td>
+                  <td>Capsole</td>
+                  <td>
+                    <h3>بسته</h3>
+                  </td>
+                  <td>1x24</td>
+                  <td>
+                    <h5>188990</h5>
+                  </td>
+                  <td>180000</td>
+                  <td>
+                    <h5>234</h5>
+                  </td>
+                </tr>
 
-                  <tr>
-                    <td>10</td>
-                    <td>
-                      <h4>Esomaprazole</h4>
-                    </td>
-                    <td>Capsole</td>
-                    <td>
-                      <h3>بسته</h3>
-                    </td>
-                    <td>1x24</td>
-                    <td>
-                      <h5>188990</h5>
-                    </td>
-                    <td>180000</td>
-                    <td>
-                      <h5>234</h5>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>11</td>
-                    <td>
-                      <h4>Esomaprazole</h4>
-                    </td>
-                    <td>Capsole</td>
-                    <td>
-                      <h3>بسته</h3>
-                    </td>
-                    <td>1x24</td>
-                    <td>
-                      <h5>188990</h5>
-                    </td>
-                    <td>180000</td>
-                    <td>
-                      <h5>234</h5>
-                    </td>
-                  </tr>
+                <tr>
+                  <td>9</td>
+                  <td>
+                    <h4>Esomaprazole</h4>
+                  </td>
+                  <td>Capsole</td>
+                  <td>
+                    <h3>بسته</h3>
+                  </td>
+                  <td>1x24</td>
+                  <td>
+                    <h5>188990</h5>
+                  </td>
+                  <td>180000</td>
+                  <td>
+                    <h5>234</h5>
+                  </td>
+                </tr>
 
-                  <tr>
-                    <td>12</td>
-                    <td>
-                      <h4>Esomaprazole</h4>
-                    </td>
-                    <td>Capsole</td>
-                    <td>
-                      <h3>بسته</h3>
-                    </td>
-                    <td>1x24</td>
-                    <td>
-                      <h5>188990</h5>
-                    </td>
-                    <td>180000</td>
-                    <td>
-                      <h5>234</h5>
-                    </td>
-                  </tr>
+                <tr>
+                  <td>10</td>
+                  <td>
+                    <h4>Esomaprazole</h4>
+                  </td>
+                  <td>Capsole</td>
+                  <td>
+                    <h3>بسته</h3>
+                  </td>
+                  <td>1x24</td>
+                  <td>
+                    <h5>188990</h5>
+                  </td>
+                  <td>180000</td>
+                  <td>
+                    <h5>234</h5>
+                  </td>
+                </tr>
+                <tr>
+                  <td>11</td>
+                  <td>
+                    <h4>Esomaprazole</h4>
+                  </td>
+                  <td>Capsole</td>
+                  <td>
+                    <h3>بسته</h3>
+                  </td>
+                  <td>1x24</td>
+                  <td>
+                    <h5>188990</h5>
+                  </td>
+                  <td>180000</td>
+                  <td>
+                    <h5>234</h5>
+                  </td>
+                </tr>
 
-                  <tr>
-                    <td colSpan={7} className="text-center">
-                      <h3>د درملو مجموعی قیمت</h3>
-                    </td>
+                <tr>
+                  <td>12</td>
+                  <td>
+                    <h4>Esomaprazole</h4>
+                  </td>
+                  <td>Capsole</td>
+                  <td>
+                    <h3>بسته</h3>
+                  </td>
+                  <td>1x24</td>
+                  <td>
+                    <h5>188990</h5>
+                  </td>
+                  <td>180000</td>
+                  <td>
+                    <h5>234</h5>
+                  </td>
+                </tr>
 
-                    <td>
-                      <b>180000$</b>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colSpan={7} className="text-center">
-                      <h3>متفرقه مصارف</h3>
-                    </td>
+                <tr>
+                  <td colSpan={7} className="text-center">
+                    <h3>مجموعی قیمت</h3>
+                  </td>
 
-                    <td>
-                      <b>120$</b>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+                  <td>
+                    <b>180000$</b>
+                  </td>
+                </tr>
+                <tr>
+                  <td colSpan={7} className="text-center">
+                    <h3>متفرقه مصارف</h3>
+                  </td>
+
+                  <td>
+                    <b>120$</b>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </CCardBody>
       </CCard>

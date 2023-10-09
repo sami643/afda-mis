@@ -2,8 +2,11 @@ import React, { useContext, useState } from "react";
 import { Formik, Form } from "formik";
 import { Button } from "antd";
 import MultiStepFormContext from "./MultiStepFormContext";
-import { drugExportgoalOptions } from "../../data/global-data";
-import "./style.css";
+import {
+  drugExportgoalOptions,
+  medicalProductOptions,
+} from "../../data/global-data";
+import "./proforma-register-style.css";
 import {
   CButton,
   CCol,
@@ -39,7 +42,7 @@ const CompanyDetailsFunc = () => {
     setIsSearchTriggered(true);
   };
 
-  console.log("Company Detaiils", companyDetails);
+  console.log("Company Detaiils01010110", proformaType);
   const handlecompanyDetialsFunc = (values) => {
     console.log("Vlauedasfsda09090909", values);
   };
@@ -595,51 +598,105 @@ const CompanyDetailsFunc = () => {
                   </CCardBody>
                 </div>
                 <CRow className="mb-5">
-                  <CCol md={6} className="mb-5">
-                    <label className="form-label mx-2" htmlFor="subject">
-                      د محصولاتو د تورید موخه
-                      <span
-                        style={{
-                          color: "red",
-                          marginInline: "5px",
-                          paddingTop: "5px",
-                        }}
+                  {proformaType.proformaType === "medical product proforma" ? (
+                    <CCol md={6} className="mb-5">
+                      <label className="form-label mx-2" htmlFor="subject">
+                        د صحی محصولاتو ډول
+                        <span
+                          style={{
+                            color: "red",
+                            marginInline: "5px",
+                            paddingTop: "5px",
+                          }}
+                        >
+                          *
+                        </span>
+                      </label>
+                      <select
+                        id="medicine_export_purpose"
+                        value={values.medicine_export_purpose}
+                        name="appointment_type"
+                        onChange={(e) =>
+                          setFieldValue(
+                            "medicine_export_purpose",
+                            e.target.value
+                          )
+                        }
+                        className={`form-control form-select-l ${
+                          errors.medicine_export_purpose &&
+                          touched.medicine_export_purpose
+                            ? "is-invalid form-select    "
+                            : ""
+                        }`}
+                        aria-label=".form-select- example"
                       >
-                        *
-                      </span>
-                    </label>
-                    <select
-                      id="medicine_export_purpose"
-                      value={values.medicine_export_purpose}
-                      name="appointment_type"
-                      onChange={(e) =>
-                        setFieldValue("medicine_export_purpose", e.target.value)
-                      }
-                      className={`form-control form-select-l ${
-                        errors.medicine_export_purpose &&
-                        touched.medicine_export_purpose
-                          ? "is-invalid form-select    "
-                          : ""
-                      }`}
-                      aria-label=".form-select- example"
-                    >
-                      <option>وټاکئ/انتخاب</option>
+                        <option>وټاکئ/انتخاب</option>
 
-                      {drugExportgoalOptions.map((option) => {
-                        return (
-                          <option key={option.value} value={option.value}>
-                            {option.label}
-                          </option>
-                        );
-                      })}
-                    </select>
-                    {errors.medicine_export_purpose &&
-                    touched.medicine_export_purpose ? (
-                      <div className="invalid-feedback  errorMessageStyle mr-2 mb-3 mt-0">
-                        {errors.medicine_export_purpose}
-                      </div>
-                    ) : null}
-                  </CCol>
+                        {medicalProductOptions.map((option) => {
+                          return (
+                            <option key={option.value} value={option.value}>
+                              {option.label}
+                            </option>
+                          );
+                        })}
+                      </select>
+                      {errors.medicine_export_purpose &&
+                      touched.medicine_export_purpose ? (
+                        <div className="invalid-feedback  errorMessageStyle mr-2 mb-3 mt-0">
+                          {errors.medicine_export_purpose}
+                        </div>
+                      ) : null}
+                    </CCol>
+                  ) : (
+                    <CCol md={6} className="mb-5">
+                      <label className="form-label mx-2" htmlFor="subject">
+                        د محصولاتو د تورید موخه
+                        <span
+                          style={{
+                            color: "red",
+                            marginInline: "5px",
+                            paddingTop: "5px",
+                          }}
+                        >
+                          *
+                        </span>
+                      </label>
+                      <select
+                        id="medicine_export_purpose"
+                        value={values.medicine_export_purpose}
+                        name="appointment_type"
+                        onChange={(e) =>
+                          setFieldValue(
+                            "medicine_export_purpose",
+                            e.target.value
+                          )
+                        }
+                        className={`form-control form-select-l ${
+                          errors.medicine_export_purpose &&
+                          touched.medicine_export_purpose
+                            ? "is-invalid form-select    "
+                            : ""
+                        }`}
+                        aria-label=".form-select- example"
+                      >
+                        <option>وټاکئ/انتخاب</option>
+
+                        {drugExportgoalOptions.map((option) => {
+                          return (
+                            <option key={option.value} value={option.value}>
+                              {option.label}
+                            </option>
+                          );
+                        })}
+                      </select>
+                      {errors.medicine_export_purpose &&
+                      touched.medicine_export_purpose ? (
+                        <div className="invalid-feedback  errorMessageStyle mr-2 mb-3 mt-0">
+                          {errors.medicine_export_purpose}
+                        </div>
+                      ) : null}
+                    </CCol>
+                  )}
 
                   <CCol md={6} className="">
                     <label className="form-label mx-3" htmlFor="subject">
@@ -681,7 +738,7 @@ const CompanyDetailsFunc = () => {
         </>
       )}
 
-      {!isNGOProforma && (
+      {isLTDProfroma && (
         <>
           {isSearchTriggered && (
             <Formik
@@ -704,54 +761,106 @@ const CompanyDetailsFunc = () => {
                 <Form>
                   <div className={"details__wrapper my-5"}>
                     <CRow className="mb-5">
-                      <CCol md={6} className="mb-5">
-                        <label className="form-label mx-2" htmlFor="subject">
-                          د محصولاتو د تورید موخه
-                          <span
-                            style={{
-                              color: "red",
-                              marginInline: "5px",
-                              paddingTop: "5px",
-                            }}
+                      {proformaType.proformaType ===
+                      "medical product proforma" ? (
+                        <CCol md={6} className="mb-5">
+                          <label className="form-label mx-2" htmlFor="subject">
+                            د صحی محصولاتو ډول
+                            <span
+                              style={{
+                                color: "red",
+                                marginInline: "5px",
+                                paddingTop: "5px",
+                              }}
+                            >
+                              *
+                            </span>
+                          </label>
+                          <select
+                            id="medicine_export_purpose"
+                            value={values.medicine_export_purpose}
+                            name="appointment_type"
+                            onChange={(e) =>
+                              setFieldValue(
+                                "medicine_export_purpose",
+                                e.target.value
+                              )
+                            }
+                            className={`form-control form-select-l ${
+                              errors.medicine_export_purpose &&
+                              touched.medicine_export_purpose
+                                ? "is-invalid form-select    "
+                                : ""
+                            }`}
+                            aria-label=".form-select- example"
                           >
-                            *
-                          </span>
-                        </label>
-                        <select
-                          id="medicine_export_purpose"
-                          value={values.medicine_export_purpose}
-                          name="appointment_type"
-                          onChange={(e) =>
-                            setFieldValue(
-                              "medicine_export_purpose",
-                              e.target.value
-                            )
-                          }
-                          className={`form-control form-select-l ${
-                            errors.medicine_export_purpose &&
-                            touched.medicine_export_purpose
-                              ? "is-invalid form-select    "
-                              : ""
-                          }`}
-                          aria-label=".form-select- example"
-                        >
-                          <option>وټاکئ/انتخاب</option>
+                            <option>وټاکئ/انتخاب</option>
 
-                          {drugExportgoalOptions.map((option) => {
-                            return (
-                              <option key={option.value} value={option.value}>
-                                {option.label}
-                              </option>
-                            );
-                          })}
-                        </select>
-                        {errors.medicine_export_purpose &&
-                        touched.medicine_export_purpose ? (
-                          <div className="invalid-feedback  errorMessageStyle mr-2 mb-3 mt-0">
-                            {errors.medicine_export_purpose}
-                          </div>
-                        ) : null}
-                      </CCol>
+                            {medicalProductOptions.map((option) => {
+                              return (
+                                <option key={option.value} value={option.value}>
+                                  {option.label}
+                                </option>
+                              );
+                            })}
+                          </select>
+                          {errors.medicine_export_purpose &&
+                          touched.medicine_export_purpose ? (
+                            <div className="invalid-feedback  errorMessageStyle mr-2 mb-3 mt-0">
+                              {errors.medicine_export_purpose}
+                            </div>
+                          ) : null}
+                        </CCol>
+                      ) : (
+                        <CCol md={6} className="mb-5">
+                          <label className="form-label mx-2" htmlFor="subject">
+                            د محصولاتو د تورید موخه
+                            <span
+                              style={{
+                                color: "red",
+                                marginInline: "5px",
+                                paddingTop: "5px",
+                              }}
+                            >
+                              *
+                            </span>
+                          </label>
+                          <select
+                            id="medicine_export_purpose"
+                            value={values.medicine_export_purpose}
+                            name="appointment_type"
+                            onChange={(e) =>
+                              setFieldValue(
+                                "medicine_export_purpose",
+                                e.target.value
+                              )
+                            }
+                            className={`form-control form-select-l ${
+                              errors.medicine_export_purpose &&
+                              touched.medicine_export_purpose
+                                ? "is-invalid form-select    "
+                                : ""
+                            }`}
+                            aria-label=".form-select- example"
+                          >
+                            <option>وټاکئ/انتخاب</option>
+
+                            {drugExportgoalOptions.map((option) => {
+                              return (
+                                <option key={option.value} value={option.value}>
+                                  {option.label}
+                                </option>
+                              );
+                            })}
+                          </select>
+                          {errors.medicine_export_purpose &&
+                          touched.medicine_export_purpose ? (
+                            <div className="invalid-feedback  errorMessageStyle mr-2 mb-3 mt-0">
+                              {errors.medicine_export_purpose}
+                            </div>
+                          ) : null}
+                        </CCol>
+                      )}
 
                       <CCol md={6} className="">
                         <label className="form-label mx-3" htmlFor="subject">

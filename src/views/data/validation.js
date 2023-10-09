@@ -82,9 +82,13 @@ export const medicineDetailsValidationSchema = Yup.object().shape({
   // ltd_license_number: Yup.string().required("د شرکت د جواز نمبر اړین دی"),
   // introduced_by: Yup.string().required("د ملاقاتونو  ډول اړین دی"),
 });
-export const proformaTypeValidationSchema = Yup.object().shape({
-  // ltd_license_number: Yup.string().required("د شرکت د جواز نمبر اړین دی"),
-  // introduced_by: Yup.string().required("د ملاقاتونو  ډول اړین دی"),
+export const importerAndProformaTypeValidationSchema = Yup.object().shape({
+  importer: Yup.string().required("د تورید کوونکي ټاکل اړین دی"),
+  proformaType: Yup.string().required("د پروفورمې ټایپ اړین دی"),
+});
+
+export const incorporationSearchValidationSchema = Yup.object().shape({
+  license_number: Yup.string().required("د شرکت جواز ولیکئ"),
 });
 
 export const NGOMedicineValidationSchema = Yup.object().shape({
