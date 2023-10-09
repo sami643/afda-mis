@@ -110,13 +110,13 @@ const MedicineDetailsFunc = () => {
                     </tr>
                   ) : (
                     <tr className="">
-                      <th style={{ width: "1%", border: "1px solid #C0C0C0" }}>
+                      <th style={{ width: "2%", border: "1px solid #C0C0C0" }}>
                         شمیره
                       </th>
                       <th style={{ width: "10%", border: "1px solid #C0C0C0" }}>
                         د درملو نوم
                       </th>
-                      <th style={{ width: "5%", border: "1px solid #C0C0C0" }}>
+                      <th style={{ width: "10%", border: "1px solid #C0C0C0" }}>
                         شکل
                       </th>
                       <th style={{ width: "10%", border: "1px solid #C0C0C0" }}>
