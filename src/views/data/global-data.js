@@ -52,10 +52,16 @@ export const drugExportgoalOptions = [
   { value: "د اسنانانو د استفادې وړ", label: "د اسنانانو د استفادې وړ" },
   { value: "د حیواناتو د استفادې وړ", label: "د حیواناتو د استفادې وړ" },
 ];
+
+export const importerOptions = [
+  { value: "LTD", label: "داخلی شرکت" },
+  { value: "company", label: "‌داخلي کمپنۍ" },
+  { value: "NGO", label: "موسسه" },
+];
 export const proformaTypeOptions = [
   {
     value: "licensed medicine proforma",
-    label: "د مجاز درملو پروفورمه",
+    label: "د درملو پروفورمه",
   },
   {
     value: "َunder controlled medicine proforma",
@@ -66,10 +72,11 @@ export const proformaTypeOptions = [
     label: "د صحي محصولاتو پروفورمه",
   },
 ];
-
-export const importerOptions = [
-  { value: "LTD", label: "داخلی شرکت" },
-  { value: "NGO", label: "موسسه" },
+export const productiveCompanyproformaOPtions = [
+  {
+    value: "medical product proforma",
+    label: "د صحي محصولاتو پروفورمه",
+  },
 ];
 
 export const medicalProductOptions = [

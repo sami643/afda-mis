@@ -28,7 +28,8 @@ const CompanyDetailsFunc = () => {
     isLTDProfroma,
     isLTDMedicalProductProforma,
     isNGOProforma,
-
+    isCompanyProforma,
+    setIsCompanyProforma,
     next,
     prev,
   } = useContext(MultiStepFormContext);
@@ -48,7 +49,7 @@ const CompanyDetailsFunc = () => {
   };
   return (
     <>
-      {isLTDProfroma && (
+      {(isLTDProfroma || isCompanyProforma) && (
         <>
           <CRow
             style={{
@@ -738,7 +739,7 @@ const CompanyDetailsFunc = () => {
         </>
       )}
 
-      {isLTDProfroma && (
+      {(isLTDProfroma || isCompanyProforma) && (
         <>
           {isSearchTriggered && (
             <Formik

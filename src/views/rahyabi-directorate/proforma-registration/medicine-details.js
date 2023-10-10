@@ -147,8 +147,8 @@ const MedicineDetailsFunc = () => {
                     <tr key={index}>
                       <td>{index + 1}</td>
                       <td>
-                        <input
-                          type="text"
+                        <textarea
+                          type="textarea"
                           id="number_of_person"
                           name="number_of_person"
                           style={{
@@ -356,20 +356,20 @@ const MedicineDetailsFunc = () => {
 
                   <tr>
                     <td colSpan={7} className="text-center">
-                      <h5>مجموعي مصارف</h5>
+                      <h5>مجموعي قیمت</h5>
                     </td>
                     <td>
                       <b>2132$</b>
                     </td>
                   </tr>
-                  <tr>
+                  {/* <tr>
                     <td colSpan={7} className="text-center">
                       <h5> متفرقه مصارف</h5>
                     </td>
                     <td>
                       <b>220$</b>
                     </td>
-                  </tr>
+                  </tr> */}
                 </tbody>
               </table>
             </div>

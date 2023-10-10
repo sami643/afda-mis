@@ -9,6 +9,7 @@ import {
   proformaTypeOptions,
   provicesGlobalOptions,
   importerOptions,
+  productiveCompanyproformaOPtions,
 } from "../../data/global-data";
 import {
   proforamvaIncorporationValidationSchema,
@@ -31,10 +32,11 @@ const LtdInfo = () => {
     setProformaType,
     proformaType,
     isLTDProfroma,
+    isCompanyProforma,
     setIsLTDProforma,
-    isNGOProforma,
+    setIsCompanyProforma,
     setIsNGOProforma,
-
+    isNGOProforma,
     next,
   } = useContext(MultiStepFormContext);
 
@@ -43,18 +45,30 @@ const LtdInfo = () => {
   );
   const [isIncorporationExist, setIsIncorporationExist] = useState(true);
   const [existuserData, setExistedUserData] = useState({});
+  const [importerstate, setImporterState] = useState("");
 
   const handleIncorporationSearch = async (values) => {
     setIsSearchTriggered(true);
   };
+
+  const proformaTypeOptionsuUpdated =
+    importerstate === "company"
+      ? productiveCompanyproformaOPtions
+      : proformaTypeOptions;
 
   const handleProformaTypeFunc = (values) => {
     setProformaType(values);
     if (values.importer === "LTD") {
       setIsLTDProforma(true);
       setIsNGOProforma(false);
+      setIsCompanyProforma(false);
+    } else if (values.importer === "company") {
+      setIsCompanyProforma(true);
+      setIsLTDProforma(false);
+      setIsNGOProforma(false);
     } else if (values.importer === "NGO") {
       setIsNGOProforma(true);
+      setIsCompanyProforma(false);
       setIsLTDProforma(false);
     }
   };
@@ -104,6 +118,7 @@ const LtdInfo = () => {
                         name="appointment_type"
                         onChange={(e) => {
                           setFieldValue("importer", e.target.value);
+                          setImporterState(e.target.value);
                         }}
                         className={`form-control form-select-l ${
                           errors.importer && touched.importer
@@ -158,7 +173,7 @@ const LtdInfo = () => {
                       >
                         <option>وټاکئ/انتخاب</option>
 
-                        {proformaTypeOptions.map((option) => {
+                        {proformaTypeOptionsuUpdated.map((option) => {
                           return (
                             <option key={option.value} value={option.value}>
                               {option.label}
@@ -186,6 +201,7 @@ const LtdInfo = () => {
           </Formik>
         </CCol>
 
+        {/* Incorporation */}
         {isLTDProfroma && (
           <CCol xs={12}>
             <CCardBody className="m-0 p-0">
@@ -398,6 +414,221 @@ const LtdInfo = () => {
             </CCardBody>
           </CCol>
         )}
+
+        {/* Internal Company */}
+        {isCompanyProforma && (
+          <CCol xs={12}>
+            <CCardBody className="m-0 p-0">
+              <Formik
+                onSubmit={handleIncorporationSearch}
+                initialValues={{ license_number: "" }}
+                validationSchema={incorporationSearchValidationSchema}
+                enableReinitialize={true}
+              >
+                {({
+                  values,
+                  setFieldValue,
+                  setFieldTouched,
+                  handleSubmit,
+                  handleChange,
+                  handleBlur,
+                  errors,
+                  touched,
+                }) => (
+                  <Form>
+                    <CRow className="justify-content-center mt-5">
+                      <CCol md={8} className=" mb-5">
+                        <label
+                          className="form-label mr-5"
+                          htmlFor="license_number"
+                        >
+                          د کمپنۍ د جواز شمیره
+                          <span
+                            style={{
+                              color: "red",
+                              marginInline: "5px",
+                              paddingTop: "5px",
+                            }}
+                          >
+                            *
+                          </span>
+                        </label>
+                        <input
+                          type="text"
+                          id="license_number"
+                          name="license_number"
+                          className={`form-control form-select-lg ${
+                            errors.license_number && touched.license_number
+                              ? "is-invalid form-select-lg    "
+                              : ""
+                          }`}
+                          value={values.license_number}
+                          onChange={(e) =>
+                            setFieldValue("license_number", e.target.value)
+                          }
+                          onBlur={() => setFieldTouched("license_number", true)}
+                        />
+                        {errors.license_number && touched.license_number ? (
+                          <div className="invalid-feedback d-block errorMessageStyle mx-3">
+                            {errors.license_number}
+                          </div>
+                        ) : null}
+                      </CCol>
+                    </CRow>
+
+                    <CRow className="justify-content-center ">
+                      <CCol md={8} className=" text-end mt-">
+                        <CButton
+                          type="submit"
+                          className="btn-sm btn  px-4 py-2 mb-4 "
+                          onClick={() => setExistedUserData("")}
+                        >
+                          د جواز لټون
+                        </CButton>
+                      </CCol>
+                    </CRow>
+                  </Form>
+                )}
+              </Formik>
+
+              {/* Search Result */}
+              {isSearchTriggered && (
+                <div className="  border rounded mt-5 mb-5 p-2">
+                  <CCardBody
+                    className="p-0 mx-0"
+                    style={{ minHeight: "200px" }}
+                  >
+                    <>
+                      <h4
+                        className="px-3  py-2 rounded"
+                        style={{ backgroundColor: "#00aae4" }}
+                      >
+                        د توریدي کمپنۍ په اړه معلومات
+                      </h4>
+                      {isIncorporationExist && (
+                        <div className="my-3">
+                          <CRow className="px-3 py-2  d-flex">
+                            <CCol md={2} className="">
+                              <p className=" mb-1">د کمپنۍ نوم:</p>
+                            </CCol>
+                            <CCol md={4} className="">
+                              <strong className="mx-2  bg-warning rounded p-1">
+                                {/* {companyData?.name} */}
+                                عمر غزنی غفاری لیمیتید
+                              </strong>
+                            </CCol>
+                            <div className="spacess"></div>
+                            <CCol md={3} className="">
+                              <p className=" m-0">
+                                د تجارتي جواز د اعتبار نیټه:
+                              </p>
+                            </CCol>
+                            <CCol md={3}>
+                              <strong className="m-0 p-0">
+                                {/* {companyData?.tazkera_number} */}
+                                04-06-1404
+                              </strong>
+                            </CCol>
+                          </CRow>
+                          <CRow className="px-3 pb-2  d-flex">
+                            <CCol md={2} className="">
+                              <p className=" mb-0">د کمپنۍ د جواز نمبر:</p>
+                            </CCol>
+                            <CCol md={4} className="">
+                              <strong className="mx-2">
+                                {/* {companyData?.name} */}
+                                90890
+                              </strong>
+                            </CCol>
+                            <div className="spacess"></div>
+                            <CCol md={3} className="">
+                              <p className="mb-0">ولایت:</p>
+                            </CCol>
+                            <CCol md={3} className="">
+                              <strong className="">
+                                {/* {companyData?.contact} */}
+                                کابل
+                              </strong>
+                            </CCol>
+                          </CRow>
+                          <CRow className="px-3 pb-2  d-flex">
+                            <CCol md={2} className="">
+                              <p className=" mb-0"> پته:</p>
+                            </CCol>
+                            <CCol md={4} className="">
+                              <strong className="">
+                                {/* {companyData?.father_name} */}
+                                هوتل پروان شمشاد مارکیټ
+                              </strong>
+                            </CCol>
+                            <div className="spacess"></div>
+                            <CCol md={3} className="">
+                              <p className="">د اړیکې شمیره:</p>
+                            </CCol>
+                            <CCol md={3} className="">
+                              <strong className="">
+                                {/* {companyData?.occupation} */}
+                                077564654656
+                              </strong>
+                            </CCol>
+                          </CRow>
+                          <CRow className="px-3 pb-2  d-flex">
+                            <CCol md={2} className="">
+                              <p className=" mb-0">برښنالیک:</p>
+                            </CCol>
+                            <CCol md={4} className="">
+                              <strong className="">
+                                {/* {companyData?.email} */}
+                                parviz@farma.gov.af
+                              </strong>
+                            </CCol>
+                            <div className="spacess"></div>
+                            <CCol md={3} className="">
+                              <p className=" mb-0">د ویبسایټ لینک:</p>
+                            </CCol>
+                            <CCol md={3} className="">
+                              <strong className="">
+                                {/* {companyData?.occupation} */}
+                                ghafari.frama.com
+                              </strong>
+                            </CCol>
+                          </CRow>
+                          <CRow className="px-3 pb-2  d-flex">
+                            <CCol md={2} className="">
+                              <p className=" mb-0">د کمپنۍ نماینده:</p>
+                            </CCol>
+                            <CCol md={4} className="">
+                              <strong className="">
+                                {/* {companyData?.email} */}
+                                احمد رحیم
+                              </strong>
+                            </CCol>
+                            <div className="spacess"></div>
+                            <CCol md={3} className="">
+                              <p className=" mb-0">د نماینده د تذکرې شمیره:</p>
+                            </CCol>
+                            <CCol md={3} className="">
+                              <strong className="">
+                                {/* {companyData?.occupation} */}
+                                564654654
+                              </strong>
+                            </CCol>
+                          </CRow>
+                        </div>
+                      )}
+                      {!isIncorporationExist && (
+                        <div style={{ margin: "13% 20%" }}>
+                          <h6>په دې مشخصاتو لیدونکی شتون نه لري..</h6>
+                        </div>
+                      )}
+                    </>
+                  </CCardBody>
+                </div>
+              )}
+            </CCardBody>
+          </CCol>
+        )}
+
         {/* NGO */}
         {isNGOProforma && (
           <Formik
@@ -959,47 +1190,7 @@ const LtdInfo = () => {
                       ) : null}
                     </CCol>
                   </CRow>
-                  <CRow className="my-3">
-                    <CCol md={4} className="">
-                      <label className="form-label mx-2" htmlFor="subject">
-                        متفرقه مصارف
-                        <span
-                          style={{
-                            color: "red",
-                            marginInline: "5px",
-                            paddingTop: "5px",
-                          }}
-                        >
-                          *
-                        </span>
-                      </label>
-                      <input
-                        type="number"
-                        id="introduced_by"
-                        name="introduced_by"
-                        className={`form-control form-select ${
-                          errors.introduced_by && touched.introduced_by
-                            ? "is-invalid form-select    "
-                            : ""
-                        }`}
-                        value={values.introduced_by}
-                        onChange={(e) =>
-                          setFieldValue("introduced_by", e.target.value)
-                        }
-                        onBlur={() => setFieldTouched("introduced_by", true)}
-                      />
-                      {errors.introduced_by && touched.introduced_by ? (
-                        <div className="invalid-feedback d-block errorMessageStyle mr-2">
-                          {errors.introduced_by}
-                        </div>
-                      ) : null}
-                      {errors.appointment_type && touched.appointment_type ? (
-                        <div className="invalid-feedback  errorMessageStyle mr-2 mb-3 mt-0">
-                          {errors.appointment_type}
-                        </div>
-                      ) : null}
-                    </CCol>
-                  </CRow>
+
                   <div
                     className={
                       "form__item button__items d-flex justify-content-end"
@@ -1152,7 +1343,7 @@ const LtdInfo = () => {
                       onChange={(e) => {
                         const newValue = Math.min(
                           Math.max(parseInt(e.target.value), 1),
-                          50
+                          25
                         );
                         setFieldValue("number_of_total_items", newValue);
                       }}
@@ -1168,7 +1359,7 @@ const LtdInfo = () => {
                     ) : null}
                   </CCol>
                 </CRow>
-                <CRow className="my-3">
+                {/* <CRow className="my-3">
                   <CCol md={4} className="">
                     <label className="form-label mx-2" htmlFor="subject">
                       متفرقه مصارف
@@ -1208,7 +1399,7 @@ const LtdInfo = () => {
                       </div>
                     ) : null}
                   </CCol>
-                </CRow>
+                </CRow> */}
                 <div
                   className={
                     "form__item button__items d-flex justify-content-end"
