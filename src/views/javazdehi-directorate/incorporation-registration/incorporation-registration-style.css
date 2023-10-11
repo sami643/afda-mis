@@ -1,0 +1,20 @@
+.main-container {
+  margin-inline: 40px;
+}
+
+@media screen and (max-width: 768px) {
+  .main-container {
+    margin-inline: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .main-container {
+    margin-inline: 5px;
+  }
+}
+
+
+/* .issueDateDay{
+    width: 50px;
+} */

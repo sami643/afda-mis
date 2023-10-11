@@ -1,6 +1,6 @@
 import { Col, Row } from "antd";
 import React, { useContext, useState, useEffect, useRef } from "react";
-import MultiStepFormContext from "./MultiStepFormContext";
+import MultiStepFormContext from "../../data/MultiStepFormContext";
 import "datatables.net-bs4";
 import { Button, Modal } from "antd";
 import $ from "jquery";

@@ -3,7 +3,7 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { Button } from "antd";
 import { Input, InputNumber } from "formik-antd";
-import MultiStepFormContext from "./proforma-registration/MultiStepFormContext";
+import MultiStepFormContext from "../data/MultiStepFormContext";
 import { CButton, CCol, CRow } from "@coreui/react";
 const LtdInfo = () => {
   const appointment_typeOptions = [

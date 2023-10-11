@@ -14,7 +14,7 @@ import {
 } from "@coreui/react";
 import { useState } from "react";
 import { Steps } from "antd";
-import { Provider } from "./MultiStepFormContext";
+import { Provider } from "../../data/MultiStepFormContext";
 import LtdInfo from "./incorpporation-info";
 import CompanyDetails from "./company-details";
 import MedicineDetails from "./medicine-details";

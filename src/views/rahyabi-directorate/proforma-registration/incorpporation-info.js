@@ -3,7 +3,7 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { Button, Card } from "antd";
 import { Input, InputNumber } from "formik-antd";
-import MultiStepFormContext from "./MultiStepFormContext";
+import MultiStepFormContext from "../../data/MultiStepFormContext";
 import {
   currencytypeOptions,
   proformaTypeOptions,

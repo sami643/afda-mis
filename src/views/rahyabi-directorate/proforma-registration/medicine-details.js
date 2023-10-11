@@ -1,6 +1,6 @@
 import { Button, Col, Row } from "antd";
 import React, { useContext, useState } from "react";
-import MultiStepFormContext from "./MultiStepFormContext";
+import MultiStepFormContext from "../../data/MultiStepFormContext";
 import { Formik, Form } from "formik";
 import { Input, InputNumber } from "formik-antd";
 import { medicineDetailsValidationSchema } from "../../data/validation";

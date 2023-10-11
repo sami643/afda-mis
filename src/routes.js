@@ -84,10 +84,15 @@ const Typography = React.lazy(() =>
 // Rahyaabi Directorates
 
 const ProFormaRegistration = React.lazy(() =>
-  import("./views/rahyabi-directorate/proforma-registration/proforma-register")
+  import("./views/rahyabi-directorate/proforma-registration/main")
 );
 const ProformaView = React.lazy(() =>
   import("./views/rahyabi-directorate/proforma-veiw/proforma-view")
+);
+
+// Jawaz Dehiiiiiiiiiii Directorates
+const IncorporationRegistration = React.lazy(() =>
+  import("./views/javazdehi-directorate/incorporation-registration/main")
 );
 
 // Base
@@ -289,6 +294,13 @@ const routes = [
     path: "/rahyabi/proforma/proforma-view",
     name: "ProformaView",
     element: ProformaView,
+  },
+
+  // JAWAZ dehiiiiiiiiiiiii
+  {
+    path: "/javazdehi/incorporation-register",
+    name: "IncorporationRegistration",
+    element: IncorporationRegistration,
   },
 
   // Account
