@@ -153,7 +153,7 @@ const IncorporationDetails = () => {
                   </div>
                 ) : null}
               </CCol>
-              <CCol md={6} className=" mb-3">
+              {/* <CCol md={6} className=" mb-3">
                 <label className="form-label mr-5" htmlFor="license_number">
                   د دوسیې شمیره
                   <span
@@ -173,6 +173,40 @@ const IncorporationDetails = () => {
                   className={`form-control form-select-l ${
                     errors.license_number && touched.license_number
                       ? "is-invalid form-select-l    "
+                      : ""
+                  }`}
+                  value={values.license_number}
+                  onChange={(e) =>
+                    setFieldValue("license_number", e.target.value)
+                  }
+                  onBlur={() => setFieldTouched("license_number", true)}
+                />
+                {errors.license_number && touched.license_number ? (
+                  <div className="invalid-feedback d-block errorMessageStyle mx-3">
+                    {errors.license_number}
+                  </div>
+                ) : null}
+              </CCol> */}
+              <CCol md={6} className=" mb-3">
+                <label className="form-label mr-5" htmlFor="license_number">
+                  برښنالیک
+                  <span
+                    style={{
+                      color: "red",
+                      marginInline: "5px",
+                      paddingTop: "5px",
+                    }}
+                  >
+                    *
+                  </span>
+                </label>
+                <input
+                  type="text"
+                  id="license_number"
+                  name="license_number"
+                  className={`form-control form-select-l ${
+                    errors.license_number && touched.license_number
+                      ? "is-invalid form-select-l "
                       : ""
                   }`}
                   value={values.license_number}
@@ -357,40 +391,6 @@ const IncorporationDetails = () => {
                     );
                   })}
                 </select>
-                {errors.license_number && touched.license_number ? (
-                  <div className="invalid-feedback d-block errorMessageStyle mx-3">
-                    {errors.license_number}
-                  </div>
-                ) : null}
-              </CCol>
-              <CCol md={6} className=" mb-3">
-                <label className="form-label mr-5" htmlFor="license_number">
-                  برښنالیک
-                  <span
-                    style={{
-                      color: "red",
-                      marginInline: "5px",
-                      paddingTop: "5px",
-                    }}
-                  >
-                    *
-                  </span>
-                </label>
-                <input
-                  type="text"
-                  id="license_number"
-                  name="license_number"
-                  className={`form-control form-select-l ${
-                    errors.license_number && touched.license_number
-                      ? "is-invalid form-select-l "
-                      : ""
-                  }`}
-                  value={values.license_number}
-                  onChange={(e) =>
-                    setFieldValue("license_number", e.target.value)
-                  }
-                  onBlur={() => setFieldTouched("license_number", true)}
-                />
                 {errors.license_number && touched.license_number ? (
                   <div className="invalid-feedback d-block errorMessageStyle mx-3">
                     {errors.license_number}

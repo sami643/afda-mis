@@ -14,6 +14,15 @@
   }
 }
 
+.spacess {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  .spacess {
+    padding: 10px;
+    display: block;
+  }
+}
 
 /* .issueDateDay{
     width: 50px;

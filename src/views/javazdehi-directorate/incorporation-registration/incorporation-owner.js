@@ -234,7 +234,7 @@ const IncorporationOwner = () => {
               </CCol>
               <CCol md={4} className=" mb-3">
                 <label className="form-label mr-5" htmlFor="license_number">
-                  د تذکرې نمبر/پاسپورټ شمیره
+                  د تذکرې/پاسپورټ شمیره
                   <span
                     style={{
                       color: "red",
