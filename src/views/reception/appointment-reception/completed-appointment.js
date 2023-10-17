@@ -12,6 +12,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Button, Modal } from "antd";
 import axios from "axios";
 import $ from "jquery";
+import { MDBDataTable } from "mdbreact";
 import "datatables.net-bs4";
 import "datatables.net-bs4/css/dataTables.bootstrap4.min.css";
 import pashtolang from "./../../data/pashto.json";
@@ -31,18 +32,18 @@ const CompletedApointment = () => {
   const [isMoqamUser, setIsMoqamUser] = useState(false);
   const [checkoutStatus, setCheckoutStatus] = useState({});
 
-  useEffect(() => {
-    const dataTable = $(tableRef.current).DataTable({
-      order: [[0, "asc"]],
-      pageLength: 25,
-      language: pashtolang,
-    });
-    $(".dataTables_length").addClass("bs-select");
+  // useEffect(() => {
+  //   const dataTable = $(tableRef.current).DataTable({
+  //     order: [[0, "asc"]],
+  //     pageLength: 25,
+  //     language: pashtolang,
+  //   });
+  //   $(".dataTables_length").addClass("bs-select");
 
-    return () => {
-      dataTable.destroy();
-    };
-  }, [listData]);
+  //   return () => {
+  //     dataTable.destroy();
+  //   };
+  // }, [listData]);
 
   const showModal = (item) => {
     setIsModalOpen(true);
@@ -63,22 +64,22 @@ const CompletedApointment = () => {
     }
   };
 
-  const checkingOut = async (item) => {
-    const data = {
-      status: "completed",
-      id: item.id,
-      check_out: moment().format("YYYY-MM-DD HH:mm"),
-    };
-    const url = "http://localhost:8000/reception/appointment-update-status";
-    await axios
-      .put(url, data)
-      .then((res) => {
-        console.log("response", res.data.message);
-      })
-      .catch((err) => {
-        console.log("Error Occured1223", err);
-      });
-  };
+  // const checkingOut = async (item) => {
+  //   const data = {
+  //     status: "completed",
+  //     id: item.id,
+  //     check_out: moment().format("YYYY-MM-DD HH:mm"),
+  //   };
+  //   const url = "http://localhost:8000/reception/appointment-update-status";
+  //   await axios
+  //     .put(url, data)
+  //     .then((res) => {
+  //       console.log("response", res.data.message);
+  //     })
+  //     .catch((err) => {
+  //       console.log("Error Occured1223", err);
+  //     });
+  // };
 
   useEffect(() => {
     gettingCompletedAppointments().then(() => {
@@ -90,6 +91,82 @@ const CompletedApointment = () => {
     return <CSpinner color="info" />;
   }
 
+  const rows = listData
+    // .filter((item) => item.id === 3)
+    .map((item, index) => ({
+      index: index + 1,
+      name: item.visitor.name,
+      directorate: item?.directorate?.name,
+      appointment_date: item.appointment_date,
+      appointment_time_range: item.appointment_time_range,
+      contact: item.visitor.contact,
+      view: (
+        <div className="text-center">
+          <FontAwesomeIcon
+            icon={faEye}
+            onClick={() => showModal(item)}
+            className="text-info me-2"
+            data-toggle="modal"
+            data-target="#exampleModalCenter"
+          />
+        </div>
+      ),
+      check_out: item.check_out,
+    }));
+  const data = {
+    columns: [
+      {
+        label: "شماره",
+        field: "index",
+        sort: "asc",
+        width: 100,
+      },
+      {
+        label: "نوم",
+        field: "name",
+        sort: "asc",
+        width: 200,
+      },
+      {
+        label: "ریاست",
+        field: "directorate",
+        sort: "asc",
+        width: 200,
+      },
+      {
+        label: "د لیدنې نیټه",
+        field: "appointment_date",
+        sort: "asc",
+        width: 100,
+      },
+      {
+        label: "د لیدنې موده",
+        field: "appointment_time_range",
+        sort: "asc",
+        width: 150,
+      },
+      {
+        label: "د اړیکې شمیره",
+        field: "contact",
+        sort: "asc",
+        width: 100,
+      },
+      {
+        label: "عملیې",
+        field: "view",
+        sort: "asc",
+        width: 100,
+      },
+      {
+        label: "د تړل کیدو نیټه",
+        field: "check_out",
+        sort: "asc",
+        width: 200,
+      },
+    ],
+    rows: rows,
+  };
+
   return (
     <CCard className="mb-4">
       <CCardHeader>
@@ -98,7 +175,7 @@ const CompletedApointment = () => {
 
       <CCardBody>
         <div className="container my-4">
-          <table
+          {/* <table
             ref={tableRef}
             id="dtOrderExample"
             className=" mb-3 mt-4 table table-striped table-bordered table-sm "
@@ -139,7 +216,29 @@ const CompletedApointment = () => {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </table> */}
+          <MDBDataTable
+            striped
+            bordered
+            hover
+            data={data}
+            entries={15}
+            paging={true}
+            pagingTop
+            pagingBottom
+            searchLabel="لټون"
+            entriesLabel="وریکارډونه"
+            info={false}
+            responsiveSm
+            responsiveMd
+            responsiveLg
+            className="custom-datatable"
+            paginationLabel={["شاته", "مخته"]}
+            entriesOptions={[15, 30, 50, 100]}
+          />
+          <div style={{ marginTop: "-50px" }}>
+            ټول ریکارډونه<span className="px-2">{listData.length}</span>
+          </div>
         </div>
 
         <Modal

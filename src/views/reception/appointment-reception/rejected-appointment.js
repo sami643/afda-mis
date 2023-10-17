@@ -8,14 +8,15 @@ import {
 } from "@coreui/react";
 import React, { useEffect, useRef, useState } from "react";
 import { Button, Modal } from "antd";
-import axios from "axios";
-import $ from "jquery";
+// import axios from "axios";
+// import $ from "jquery";
 import "datatables.net-bs4";
 import "datatables.net-bs4/css/dataTables.bootstrap4.min.css";
 import pashtolang from "./../../data/pashto.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import "./../../data/views.css";
+import { MDBDataTable } from "mdbreact";
 import VisitorData from "../visitor/visitor-view-component";
 import { gettingAppointmentListAPI } from "./../../../api/utils";
 import viewAttachments from "./../../../assets/images/viewAttachments.png";
@@ -34,18 +35,18 @@ const RejectedAppointment = () => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
-  useEffect(() => {
-    const dataTable = $(tableRef.current).DataTable({
-      order: [[0, "desc"]],
-      pageLength: 25,
-      language: pashtolang,
-    });
-    $(".dataTables_length").addClass("bs-select");
+  // useEffect(() => {
+  //   const dataTable = $(tableRef.current).DataTable({
+  //     order: [[0, "desc"]],
+  //     pageLength: 25,
+  //     language: pashtolang,
+  //   });
+  //   $(".dataTables_length").addClass("bs-select");
 
-    return () => {
-      dataTable.destroy();
-    };
-  }, [listData]);
+  //   return () => {
+  //     dataTable.destroy();
+  //   };
+  // }, [listData]);
 
   const gettingRejectedAppointment = async () => {
     const data = { status: "rejected" };
@@ -66,6 +67,82 @@ const RejectedAppointment = () => {
   if (loading) {
     return <CSpinner color="info" />;
   }
+
+  const rows = listData
+    // .filter((item) => item.id === 3)
+    .map((item, index) => ({
+      index: index + 1,
+      name: item.visitor.name,
+      directorate: item?.directorate?.name,
+      reason: item.reason,
+      attachment:
+        item.attachment && item.attachment !== "/user-media/no_file.pdf" ? (
+          <a href={`http://localhost:8000/${item.attachment}`} target="_blank">
+            <img src={viewAttachments} width="30" alt="Attachment" />
+          </a>
+        ) : (
+          <p>اسناد نلري</p>
+        ),
+      contact: item.visitor.contact,
+      action: (
+        <div className="text-center">
+          <FontAwesomeIcon
+            icon={faEye}
+            onClick={() => showModal(item)}
+            className="text-info me-2"
+            data-toggle="modal"
+            data-target="#exampleModalCenter"
+          />
+        </div>
+      ),
+    }));
+  const data = {
+    columns: [
+      {
+        label: "شماره",
+        field: "index",
+        sort: "asc",
+        width: 150,
+      },
+      {
+        label: "نوم",
+        field: "name",
+        sort: "asc",
+        width: 270,
+      },
+      {
+        label: "ریاست",
+        field: "directorate",
+        sort: "asc",
+        width: 200,
+      },
+      {
+        label: "د رد کیدو علت",
+        field: "reason",
+        sort: "asc",
+        width: 100,
+      },
+      {
+        label: "ضمیمه",
+        field: "attachment",
+        sort: "asc",
+        width: 150,
+      },
+      {
+        label: "د اړیکې شمیره",
+        field: "contact",
+        sort: "asc",
+        width: 100,
+      },
+      {
+        label: "عملیې",
+        field: "action",
+        sort: "asc",
+        width: 100,
+      },
+    ],
+    rows: rows,
+  };
   return (
     <CCard className="mb-4">
       <CCardHeader>
@@ -74,7 +151,7 @@ const RejectedAppointment = () => {
 
       <CCardBody>
         <div className="container my-4">
-          <table
+          {/* <table
             ref={tableRef}
             id="dtOrderExample"
             className=" mb-3 mt-4 table table-striped table-bordered table-sm "
@@ -129,7 +206,29 @@ const RejectedAppointment = () => {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </table> */}
+          <MDBDataTable
+            striped
+            bordered
+            hover
+            data={data}
+            entries={15}
+            paging={true}
+            pagingTop
+            pagingBottom
+            searchLabel="لټون"
+            entriesLabel="وریکارډونه"
+            info={false}
+            responsiveSm
+            responsiveMd
+            responsiveLg
+            className="custom-datatable"
+            paginationLabel={["شاته", "مخته"]}
+            entriesOptions={[15, 30, 50, 100]}
+          />
+          <div style={{ marginTop: "-50px" }}>
+            ټول ریکارډونه<span className="px-2">{listData.length}</span>
+          </div>
         </div>
 
         <Modal

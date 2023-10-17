@@ -405,7 +405,7 @@ const IncorporationRegistrationReview = () => {
                     <CCol md={4} className="">
                       <strong className="mx-2">
                         {/* {companyData?.name} */}
-                        ahmad@gmail.com
+                      ادارې کارمند
                       </strong>
                     </CCol>
                     {/* <div className="spacess"></div>

@@ -26,7 +26,7 @@ import {
   gettingAppointmentListAPI,
   appointmentCheckOutAPI,
 } from "../../../api/utils";
-
+import { MDBDataTable } from "mdbreact";
 import {
   approvingAppointmentValidationSchema,
   rejectingReasonValidationSchema,
@@ -65,18 +65,18 @@ const ApprovedAppointments = () => {
     setIsRejectionModalOpen(false);
   };
 
-  useEffect(() => {
-    const dataTable = $(tableRef.current).DataTable({
-      order: [[0, "asc"]],
-      pageLength: 25,
-      language: pashtolang,
-    });
-    $(".dataTables_length").addClass("bs-select");
+  // useEffect(() => {
+  //   const dataTable = $(tableRef.current).DataTable({
+  //     order: [[0, "asc"]],
+  //     pageLength: 25,
+  //     language: pashtolang,
+  //   });
+  //   $(".dataTables_length").addClass("bs-select");
 
-    return () => {
-      dataTable.destroy();
-    };
-  }, [listData]);
+  //   return () => {
+  //     dataTable.destroy();
+  //   };
+  // }, [listData]);
 
   const gettingApprovedAppointment = async () => {
     const data = { status: "approved" };
@@ -133,6 +133,122 @@ const ApprovedAppointments = () => {
     return <CSpinner color="info" />;
   }
 
+  const rows = listData
+    // .filter((item) => item.id === 3)
+    .map((item, index) => ({
+      index: index + 1,
+      name: item.visitor.name,
+      directorate: item?.directorate?.name,
+      appointment_date: item.appointment_date,
+      appointment_time_range: item.appointment_time_range,
+      contact: item.visitor.contact,
+      view: (
+        <div className="text-center">
+          <FontAwesomeIcon
+            icon={faEye}
+            onClick={() => showModal(item)}
+            className="text-info me-2"
+            data-toggle="modal"
+            data-target="#exampleModalCenter"
+          />
+        </div>
+      ),
+      action: (
+        <div className="text-center">
+          {logUser === user_roles.reception_appointment &&
+            !checkoutStatus[item.id] && (
+              <CButton
+                className="btn btn-danger p-1 px-3 mx-1"
+                onClick={() => {
+                  // Set checkout status only for the specific item
+                  setCheckoutStatus((prevStatus) => ({
+                    ...prevStatus,
+                    [item.id]: true, // Set the status to true for the specific item
+                  }));
+                  checkingOut(item);
+                }}
+              >
+                تړل
+              </CButton>
+            )}
+          {logUser === user_roles.reception_appointment &&
+            checkoutStatus[item.id] && (
+              <p className="my-0">
+                د لیدنې پروسه بشپړه شوه
+                <br />
+                <span className="bg-success">
+                  {jalaliMoment().format("jYYYY-jMM-jDD hh:mm A")}
+                </span>
+              </p>
+            )}
+          {(logUser === user_roles.head_user ||
+            logUser === user_roles.directorate_manager) && (
+            <CButton
+              className="btn btn-danger p-1 px-3 mx-1"
+              onClick={() => {
+                showRejectionModal(item);
+              }}
+            >
+              کنسل
+            </CButton>
+          )}
+        </div>
+      ),
+    }));
+  const data = {
+    columns: [
+      {
+        label: "شماره",
+        field: "index",
+        sort: "asc",
+        width: 100,
+      },
+      {
+        label: "نوم",
+        field: "name",
+        sort: "asc",
+        width: 200,
+      },
+      {
+        label: "ریاست",
+        field: "directorate",
+        sort: "asc",
+        width: 200,
+      },
+      {
+        label: "د لیدنې نیټه",
+        field: "appointment_date",
+        sort: "asc",
+        width: 100,
+      },
+      {
+        label: "د لیدنې موده",
+        field: "appointment_time_range",
+        sort: "asc",
+        width: 150,
+      },
+      {
+        label: "د اړیکې شمیره",
+        field: "contact",
+        sort: "asc",
+        width: 100,
+      },
+      {
+        label: "عملیې",
+        field: "view",
+        sort: "asc",
+        width: 100,
+      },
+      {
+        label: "عملیې",
+        field: "action",
+        sort: "asc",
+        width: 200,
+      },
+    ],
+    rows: rows,
+  };
+
   return (
     <CCard className="mb-4">
       {isLoading ? (
@@ -145,7 +261,7 @@ const ApprovedAppointments = () => {
 
           <CCardBody>
             <div className="container my-4">
-              <table
+              {/* <table
                 ref={tableRef}
                 id="dtOrderExample"
                 className=" mb-3 mt-4 table table-striped table-bordered table-sm "
@@ -159,9 +275,9 @@ const ApprovedAppointments = () => {
                     <th className="text-center">د لیدنې نیټه</th>
                     <th className="text-center">د لیدنې موده</th>
                     <th className="text-center">د اړیکې شمیره </th>
-                    
+
                     <th className="text-center">عملیې</th>
-                  
+
                     {logUser === user_roles.reception_appointment && (
                       <th className="text-center">عملیې</th>
                     )}
@@ -237,7 +353,29 @@ const ApprovedAppointments = () => {
                     </tr>
                   ))}
                 </tbody>
-              </table>
+              </table> */}
+              <MDBDataTable
+                striped
+                bordered
+                hover
+                data={data}
+                entries={15}
+                paging={true}
+                pagingTop
+                pagingBottom
+                searchLabel="لټون"
+                entriesLabel="وریکارډونه"
+                info={false}
+                responsiveSm
+                responsiveMd
+                responsiveLg
+                className="custom-datatable"
+                paginationLabel={["شاته", "مخته"]}
+                entriesOptions={[15, 30, 50, 100]}
+              />
+              <div style={{ marginTop: "-50px" }}>
+                ټول ریکارډونه<span className="px-2">{listData.length}</span>
+              </div>
             </div>
 
             <Modal

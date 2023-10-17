@@ -60,8 +60,8 @@
   margin-top: 70px;
 }
 
-.proformaSubmitModal_2{
-min-height: 300px;
+.proformaSubmitModal_2 {
+  min-height: 300px;
 }
 
 .ant-modal-close {
@@ -279,3 +279,15 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 .bg-check_out {
   background-color: #61fa45 !important;
 }
+
+.custom-datatable .dataTables_info {
+  display: none; /* Hide the pagination info */
+}
+
+.custom-datatable thead th {
+  text-align: center !important;
+}
+
+/* .page-item {
+  display: none;
+} */

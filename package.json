@@ -49,6 +49,7 @@
     "formik-antd": "^2.0.4",
     "jquery": "^3.7.0",
     "jwt-decode": "^3.1.2",
+    "mdbreact": "^5.2.0",
     "mobiscroll": "^3.0.0-beta6",
     "moment": "^2.29.4",
     "moment-jalaali": "^0.10.0",

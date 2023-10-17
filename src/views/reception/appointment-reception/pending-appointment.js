@@ -9,12 +9,13 @@ import {
 } from "@coreui/react";
 import React, { useEffect, useRef, useState } from "react";
 import { Button, Modal } from "antd";
-import axios from "axios";
-import $ from "jquery";
+// import axios from "axios";
+// import $ from "jquery";
 import "datatables.net-bs4";
 import "datatables.net-bs4/css/dataTables.bootstrap4.min.css";
-import pashtolang from "./../../data/pashto.json";
+// import pashtolang from "./../../data/pashto.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { MDBDataTable } from "mdbreact";
 import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
@@ -36,7 +37,7 @@ import { TimePicker } from "antd";
 import { user_roles } from "src/views/data/global-data";
 var itemdata = [];
 const PendingAppointment = () => {
-  const tableRef = useRef(null);
+  // const tableRef = useRef(null);
   const logUser = localStorage.getItem("user_role");
 
   const navigate = useNavigate();
@@ -93,19 +94,19 @@ const PendingAppointment = () => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
-  useEffect(() => {
-    const dataTable = $(tableRef.current).DataTable({
-      order: [[0, "desc"]],
-      pageLength: 25,
-      language: pashtolang,
-      destroy: true,
-    });
-    $(".dataTables_length").addClass("bs-select");
+  // useEffect(() => {
+  //   const dataTable = $(tableRef.current).DataTable({
+  //     order: [[0, "desc"]],
+  //     pageLength: 25,
+  //     language: pashtolang,
+  //     destroy: true,
+  //   });
+  //   $(".dataTables_length").addClass("bs-select");
 
-    return () => {
-      dataTable.destroy();
-    };
-  }, [listData]);
+  //   return () => {
+  //     dataTable.destroy();
+  //   };
+  // }, [listData]);
 
   const gettingPendingAppointments = async () => {
     const data = { status: "pending" };
@@ -180,6 +181,122 @@ const PendingAppointment = () => {
     navigate(`/reception/update-appointment?id=${serializedData}`);
   };
 
+  const rows = listData.map((item, index) => ({
+    index: index + 1,
+    name: item.visitor.name,
+    directorate: item?.directorate?.name,
+    purpose: item.purpose,
+    edit: (
+      <div className="text-center">
+        <FontAwesomeIcon
+          icon={faEye}
+          onClick={() => showModal(item)}
+          className="text-info me-2"
+          data-toggle="modal"
+          data-target="#exampleModalCenter"
+        />
+        {logUser === user_roles.reception_appointment && (
+          <FontAwesomeIcon
+            icon={faEdit}
+            className="text-primary me-2"
+            onClick={() => {
+              navigateToUpdatePage(item);
+            }}
+          />
+        )}
+      </div>
+    ),
+    attachment:
+      item.attachment && item.attachment !== "/user-media/no_file.pdf" ? (
+        <a href={`http://localhost:8000/${item.attachment}`} target="_blank">
+          <img src={viewAttachments} width="30" alt="Attachment" />
+        </a>
+      ) : (
+        <p>اسناد نلري</p>
+      ),
+    action: (
+      <div className="action-buttons text-center">
+        {logUser === user_roles.head_user ||
+        logUser === user_roles.directorate_manager ? (
+          <>
+            <CButton
+              className="btn btn-success p-1 px-3 mx-2"
+              onClick={() => {
+                showAcceptionModal(item);
+              }}
+            >
+              قبول
+            </CButton>
+            <CButton
+              className="btn btn-danger p-1 px-3 mx-1"
+              onClick={() => {
+                showRejectionModal(item);
+              }}
+            >
+              رد
+            </CButton>
+          </>
+        ) : (
+          <CButton
+            className="btn btn-danger p-1 px-3 mx-1"
+            onClick={() => {
+              showCancelModal(item);
+            }}
+          >
+            کنسل
+          </CButton>
+        )}
+      </div>
+    ),
+  }));
+  const data = {
+    columns: [
+      {
+        label: "شماره",
+        field: "index",
+        sort: "asc",
+        width: 150,
+      },
+      {
+        label: "نوم",
+        field: "name",
+        sort: "asc",
+        width: 270,
+      },
+      {
+        label: "ریاست",
+        field: "directorate",
+        sort: "asc",
+        width: 200,
+      },
+      {
+        label: "د لیدنې موخه",
+        field: "purpose",
+        sort: "asc",
+        width: 100,
+      },
+      {
+        label: "عملیې",
+        field: "edit",
+        sort: "asc",
+        width: 150,
+      },
+      {
+        label: "ضمیمه",
+        field: "attachment",
+        sort: "asc",
+        width: 150,
+      },
+      {
+        label: "عملیې",
+        field: "action",
+        sort: "asc",
+        width: 200,
+      },
+    ],
+    rows: rows,
+  };
+
   if (loading) {
     return <CSpinner color="info" />;
   }
@@ -196,7 +313,7 @@ const PendingAppointment = () => {
           <Loader />
         ) : (
           <div className="container " style={{ marginTop: "50px" }}>
-            <table
+            {/* <table
               ref={tableRef}
               id="dtOrderExample"
               className=" table table-striped table-bordered table-sm"
@@ -213,7 +330,7 @@ const PendingAppointment = () => {
                   <th className="text-center">عملیې</th>
                 </tr>
               </thead>
-              {/* Your tbody and tfoot sections */}
+
               <tbody>
                 {listData?.map((item, index) => (
                   <>
@@ -239,8 +356,6 @@ const PendingAppointment = () => {
                             }}
                           />
                         )}
-
-                        {/* <FontAwesomeIcon icon={faTrash} className="text-danger" /> */}
                       </td>
                       <td className="text-center">
                         {item.attachment &&
@@ -295,7 +410,29 @@ const PendingAppointment = () => {
                   </>
                 ))}
               </tbody>
-            </table>
+            </table> */}
+            <MDBDataTable
+              striped
+              bordered
+              hover
+              data={data}
+              entries={15}
+              paging={true}
+              pagingTop
+              pagingBottom
+              searchLabel="لټون"
+              entriesLabel="وریکارډونه"
+              info={false}
+              responsiveSm
+              responsiveMd
+              responsiveLg
+              className="custom-datatable"
+              paginationLabel={["شاته", "مخته"]}
+              entriesOptions={[15, 30, 50, 100]}
+            />
+            <div style={{ marginTop: "-50px" }}>
+              ټول ریکارډونه<span className="px-2">{listData.length}</span>
+            </div>
           </div>
         )}
         <Modal
