@@ -94,7 +94,9 @@ const ProformaView = React.lazy(() =>
 const IncorporationRegistration = React.lazy(() =>
   import("./views/javazdehi-directorate/incorporation-registration/main")
 );
-
+const CompanyRegister = React.lazy(() =>
+  import("./views/rahyabi-directorate/foreign-company-registration/main")
+);
 // Base
 const Accordion = React.lazy(() => import("./views/base/accordion/Accordion"));
 const Breadcrumbs = React.lazy(() =>
@@ -301,6 +303,13 @@ const routes = [
     path: "/javazdehi/incorporation-register",
     name: "IncorporationRegistration",
     element: IncorporationRegistration,
+  },
+
+  // Comapany  Register
+  {
+    path: "/javazdehi/company-register",
+    name: "CompanyRegister",
+    element: CompanyRegister,
   },
 
   // Account

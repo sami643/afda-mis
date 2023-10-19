@@ -1,0 +1,47 @@
+.main-container {
+  margin-inline: 40px;
+}
+
+@media screen and (max-width: 768px) {
+  .main-container {
+    margin-inline: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .main-container {
+    margin-inline: 5px;
+  }
+}
+
+.spacess {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  .spacess {
+    padding: 10px;
+    display: block;
+  }
+}
+
+/* .issueDateDay{
+    width: 50px;
+} */
+
+/* Add this CSS to your stylesheet */
+input[type="file"]::-webkit-file-upload-button {
+  visibility: hidden;
+  display: none;
+}
+
+input#inputField1::before {
+  content: " \1F4C1   جواز                    ";
+  display: inline-block;
+  margin-right: 10px;
+}
+
+input#inputField2::before {
+  content: " \1F4C1   عکس                                ";
+  display: inline-block;
+  margin-right: 10px;
+}
