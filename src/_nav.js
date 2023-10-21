@@ -707,6 +707,12 @@ export const head_user = [
     to: "/javazdehi/company-register",
     icon: <CIcon icon={cilMagnifyingGlass} customClassName="nav-icon" />,
   },
+  {
+    component: CNavItem,
+    name: <FormattedMessage id="Sabt-Karmand" />,
+    to: "/hr-directorate/staff-register",
+    icon: <CIcon icon={cilMagnifyingGlass} customClassName="nav-icon" />,
+  },
 ];
 
 // Appointments

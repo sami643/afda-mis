@@ -12,6 +12,7 @@ const IncorporationOwner = () => {
 
   return (
     <>
+      <h1 className="mt-5 p-3 rounded bg-warning">ډ کمپنۍ د مالک معلومات</h1>
       <Formik
         // onSubmit={handleIncorporationSearch}
         initialValues={setOwnerDetails}

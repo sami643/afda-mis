@@ -97,6 +97,10 @@ const IncorporationRegistration = React.lazy(() =>
 const CompanyRegister = React.lazy(() =>
   import("./views/rahyabi-directorate/foreign-company-registration/main")
 );
+
+const StaffRegistration = React.lazy(() =>
+  import("./views/hr-and-adminstration-directorate/staff-registration")
+);
 // Base
 const Accordion = React.lazy(() => import("./views/base/accordion/Accordion"));
 const Breadcrumbs = React.lazy(() =>
@@ -310,6 +314,13 @@ const routes = [
     path: "/javazdehi/company-register",
     name: "CompanyRegister",
     element: CompanyRegister,
+  },
+
+  // HR Derectorate Staff Registration
+  {
+    path: "/hr-directorate/staff-register",
+    name: "CompanyRegister",
+    element: StaffRegistration,
   },
 
   // Account

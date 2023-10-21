@@ -167,7 +167,7 @@ const TechnicalAndRepresentativeRegistration = () => {
               </CCol>
               <CCol md={6} className="">
                 <label className="form-label mx-3" htmlFor="subject">
-                  NMHRA Certificate
+                  AFDA Certificate
                   <span
                     style={{
                       color: "red",

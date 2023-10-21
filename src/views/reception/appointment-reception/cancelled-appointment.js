@@ -150,7 +150,6 @@ const CancelledAppointment = () => {
       </CCardHeader>
 
       <div className="m-5"></div>
-
       <CCardBody>
         <div className="container my-4">
           {/* <table

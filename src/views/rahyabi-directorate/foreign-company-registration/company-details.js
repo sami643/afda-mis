@@ -38,6 +38,7 @@ const IncorporationDetails = () => {
     useContext(MultiStepFormContext);
   return (
     <>
+      <h1 className="pt-5">ډ کمپنۍ معلومات</h1>
       <Formik
         // onSubmit={handleIncorporationSearch}
         initialValues={{ license_number: "" }}

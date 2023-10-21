@@ -291,3 +291,21 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 /* .page-item {
   display: none;
 } */
+
+/* Add this CSS to your stylesheet */
+input[type="file"]::-webkit-file-upload-button {
+  visibility: hidden;
+  display: none;
+}
+
+input#inputField1::before {
+  content: " \1F4C1   فایل/عکس                    ";
+  display: inline-block;
+  margin-right: 10px;
+}
+
+input#inputField2::before {
+  content: " \1F4C1   عکس                                ";
+  display: inline-block;
+  margin-right: 10px;
+}
