@@ -35,7 +35,7 @@ input[type="file"]::-webkit-file-upload-button {
 }
 
 input#inputField1::before {
-  content: " \1F4C1   جواز                    ";
+  content: " \1F4C1   فایل/عکس                    ";
   display: inline-block;
   margin-right: 10px;
 }

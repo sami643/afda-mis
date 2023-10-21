@@ -1,24 +1,13 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import "./incorporation-registration-style.css";
-import {
-  CButton,
-  CCard,
-  CCardBody,
-  CCardHeader,
-  CCol,
-  CRow,
-  CToast,
-  CToaster,
-  CToastHeader,
-  CToastBody,
-} from "@coreui/react";
+import { CButton, CCard, CCardBody, CCardHeader, CCol } from "@coreui/react";
 import { useState } from "react";
 import { Steps } from "antd";
 import { Provider } from "../../data/MultiStepFormContext";
 import CompanyPrimaryDetails from "./company-details";
 import OwnerDetials from "./company-owner";
-import RepresentativeDetails from "./technical&representator-registration";
+import RepresentativeDetails from "./attachments";
 import Reviews from "./registration-review";
 
 const { Step } = Steps;
@@ -36,7 +25,7 @@ const ownerInitialState = {
   address2: "",
   medicine_export_purpose: "",
 };
-const representativeInitialState = {
+const attachmentInitialState = {
   address1: "",
   address2: "",
   city: "",
@@ -63,8 +52,8 @@ const renderStep = (step) => {
 const MainIncorporationRegistration = () => {
   const [companyDetails, setCompanyDetials] = useState(ltdInitialState);
   const [ownerDetails, setOwnerDetails] = useState(ownerInitialState);
-  const [representativeDetails, setRepresentativeDetails] = useState(
-    representativeInitialState
+  const [companyAttachments, setCompanyAttachments] = useState(
+    attachmentInitialState
   );
   const [currentStep, setCurrentStep] = useState(0);
 
@@ -73,7 +62,7 @@ const MainIncorporationRegistration = () => {
       setCurrentStep(0);
       setCompanyDetials(ltdInitialState);
       setOwnerDetails(ownerInitialState);
-      setRepresentativeDetails(representativeInitialState);
+      setCompanyAttachments(attachmentInitialState);
       return;
     }
     setCurrentStep(currentStep + 1);
@@ -95,22 +84,14 @@ const MainIncorporationRegistration = () => {
               setCompanyDetials,
               ownerDetails,
               setOwnerDetails,
-              representativeDetails,
-              setRepresentativeDetails,
-              // setIsCompanyProforma,
-              // isCompanyProforma,
-              // setProformaType,
-              // proformaType,
-              // isLTDProfroma,
-              // setIsLTDProforma,
-              // isNGOProforma,
-              // setIsNGOProforma,
+              companyAttachments,
+              setCompanyAttachments,
             }}
           >
             <Steps current={currentStep}>
               <Step title={"د کمپنۍ معلومات"} />
               <Step title={"د کمپنۍ د مالک معلومات"} />
-              <Step title={"د کمپنۍ اسناد"} />
+              <Step title={"د کمپنۍ ثبت اسناد"} />
               <Step title={"تأیید او ثبت"} />
             </Steps>
             <main>{renderStep(currentStep)}</main>

@@ -1,29 +1,10 @@
 import React, { useContext, useState } from "react";
 import MultiStepFormContext from "../../data/MultiStepFormContext";
 import { Formik, Form } from "formik";
-import * as Yup from "yup";
 import { Button, Card } from "antd";
-import { Input, InputNumber } from "formik-antd";
 import { DatePicker, Space } from "antd";
 const dateFormat = "YYYY/MM/DD";
-import {
-  CButton,
-  CCol,
-  CRow,
-  CCard,
-  CCardHeader,
-  CCardBody,
-} from "@coreui/react";
-import {
-  currencytypeOptions,
-  proformaTypeOptions,
-  provicesGlobalOptions,
-  importerOptions,
-  productiveCompanyproformaOPtions,
-  monthsOptions,
-  daysOptions,
-  yearOptions,
-} from "../../data/global-data";
+import { CButton, CCol, CRow } from "@coreui/react";
 
 const IncorporationOwner = () => {
   const { ownerDetails, setOwnerDetails, next, prev } =
@@ -33,7 +14,7 @@ const IncorporationOwner = () => {
     <>
       <Formik
         // onSubmit={handleIncorporationSearch}
-        initialValues={{ license_number: "" }}
+        initialValues={setOwnerDetails}
         // validationSchema={incorporationSearchValidationSchema}
         enableReinitialize={true}
       >
