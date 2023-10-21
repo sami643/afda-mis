@@ -192,11 +192,18 @@ const TechnicalAndRepresentativeRegistration = () => {
           </Form>
         )}
       </Formik>
-      <div className={"form__item button__items d-flex justify-content-end"}>
+      <div
+        className={
+          "form__item button__items d-flex justify-content-between mt-5"
+        }
+      >
+        <Button type={"default"} onClick={prev}>
+          شاته
+        </Button>
         <CButton
           type="submit"
-          className="btn-sm btn   px-4 py-2 m-4  "
-          onClick={next}
+          className="btn-sm btn   px-4 py-2  "
+          onClick={() => next()}
         >
           مخته
         </CButton>

@@ -268,7 +268,7 @@ const StaffRegistration = () => {
                         {/* /ریاست مربوطه */}
                         <CCol md={6} className="">
                           <label className="form-label mx-3" htmlFor="subject">
-                            مربوطه ریاست/مستقل آمریت
+                            اړوند ریاست/ مستقل آمریت
                             <span
                               style={{
                                 color: "red",

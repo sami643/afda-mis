@@ -86,8 +86,8 @@ const ProformaRegistration = () => {
     <CRow>
       <CCol xs={12}>
         <CCard className="mb-4">
-          <CCardHeader>
-            <h4 className="mb-1">د پروفورمې ثبت</h4>
+          <CCardHeader className="bg-warning">
+            <h4 className="mb-1 p-2">د پروفورمې ثبت</h4>
           </CCardHeader>
           <CCardBody className="m-5 ">
             <Provider

@@ -87,7 +87,7 @@ const MainIncorporationRegistration = () => {
   return (
     <CCol xs={12}>
       <CCard className="mb-4">
-        <CCardHeader>
+        <CCardHeader className="bg-warning">
           <h4 className="mb-1 p-2">د شرکت ثبت</h4>
         </CCardHeader>
         <CCardBody className="my-5 main-container ">

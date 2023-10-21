@@ -38,23 +38,13 @@ const IncorporationDetails = () => {
     useContext(MultiStepFormContext);
   return (
     <>
-      <h1 className="pt-5">ډ کمپنۍ معلومات</h1>
       <Formik
         // onSubmit={handleIncorporationSearch}
         initialValues={{ license_number: "" }}
         // validationSchema={incorporationSearchValidationSchema}
         enableReinitialize={true}
       >
-        {({
-          values,
-          setFieldValue,
-          setFieldTouched,
-          handleSubmit,
-          handleChange,
-          handleBlur,
-          errors,
-          touched,
-        }) => (
+        {({ values, setFieldValue, setFieldTouched, errors, touched }) => (
           <Form>
             <CRow className="justify-content-center mt-5">
               <CCol md={4} className=" mb-3">

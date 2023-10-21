@@ -1,6 +1,6 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import "./incorporation-registration-style.css";
+import "./company-registration-style.css";
 import { CButton, CCard, CCardBody, CCardHeader, CCol } from "@coreui/react";
 import { useState } from "react";
 import { Steps } from "antd";
@@ -72,7 +72,7 @@ const MainIncorporationRegistration = () => {
   return (
     <CCol xs={12}>
       <CCard className="mb-4">
-        <CCardHeader>
+        <CCardHeader className="bg-warning">
           <h4 className="mb-1 p-2">د کمپنۍ ثبت</h4>
         </CCardHeader>
         <CCardBody className="my-5 main-container ">
