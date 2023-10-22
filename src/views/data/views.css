@@ -309,3 +309,13 @@ input#inputField2::before {
   display: inline-block;
   margin-right: 10px;
 }
+
+.ant-card-actions {
+  background-color: #52ccf5 !important; /* Set your desired background color here */
+  padding: 16px; /* Adjust padding as needed */
+  font-size: 18px !important;
+}
+
+.committee_card_body {
+  background-color: #b1e8fa !important; /* Set your desired background color here */
+}

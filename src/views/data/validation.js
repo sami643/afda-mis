@@ -95,3 +95,7 @@ export const NGOMedicineValidationSchema = Yup.object().shape({
   // ltd_license_number: Yup.string().required("د شرکت د جواز نمبر اړین دی"),
   // introduced_by: Yup.string().required("د ملاقاتونو  ډول اړین دی"),
 });
+
+export const searchEmplyeeValidationSchema = Yup.object().shape({
+  hr_code: Yup.string().required("مهرباني وکړئ د کارمند hrکوډ ولیکئ  "),
+});

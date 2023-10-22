@@ -96,9 +96,7 @@ const UpdatingAppointment = () => {
       appointment_type: values.appointment_type,
       attachment: values.attachment,
     };
-    console.log(" 5555555555555555555555555555555555", data);
     const response = await updateAppointmentAPI(data);
-    console.log(" UPdate Appointment RESS", response);
     if (response.data.message === "Appointment is Updated") {
       addToast(exampleToast);
       setShowToast(true);

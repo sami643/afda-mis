@@ -82,12 +82,26 @@ const Typography = React.lazy(() =>
 );
 
 // Rahyaabi Directorates
-
 const ProFormaRegistration = React.lazy(() =>
   import("./views/rahyabi-directorate/proforma-registration/main")
 );
 const ProformaView = React.lazy(() =>
   import("./views/rahyabi-directorate/proforma-veiw/proforma-view")
+);
+const CreateTechnicalBoard = React.lazy(() =>
+  import("./views/rahyabi-directorate/technical-board/create-technical-board")
+);
+const TechnicalBoardList = React.lazy(() =>
+  import("./views/rahyabi-directorate/technical-board/technical-boards-list")
+);
+const TechnicalBoardUpdate = React.lazy(() =>
+  import("./views/rahyabi-directorate/technical-board/update-technical-board")
+);
+const BoardMemberList = React.lazy(() =>
+  import("./views/rahyabi-directorate/technical-board/board-member-list")
+);
+const addBoardMember = React.lazy(() =>
+  import("./views/rahyabi-directorate/technical-board/add-board-member")
 );
 
 // Jawaz Dehiiiiiiiiiii Directorates
@@ -289,7 +303,6 @@ const routes = [
   },
 
   // Rahyaabi Directorate
-
   {
     path: "/rahyabi/proforma-register",
     name: "ProformaRegistration",
@@ -300,6 +313,31 @@ const routes = [
     path: "/rahyabi/proforma/proforma-view",
     name: "ProformaView",
     element: ProformaView,
+  },
+  {
+    path: "/rahyabi/create-technical-board",
+    name: "CreateTechnicalBoard",
+    element: CreateTechnicalBoard,
+  },
+  {
+    path: "/rahyabi/technical-boards-list",
+    name: "CreateTechnicalBoard",
+    element: TechnicalBoardList,
+  },
+  {
+    path: "/rahyabi/update-board",
+    name: "TechnicalBoardUpdate",
+    element: TechnicalBoardUpdate,
+  },
+  {
+    path: "rahyabi/board-member-list",
+    name: "TechnicalBoardMembersList",
+    element: BoardMemberList,
+  },
+  {
+    path: "rahyabi/add-board-member",
+    name: "TechnicalBoardMembersList",
+    element: addBoardMember,
   },
 
   // JAWAZ dehiiiiiiiiiiiii

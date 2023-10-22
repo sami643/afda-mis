@@ -713,6 +713,18 @@ export const head_user = [
     to: "/hr-directorate/staff-register",
     icon: <CIcon icon={cilMagnifyingGlass} customClassName="nav-icon" />,
   },
+  {
+    component: CNavItem,
+    name: <FormattedMessage id="Create Technical Board" />,
+    to: "/rahyabi/create-technical-board",
+    icon: <CIcon icon={cilMagnifyingGlass} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: <FormattedMessage id="Technical Boards list" />,
+    to: "/rahyabi/technical-boards-list",
+    icon: <CIcon icon={cilMagnifyingGlass} customClassName="nav-icon" />,
+  },
 ];
 
 // Appointments
