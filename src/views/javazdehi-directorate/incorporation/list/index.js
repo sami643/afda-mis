@@ -134,7 +134,7 @@ const IncorporationList = () => {
 
       <CCardBody className="mt-0 filter_container">
         <div className="container mb-4 ">
-          <CRow className="py-4 filter_container ">
+          <CRow className="py-3 mt-3 filter_container ">
             <div className="filterInput">
               <label className="mx-2">
                 {/* <img src={Filtering} width={20} /> */}
