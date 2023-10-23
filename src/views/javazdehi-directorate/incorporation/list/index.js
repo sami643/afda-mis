@@ -10,15 +10,11 @@ import {
 import React, { useEffect, useRef, useState } from "react";
 import { Button, Modal } from "antd";
 import { MDBDataTable, MDBInput } from "mdbreact";
+import Filtering from "src/assets/images/list-litering.png";
 import {
   currencytypeOptions,
   proformaTypeOptions,
   provicesGlobalOptions,
-  importerOptions,
-  productiveCompanyproformaOPtions,
-  monthsOptions,
-  daysOptions,
-  yearOptions,
 } from "src/views/data/global-data";
 
 import "./style.css";
@@ -131,16 +127,19 @@ const IncorporationList = () => {
   };
 
   return (
-    <CCard className="mb-4">
+    <CCard className="mb-5">
       <CCardHeader className="bg-warning m-0">
         <h4 className="p-2">د شرکتونو لست</h4>
       </CCardHeader>
 
-      <CCardBody className="mt-0">
-        <div className="container  ">
-          <CRow className="py-4 filter_container mb-3">
+      <CCardBody className="mt-0 filter_container">
+        <div className="container mb-4 ">
+          <CRow className="py-4 filter_container ">
             <div className="filterInput">
-              <label>د جواز نمبر</label>
+              <label className="mx-2">
+                {/* <img src={Filtering} width={20} /> */}
+                <span>د جواز نمبر</span>
+              </label>
               <input
                 type="email"
                 class="form-control text-start inputt"
@@ -148,7 +147,7 @@ const IncorporationList = () => {
               />
             </div>
             <div className="filterInput">
-              <label>د شرکت نوم</label>
+              <label className="mx-2">د شرکت نوم</label>
               <input
                 type="email"
                 class="form-control text-start inputt"
@@ -156,7 +155,7 @@ const IncorporationList = () => {
               />
             </div>
             <div className="filterInput">
-              <label>د تذکرې شمیره</label>
+              <label className="mx-2">د تذکرې شمیره</label>
               <input
                 type="email"
                 class="form-control text-start inputt"
@@ -164,7 +163,7 @@ const IncorporationList = () => {
               />
             </div>
             <div className="filterInput ">
-              <label>د شرکت در رئیس نوم</label>
+              <label className="mx-2">د شرکت در رئیس نوم</label>
               <input
                 type="email"
                 class="form-control inputt"
@@ -172,7 +171,7 @@ const IncorporationList = () => {
               />
             </div>
             <div className="filterInput ">
-              <label>د شرکت در رئیس نوم</label>
+              <label className="mx-2">د شرکت در رئیس نوم</label>
               <input
                 type="email"
                 class="form-control inputt"
@@ -180,17 +179,16 @@ const IncorporationList = () => {
               />
             </div>
             <div className="filterInput ">
-              <label className="">ولایت</label>
+              <label className="mx-2">ولایت</label>
 
               <select
                 id="medicine_export_purpose"
                 // value={values.medicine_export_purpose}
                 name="appointment_type"
-                onChange={(e) =>
-                  setFieldValue("medicine_export_purpose", e.target.value)
-                }
+                // onChange={(e) =>
+                //   setFieldValue("medicine_export_purpose", e.target.value)
+                // }
                 className="form-control form-select-l inputt"
-            
               >
                 <option selected disabled className="label_1">
                   وټاکئ/انتخاب
