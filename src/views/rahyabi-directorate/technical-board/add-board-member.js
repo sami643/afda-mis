@@ -148,7 +148,7 @@ const CreateVisitor = () => {
 
   const navigateToUpdatePage = () => {
     const serializedData = encodeURIComponent(JSON.stringify(existuserData));
-    navigate(`/reception/update-visitor?id=${serializedData}`);
+    // navigate(`/reception/update-visitor?id=${serializedData}`);
   };
   return (
     <>

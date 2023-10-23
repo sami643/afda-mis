@@ -1,13 +1,13 @@
 import { Col, Row } from "antd";
 import React, { useContext, useState, useEffect, useRef } from "react";
-import MultiStepFormContext from "../../data/MultiStepFormContext";
+import MultiStepFormContext from "../../../data/MultiStepFormContext";
 import "datatables.net-bs4";
 import { Button, Modal } from "antd";
 import $ from "jquery";
 import "datatables.net-bs4/css/dataTables.bootstrap4.min.css";
 // import pashtolang from "./../data/pashto.json";
 
-import "./../../data/views.css";
+import "src/views/data/views.css";
 import {
   CButton,
   CCol,

@@ -1,9 +1,10 @@
 import React, { useContext, useState } from "react";
-import MultiStepFormContext from "../../data/MultiStepFormContext";
+import MultiStepFormContext from "../../../../data/MultiStepFormContext";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { Button, Card } from "antd";
 import { Input, InputNumber } from "formik-antd";
+import viewAttachments from "src/assets/images/viewAttachments.png";
 import {
   CButton,
   CCol,
@@ -27,22 +28,22 @@ const IncorporationRegistrationReview = () => {
                   className="px-3  py-2 rounded"
                   style={{ backgroundColor: "#00aae4" }}
                 >
-                  د شرکت په اړه معلومات
+                  د کمپنۍ په اړه معلومات
                 </h4>
                 <div className="my-3">
                   <CRow className="px-3 py-2 d-flex ">
                     <CCol md={2} className="">
-                      <p className=" mb-1">د شرکت نوم:</p>
+                      <p className=" mb-1"> نوم:</p>
                     </CCol>
                     <CCol md={4} className="">
                       <strong className="mx-2  bg-warning rounded p-1">
                         {/* {companyData?.name} */}
-                        عمر غزنی غفاری لیمیتید
+                        Dov Toshiba
                       </strong>
                     </CCol>
                     <div className="spacess"></div>
                     <CCol md={3} className="">
-                      <p className=" m-0">د تجارتي جواز د صدور نیټه:</p>
+                      <p className=" m-0">د تأسیس نیټه:</p>
                     </CCol>
                     <CCol md={3}>
                       <strong className="m-0 p-0">
@@ -53,7 +54,7 @@ const IncorporationRegistrationReview = () => {
                   </CRow>
                   <CRow className="px-3 pb-2  d-flex">
                     <CCol md={2} className="">
-                      <p className=" mb-0">د شرکت د جواز نمبر:</p>
+                      <p className=" mb-0">د جواز نمبر:</p>
                     </CCol>
                     <CCol md={4} className="">
                       <strong className="mx-2">
@@ -63,23 +64,23 @@ const IncorporationRegistrationReview = () => {
                     </CCol>
                     <div className="spacess"></div>
                     <CCol md={3} className="">
-                      <p className="mb-0">TIN نمبر:</p>
+                      <p className="mb-0">هیواد:</p>
                     </CCol>
                     <CCol md={3} className="">
                       <strong className="">
                         {/* {companyData?.contact} */}
-                        5646546556656
+                        هندوستان
                       </strong>
                     </CCol>
                   </CRow>
-                  <CRow className="px-3 pb-2  d-flex">
+                  <CRow className="px-3   d-flex">
                     <CCol md={2} className="">
-                      <p className=" mb-0"> پته:</p>
+                      <p className=" mb-0"> ایالت:</p>
                     </CCol>
                     <CCol md={4} className="">
                       <strong className="">
                         {/* {companyData?.father_name} */}
-                        هوتل پروان شمشاد مارکیټ
+                        کلکټه
                       </strong>
                     </CCol>
                     <div className="spacess"></div>
@@ -89,30 +90,130 @@ const IncorporationRegistrationReview = () => {
                     <CCol md={3} className="">
                       <strong className="">
                         {/* {companyData?.occupation} */}
-                        کابل
+                        ممبی
                       </strong>
                     </CCol>
                   </CRow>
                   <CRow className="px-3 pb-2  d-flex">
                     <CCol md={2} className="">
-                      <p className=" mb-0">برښنالیک:</p>
+                      <p className=" mb-0">فکس نمبر:</p>
                     </CCol>
                     <CCol md={4} className="">
                       <strong className="">
                         {/* {companyData?.email} */}
-                        parviz@farma.gov.af
+                        45455-h
                       </strong>
                     </CCol>
                     <div className="spacess"></div>
                     <CCol md={3} className="">
-                      <p className=" mb-0">د ویبسایټ لینک:</p>
+                      <p className=" mb-0">رسمی برښنالیک :</p>
                     </CCol>
                     <CCol md={3} className="">
                       <strong className="">
                         {/* {companyData?.occupation} */}
-                        ghafari.frama.com
+                        gvi@gov.in
                       </strong>
                     </CCol>
+                  </CRow>
+                  <CRow className="px-3 pb-2  d-flex">
+                    <CCol md={2} className="">
+                      <p className=" mb-0">رسمی ویبسایټ:</p>
+                    </CCol>
+                    <CCol md={4} className="">
+                      <strong className="">
+                        {/* {companyData?.email} */}
+                        www.dov_cpm.com
+                      </strong>
+                    </CCol>
+                    <div className="spacess"></div>
+                    <CCol md={3} className="">
+                      <p className=" mb-0">د اړیکې شمیره :</p>
+                    </CCol>
+                    <CCol md={3} className="">
+                      <strong className="">
+                        {/* {companyData?.occupation} */}
+                        078857451363
+                      </strong>
+                    </CCol>
+                  </CRow>
+                  <CRow className="px-3 pb-2  d-flex">
+                    <CCol md={2} className="">
+                      <p className=" mb-0">د اړیکې شمیره (2):</p>
+                    </CCol>
+                    <CCol md={4} className="">
+                      <strong className="">
+                        {/* {companyData?.email} */}
+                        221321145654
+                      </strong>
+                    </CCol>
+                    <div className="spacess"></div>
+                    <CCol md={3} className="">
+                      <p className=" mb-0">د تلفن شمیره :</p>
+                    </CCol>
+                    <CCol md={3} className="">
+                      <strong className="">
+                        {/* {companyData?.occupation} */}
+                        078857451363
+                      </strong>
+                    </CCol>
+                  </CRow>
+                  <CRow className="px-3 pb-2  d-flex">
+                    <CCol md={2} className="">
+                      <p className=" mb-0">په افغانستان کې د ثبت شمیره:</p>
+                    </CCol>
+                    <CCol md={4} className="">
+                      <strong className="">
+                        {/* {companyData?.email} */}
+                        4215
+                      </strong>
+                    </CCol>
+                    <div className="spacess"></div>
+                    <CCol md={3} className="">
+                      <p className=" mb-0">د ادارې لخوا ورکړل شوی جواز :</p>
+                    </CCol>
+                    <CCol md={3} className="">
+                      <strong className="">
+                        <a
+                          // href={`http://localhost:8000/${item.attachment}`}
+                          target="_blank"
+                        >
+                          <img
+                            src={viewAttachments}
+                            width="30"
+                            alt="Attachment"
+                          />
+                        </a>
+                      </strong>
+                    </CCol>
+                  </CRow>
+                  <CRow className="px-3 pb-2  d-flex">
+                    <CCol md={2} className="">
+                      <p className=" mb-0">نوټ:</p>
+                    </CCol>
+                    <CCol md={4} className="">
+                      <strong className="">
+                        {/* {companyData?.email} */}
+                        4215فثقصفقصثفصثفقثص
+                      </strong>
+                    </CCol>
+                    {/* <div className="spacess"></div>
+                    <CCol md={3} className="">
+                      <p className=" mb-0">د ادارې لخوا ورکړل شوی جواز :</p>
+                    </CCol>
+                    <CCol md={3} className="">
+                      <strong className="">
+                        <a
+                          // href={`http://localhost:8000/${item.attachment}`}
+                          target="_blank"
+                        >
+                          <img
+                            src={viewAttachments}
+                            width="30"
+                            alt="Attachment"
+                          />
+                        </a>
+                      </strong>
+                    </CCol> */}
                   </CRow>
                 </div>
               </>
@@ -127,7 +228,7 @@ const IncorporationRegistrationReview = () => {
                   className="px-3 bg-warning py-2 rounded"
                   // style={{ backgroundColor: "#00aae4" }}
                 >
-                  د شرکت د رئیس مشخصات
+                  د کمپنۍ د مالک مشخصات
                 </h4>
                 <div className="my-3">
                   <CRow className="px-3 py-2  d-flex">
@@ -156,67 +257,24 @@ const IncorporationRegistrationReview = () => {
                   </CRow>
                   <CRow className="px-3 pb-2  d-flex">
                     <CCol md={2} className="">
-                      <p className=" mb-0">د پلار نوم :</p>
+                      <p className=" mb-0">د زیږیدنې نیټه :</p>
                     </CCol>
                     <CCol md={4} className="">
                       <strong className="mx-2">
-                        {/* {companyData?.name} */}عبدالله
+                        {/* {companyData?.name} */}2000-4-5
                       </strong>
                     </CCol>
                     <div className="spacess"></div>
                     <CCol md={2} className="">
-                      <p className="mb-0">د نیکه نوم:</p>
+                      <p className="mb-0">برښنالیک:</p>
                     </CCol>
                     <CCol md={4} className="">
                       <strong className="">
                         {/* {companyData?.contact} */}
-                        عمر
+                        omar@gmail.com
                       </strong>
                     </CCol>
                   </CRow>
-                  <CRow className="px-3 pb-2  d-flex">
-                    <CCol md={2} className="">
-                      <p className=" mb-0"> د تذکرې شمیره:</p>
-                    </CCol>
-                    <CCol md={4} className="">
-                      <strong className="">
-                        {/* {companyData?.father_name} */}
-                        00924654654656
-                      </strong>
-                    </CCol>
-                    <div className="spacess"></div>
-                    <CCol md={2} className="">
-                      <p className=" mb-0">جنیست:</p>
-                    </CCol>
-                    <CCol md={4} className="">
-                      <strong className="">
-                        {/* {companyData?.occupation} */}
-                        نارینه
-                      </strong>
-                    </CCol>
-                  </CRow>
-                  <CRow className="px-3 pb-2  d-flex">
-                    <CCol md={2} className="">
-                      <p className=" mb-0"> د زدکړو کچه:</p>
-                    </CCol>
-                    <CCol md={4} className="">
-                      <strong className="">
-                        {/* {companyData?.father_name} */}
-                        لسانس
-                      </strong>
-                    </CCol>
-                    <div className="spacess"></div>
-                    <CCol md={2} className="">
-                      <p className=" mb-0">سهم:</p>
-                    </CCol>
-                    <CCol md={4} className="">
-                      <strong className="">
-                        {/* {companyData?.occupation} */}
-                        1/2
-                      </strong>
-                    </CCol>
-                  </CRow>
-
                   <CRow className="px-3 pb-2  d-flex">
                     <CCol md={2} className="">
                       <p className=" mb-0"> د اړیکې شمیره:</p>
@@ -224,19 +282,48 @@ const IncorporationRegistrationReview = () => {
                     <CCol md={4} className="">
                       <strong className="">
                         {/* {companyData?.father_name} */}
-                        0786455556
+                        0722212222
                       </strong>
                     </CCol>
                     <div className="spacess"></div>
                     <CCol md={2} className="">
-                      <p className=" mb-0">هیواد:</p>
+                      <p className=" mb-0">عکس:</p>
                     </CCol>
                     <CCol md={4} className="">
                       <strong className="">
                         {/* {companyData?.occupation} */}
-                        افغانستان
+                        <a
+                          // href={`http://localhost:8000/${item.attachment}`}
+                          target="_blank"
+                        >
+                          <img
+                            src={viewAttachments}
+                            width="30"
+                            alt="Attachment"
+                          />
+                        </a>
                       </strong>
                     </CCol>
+                  </CRow>
+                  <CRow className="px-3 pb-2  d-flex">
+                    <CCol md={2} className="">
+                      <p className=" mb-0">نوټ</p>
+                    </CCol>
+                    <CCol md={4} className="">
+                      <strong className="">
+                        {/* {companyData?.father_name} */}
+                        40
+                      </strong>
+                    </CCol>
+                    {/* <div className="spacess"></div>
+                    <CCol md={2} className="">
+                      <p className=" mb-0">سهم:</p>
+                    </CCol>
+                    <CCol md={4} className="">
+                      <strong className="">
+                        1/2
+                      </strong>
+                    </CCol> */}
                   </CRow>
                 </div>
               </>
@@ -251,172 +338,122 @@ const IncorporationRegistrationReview = () => {
                   className="px-3  py-2 rounded"
                   style={{ backgroundColor: "#00aae4" }}
                 >
-                  دفنی مسؤل مشخصات
+                  د کمپنۍ د ثبت اسناد
                 </h4>
                 <div className="mt-3">
                   <CRow className="px-3 py-2  d-flex">
                     <CCol md={2} className="">
-                      <p className=" mb-1"> نوم :</p>
+                      <p className=" mb-1"> ISO :</p>
                     </CCol>
                     <CCol md={4} className="">
                       <strong
                         className="mx-2 rounded p-1"
                         // style={{ backgroundColor: "#00aae4" }}
                       >
-                        {/* {companyData?.name} */}
-                        احمد
+                        <a
+                          // href={`http://localhost:8000/${item.attachment}`}
+                          target="_blank"
+                        >
+                          <img
+                            src={viewAttachments}
+                            width="30"
+                            alt="Attachment"
+                          />
+                        </a>
                       </strong>
                     </CCol>
                     <div className="spacess"></div>
                     <CCol md={2} className="">
-                      <p className=" m-0">تخلص:</p>
+                      <p className=" m-0">د تولید جواز:</p>
                     </CCol>
                     <CCol md={4}>
                       <strong className="m-0 p-0">
-                        {/* {companyData?.tazkera_number} */}
-                        علی
+                        <a
+                          // href={`http://localhost:8000/${item.attachment}`}
+                          target="_blank"
+                        >
+                          <img
+                            src={viewAttachments}
+                            width="30"
+                            alt="Attachment"
+                          />
+                        </a>
                       </strong>
                     </CCol>
                   </CRow>
                   <CRow className="px-3 pb-2  d-flex">
                     <CCol md={2} className="">
-                      <p className=" mb-0">د پلار نوم :</p>
+                      <p className=" mb-0">GMP :</p>
                     </CCol>
                     <CCol md={4} className="">
                       <strong className="mx-2">
-                        {/* {companyData?.name} */}
-                        عبدالله
+                        <a
+                          // href={`http://localhost:8000/${item.attachment}`}
+                          target="_blank"
+                        >
+                          <img
+                            src={viewAttachments}
+                            width="30"
+                            alt="Attachment"
+                          />
+                        </a>
                       </strong>
                     </CCol>
                     <div className="spacess"></div>
                     <CCol md={2} className="">
-                      <p className="mb-0">د تذکرې شمیره:</p>
+                      <p className="mb-0">د تورید جواز:</p>
                     </CCol>
                     <CCol md={4} className="">
                       <strong className="">
-                        {/* {companyData?.contact} */}۲۳۴۲۳۴
+                        <a
+                          // href={`http://localhost:8000/${item.attachment}`}
+                          target="_blank"
+                        >
+                          <img
+                            src={viewAttachments}
+                            width="30"
+                            alt="Attachment"
+                          />
+                        </a>
                       </strong>
                     </CCol>
                   </CRow>
                   <CRow className="px-3 pb-2  d-flex">
                     <CCol md={2} className="">
-                      <p className="mb-0">د قرارداد د عقد نیټه:</p>
+                      <p className="mb-0">Site Master File:</p>
                     </CCol>
                     <CCol md={4} className="">
                       <strong className="mx-2">
-                        {/* {companyData?.name} */}
-                        {/* {companyData?.contact} */}1401-12-3
+                        <a
+                          // href={`http://localhost:8000/${item.attachment}`}
+                          target="_blank"
+                        >
+                          <img
+                            src={viewAttachments}
+                            width="30"
+                            alt="Attachment"
+                          />
+                        </a>
                       </strong>
                     </CCol>
                     <div className="spacess"></div>
                     <CCol md={2} className="">
-                      <p className="mb-0">د قرارداد د ختمیدو نیټه:</p>
+                      <p className="mb-0">NMHRA Certificate:</p>
                     </CCol>
                     <CCol md={4} className="">
                       <strong className="">
-                        {/* {companyData?.contact} */}1401-12-3
+                        <a
+                          // href={`http://localhost:8000/${item.attachment}`}
+                          target="_blank"
+                        >
+                          <img
+                            src={viewAttachments}
+                            width="30"
+                            alt="Attachment"
+                          />
+                        </a>
                       </strong>
                     </CCol>
-                  </CRow>
-                </div>
-              </>
-            </CCardBody>
-          </div>
-        </CCol>
-        <CCol md={12}>
-          <div className="  border rounded mt-1 mb-5 p-2 mx-0 ">
-            <CCardBody className="p-0 mx-0" style={{ minHeight: "150px" }}>
-              <>
-                <h4
-                  className="px-3 bg-warning py-2 rounded"
-                  // style={{ backgroundColor: "#00aae4" }}
-                >
-                  د شرکت د نماینده مشخصات
-                </h4>
-                <div className="mt-3">
-                  <CRow className="px-3 py-2  d-flex">
-                    <CCol md={2} className="">
-                      <p className=" mb-1">نوم:</p>
-                    </CCol>
-                    <CCol md={4} className="">
-                      <strong
-                        className="mx-2 rounded p-1"
-                        // style={{ backgroundColor: "#00aae4" }}
-                      >
-                        {/* {companyData?.name} */}
-                        صمیم
-                      </strong>
-                    </CCol>
-                    <div className="spacess"></div>
-                    <CCol md={2} className="">
-                      <p className=" m-0">تخلص:</p>
-                    </CCol>
-                    <CCol md={4}>
-                      <strong className="m-0 p-0">
-                        {/* {companyData?.tazkera_number} */}
-                        جاوید
-                      </strong>
-                    </CCol>
-                  </CRow>
-                  <CRow className="px-3 pb-2  d-flex">
-                    <CCol md={2} className="">
-                      <p className=" mb-0">د تذکرې شمیره :</p>
-                    </CCol>
-                    <CCol md={4} className="">
-                      <strong className="mx-2">
-                        {/* {companyData?.name} */}
-                        132132132
-                      </strong>
-                    </CCol>
-                    <div className="spacess"></div>
-                    <CCol md={2} className="">
-                      <p className="mb-0">د اړیکې شمیره:</p>
-                    </CCol>
-                    <CCol md={4} className="">
-                      <strong className="">
-                        {/* {companyData?.contact} */}07775654654
-                      </strong>
-                    </CCol>
-                  </CRow>
-                  <CRow className="px-3 pb-2  d-flex">
-                    <CCol md={2} className="">
-                      <p className=" mb-0">ایمیل آدرس :</p>
-                    </CCol>
-                    <CCol md={4} className="">
-                      <strong className="mx-2">
-                        {/* {companyData?.name} */}
-                        ahmad@gmail.com
-                      </strong>
-                    </CCol>
-                    <div className="spacess"></div>
-                    <CCol md={2} className="">
-                      <p className="mb-0"> د کارت شمیره:</p>
-                    </CCol>
-                    <CCol md={4} className="">
-                      <strong className="">
-                        {/* {companyData?.contact} */}07775654654
-                      </strong>
-                    </CCol>
-                  </CRow>
-                  <CRow className="px-3 pb-2  d-flex">
-                    <CCol md={2} className="">
-                      <p className=" mb-0">موقف په شرکت کې :</p>
-                    </CCol>
-                    <CCol md={4} className="">
-                      <strong className="mx-2">
-                        {/* {companyData?.name} */}
-                      ادارې کارمند
-                      </strong>
-                    </CCol>
-                    {/* <div className="spacess"></div>
-                    <CCol md={2} className="">
-                      <p className="mb-0"> د کارت شمیره:</p>
-                    </CCol>
-                    <CCol md={4} className="">
-                      <strong className="">
-                        07775654654
-                      </strong>
-                    </CCol> */}
                   </CRow>
                 </div>
               </>

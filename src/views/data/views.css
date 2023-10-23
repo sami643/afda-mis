@@ -253,12 +253,11 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 }
 
 .bg-approved {
-  background-color: #41b883 !important; /* Replace with your desired background color */
+  background-color: #ffff00 !important; /* Replace with your desired background color */
 }
 
 .bg-cancelled {
   background-color: #a8cdda !important; /* Replace with your desired background color */
-  width: 10% !important;
 }
 
 .bg-Rejected {

@@ -85,7 +85,10 @@ const TechnicalBoardsList = (props) => {
               {/* Application form */}
               <div className="   rounded mt-5 mb-5">
                 <CRow className="justify-content-center ">
-                  <CCol md={4} className="my-1 text-center">
+                  <CCol
+                    md={4}
+                    className="my-1 text-center d-flex justify-content-center"
+                  >
                     <Card
                       style={{
                         maxWidth: 300,
@@ -125,7 +128,10 @@ const TechnicalBoardsList = (props) => {
                       </CCol>
                     </Card>
                   </CCol>
-                  <CCol md={4} className="my-1 text-center">
+                  <CCol
+                    md={4}
+                    className="my-1 text-center d-flex justify-content-center"
+                  >
                     <Card
                       style={{
                         maxWidth: 300,
@@ -164,7 +170,10 @@ const TechnicalBoardsList = (props) => {
                       </CCol>
                     </Card>
                   </CCol>
-                  <CCol md={4} className="my-1 text-center">
+                  <CCol
+                    md={4}
+                    className="my-1 text-center d-flex justify-content-center"
+                  >
                     <Card
                       style={{
                         maxWidth: 300,
@@ -205,7 +214,10 @@ const TechnicalBoardsList = (props) => {
                   </CCol>
                 </CRow>
                 <CRow className="justify-content-center  my-4">
-                  <CCol md={4} className="my-1 text-center">
+                  <CCol
+                    md={4}
+                    className="my-1 text-center d-flex justify-content-center"
+                  >
                     <Card
                       style={{
                         maxWidth: 300,
@@ -238,7 +250,10 @@ const TechnicalBoardsList = (props) => {
                       </CCol>
                     </Card>
                   </CCol>
-                  <CCol md={4} className="my-1 text-center">
+                  <CCol
+                    md={4}
+                    className="my-1 text-center d-flex justify-content-center"
+                  >
                     <Card
                       style={{
                         maxWidth: 300,
@@ -271,7 +286,10 @@ const TechnicalBoardsList = (props) => {
                       </CCol>
                     </Card>
                   </CCol>
-                  <CCol md={4} className="my-1 text-center">
+                  <CCol
+                    md={4}
+                    className="my-1 text-center d-flex justify-content-center"
+                  >
                     <Card
                       style={{
                         maxWidth: 300,

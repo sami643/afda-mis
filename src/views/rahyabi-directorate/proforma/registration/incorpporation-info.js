@@ -3,19 +3,19 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { Button, Card } from "antd";
 import { Input, InputNumber } from "formik-antd";
-import MultiStepFormContext from "../../data/MultiStepFormContext";
+import MultiStepFormContext from "../../../data/MultiStepFormContext";
 import {
   currencytypeOptions,
   proformaTypeOptions,
   provicesGlobalOptions,
   importerOptions,
   productiveCompanyproformaOPtions,
-} from "../../data/global-data";
+} from "../../../data/global-data";
 import {
   proforamvaIncorporationValidationSchema,
   importerAndProformaTypeValidationSchema,
   incorporationSearchValidationSchema,
-} from "../../data/validation";
+} from "../../../data/validation";
 import {
   CButton,
   CCol,

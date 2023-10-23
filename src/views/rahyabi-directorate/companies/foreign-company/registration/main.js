@@ -1,24 +1,13 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import "./incorporation-registration-style.css";
-import {
-  CButton,
-  CCard,
-  CCardBody,
-  CCardHeader,
-  CCol,
-  CRow,
-  CToast,
-  CToaster,
-  CToastHeader,
-  CToastBody,
-} from "@coreui/react";
+import "./company-registration-style.css";
+import { CButton, CCard, CCardBody, CCardHeader, CCol } from "@coreui/react";
 import { useState } from "react";
 import { Steps } from "antd";
-import { Provider } from "../../data/MultiStepFormContext";
-import LtdInfo from "./incorporation-details";
-import OwnerDetials from "./incorporation-owner";
-import RepresentativeDetails from "./technical&representator-registration";
+import { Provider } from "../../../../data/MultiStepFormContext";
+import CompanyPrimaryDetails from "./company-details";
+import OwnerDetials from "./company-owner";
+import RepresentativeDetails from "./attachments";
 import Reviews from "./registration-review";
 
 const { Step } = Steps;
@@ -36,7 +25,7 @@ const ownerInitialState = {
   address2: "",
   medicine_export_purpose: "",
 };
-const representativeInitialState = {
+const attachmentInitialState = {
   address1: "",
   address2: "",
   city: "",
@@ -48,7 +37,7 @@ const representativeInitialState = {
 const renderStep = (step) => {
   switch (step) {
     case 0:
-      return <LtdInfo />;
+      return <CompanyPrimaryDetails />;
     case 1:
       return <OwnerDetials />;
     case 2:
@@ -61,23 +50,19 @@ const renderStep = (step) => {
 };
 
 const MainIncorporationRegistration = () => {
-  const [LTDDetails, setLTDDetails] = useState(ltdInitialState);
+  const [companyDetails, setCompanyDetials] = useState(ltdInitialState);
   const [ownerDetails, setOwnerDetails] = useState(ownerInitialState);
-  const [representativeDetails, setRepresentativeDetails] = useState(
-    representativeInitialState
+  const [companyAttachments, setCompanyAttachments] = useState(
+    attachmentInitialState
   );
-  // const [isLTDProfroma, setIsLTDProforma] = useState(false);
-  // const [isNGOProforma, setIsNGOProforma] = useState(false);
-  // const [isCompanyProforma, setIsCompanyProforma] = useState(false);
-  // const [proformaType, setProformaType] = useState("");
   const [currentStep, setCurrentStep] = useState(0);
 
   const next = () => {
     if (currentStep === 3) {
       setCurrentStep(0);
-      setLTDDetails(ltdInitialState);
+      setCompanyDetials(ltdInitialState);
       setOwnerDetails(ownerInitialState);
-      setRepresentativeDetails(representativeInitialState);
+      setCompanyAttachments(attachmentInitialState);
       return;
     }
     setCurrentStep(currentStep + 1);
@@ -88,33 +73,25 @@ const MainIncorporationRegistration = () => {
     <CCol xs={12}>
       <CCard className="mb-4">
         <CCardHeader className="bg-warning">
-          <h4 className="mb-1 p-2">د شرکت ثبت</h4>
+          <h4 className="mb-1 p-2">د کمپنۍ ثبت</h4>
         </CCardHeader>
         <CCardBody className="my-5 main-container ">
           <Provider
             value={{
               next,
               prev,
-              LTDDetails,
-              setLTDDetails,
+              companyDetails,
+              setCompanyDetials,
               ownerDetails,
               setOwnerDetails,
-              representativeDetails,
-              setRepresentativeDetails,
-              // setIsCompanyProforma,
-              // isCompanyProforma,
-              // setProformaType,
-              // proformaType,
-              // isLTDProfroma,
-              // setIsLTDProforma,
-              // isNGOProforma,
-              // setIsNGOProforma,
+              companyAttachments,
+              setCompanyAttachments,
             }}
           >
             <Steps current={currentStep}>
-              <Step title={"د شرکت معلومات"} />
-              <Step title={"د شرکت د رئیس معلومات"} />
-              <Step title={"د نماینده او فنی مسؤل معلومات"} />
+              <Step title={"د کمپنۍ معلومات"} />
+              <Step title={"د کمپنۍ د مالک معلومات"} />
+              <Step title={"د کمپنۍ ثبت اسناد"} />
               <Step title={"تأیید او ثبت"} />
             </Steps>
             <main>{renderStep(currentStep)}</main>

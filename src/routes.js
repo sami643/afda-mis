@@ -83,10 +83,15 @@ const Typography = React.lazy(() =>
 
 // Rahyaabi Directorates
 const ProFormaRegistration = React.lazy(() =>
-  import("./views/rahyabi-directorate/proforma-registration/main")
+  import("./views/rahyabi-directorate/proforma/registration/main")
 );
 const ProformaView = React.lazy(() =>
-  import("./views/rahyabi-directorate/proforma-veiw/proforma-view")
+  import("./views/rahyabi-directorate/proforma/veiw/proforma-view")
+);
+const CompanyRegister = React.lazy(() =>
+  import(
+    "./views/rahyabi-directorate/companies/foreign-company/registration/main"
+  )
 );
 const CreateTechnicalBoard = React.lazy(() =>
   import("./views/rahyabi-directorate/technical-board/create-technical-board")
@@ -104,12 +109,12 @@ const addBoardMember = React.lazy(() =>
   import("./views/rahyabi-directorate/technical-board/add-board-member")
 );
 
-// Jawaz Dehiiiiiiiiiii Directorates
+// Jawaz Dehiii Directorates
 const IncorporationRegistration = React.lazy(() =>
-  import("./views/javazdehi-directorate/incorporation-registration/main")
+  import("./views/javazdehi-directorate/incorporation/registration/main")
 );
-const CompanyRegister = React.lazy(() =>
-  import("./views/rahyabi-directorate/foreign-company-registration/main")
+const IncorporationList = React.lazy(() =>
+  import("./views/javazdehi-directorate/incorporation/list/index")
 );
 
 const StaffRegistration = React.lazy(() =>
@@ -320,6 +325,12 @@ const routes = [
     element: CreateTechnicalBoard,
   },
   {
+    path: "rahyabi/company-register",
+    name: "CompanyRegister",
+    element: CompanyRegister,
+  },
+
+  {
     path: "/rahyabi/technical-boards-list",
     name: "CreateTechnicalBoard",
     element: TechnicalBoardList,
@@ -340,19 +351,19 @@ const routes = [
     element: addBoardMember,
   },
 
-  // JAWAZ dehiiiiiiiiiiiii
+  // JAVAZ dehiiii
   {
     path: "/javazdehi/incorporation-register",
     name: "IncorporationRegistration",
     element: IncorporationRegistration,
   },
-
-  // Comapany  Register
   {
-    path: "/javazdehi/company-register",
-    name: "CompanyRegister",
-    element: CompanyRegister,
+    path: "/javazdehi/incorporations-list",
+    name: "IncorporationList",
+    element: IncorporationList,
   },
+
+  //
 
   // HR Derectorate Staff Registration
   {

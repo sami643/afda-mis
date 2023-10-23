@@ -1,6 +1,6 @@
 import { CCardBody, CCard, CRow, CCol } from "@coreui/react";
-import Imarat_Logo from "./../../../assets/images/imarat_logo.png";
-import AFDA_Logo from "./../../../assets/images/afda_logo.png";
+import Imarat_Logo from "src/assets/images/imarat_logo.png";
+import AFDA_Logo from "src/assets/images/afda_logo.png";
 import React from "react";
 import { Divider } from "antd";
 import "./proforma-view-style.css";

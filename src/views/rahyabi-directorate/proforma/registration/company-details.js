@@ -1,11 +1,11 @@
 import React, { useContext, useState } from "react";
 import { Formik, Form } from "formik";
 import { Button } from "antd";
-import MultiStepFormContext from "../../data/MultiStepFormContext";
+import MultiStepFormContext from "../../../data/MultiStepFormContext";
 import {
   drugExportgoalOptions,
   medicalProductOptions,
-} from "../../data/global-data";
+} from "../../../data/global-data";
 import "./proforma-register-style.css";
 import {
   CButton,
@@ -18,7 +18,7 @@ import {
 import {
   proformaCompanyValidationSchema,
   NGOMedicineValidationSchema,
-} from "../../data/validation";
+} from "../../../data/validation";
 const CompanyDetailsFunc = () => {
   const {
     companyDetails,

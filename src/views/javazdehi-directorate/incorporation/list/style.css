@@ -1,0 +1,15 @@
+.filterInput {
+  width: 210px !important;
+}
+
+.filter_container {
+  /* position: absolute; */
+  /* top: 85px;
+  right: 30%; */
+  background-color: aqua;
+  display: flex;
+  justify-content: center;
+}
+.inputt {
+  height: 37px;
+}

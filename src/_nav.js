@@ -704,7 +704,7 @@ export const head_user = [
   {
     component: CNavItem,
     name: <FormattedMessage id="Sabt-Company" />,
-    to: "/javazdehi/company-register",
+    to: "/rahyabi/company-register",
     icon: <CIcon icon={cilMagnifyingGlass} customClassName="nav-icon" />,
   },
   {
@@ -723,6 +723,12 @@ export const head_user = [
     component: CNavItem,
     name: <FormattedMessage id="Technical Boards list" />,
     to: "/rahyabi/technical-boards-list",
+    icon: <CIcon icon={cilMagnifyingGlass} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: <FormattedMessage id="د شرکتونو لست" />,
+    to: "/javazdehi/incorporations-list",
     icon: <CIcon icon={cilMagnifyingGlass} customClassName="nav-icon" />,
   },
 ];
