@@ -11,37 +11,29 @@ import React, { useEffect, useRef, useState } from "react";
 import { Button, Modal } from "antd";
 import { MDBDataTable, MDBInput } from "mdbreact";
 import Filtering from "src/assets/images/list-litering.png";
-import {
-  currencytypeOptions,
-  proformaTypeOptions,
-  provicesGlobalOptions,
-} from "src/views/data/global-data";
-
+import { provicesGlobalOptions } from "src/views/data/global-data";
 import "./style.css";
 import "datatables.net-bs4";
 import "datatables.net-bs4/css/dataTables.bootstrap4.min.css";
+import { useLocation, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import "src/views/data/views.css";
 import { gettingAppointmentListAPI } from "src/api/utils";
-import { useNavigate } from "react-router-dom";
+
+const company_status = [
+  { value: "registerd", label: "ثبت شوې" },
+  { value: "غیر رسمی", label: "بلاک شوې" },
+  { value: "غیر رسمی", label: "تور لست کې" },
+];
 
 const IncorporationList = () => {
   const navigate = useNavigate();
-  // const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [listData, setListData] = useState([]);
   const [loading, setLoading] = useState(true);
-  // const [appointmentModalData, setAppointmentModalData] = useState({});
-  const [checkoutStatus, setCheckoutStatus] = useState({});
-  const [incorporationId, setIncorporationId] = useState("12");
-
-  // const showModal = (item) => {
-  //   setIsModalOpen(true);
-  //   setAppointmentModalData(item);
-  // };
-  // const handleCancel = () => {
-  //   setIsModalOpen(false);
-  // };
+  const [appointmentModalData, setAppointmentModalData] = useState({});
+  const [companyId, setCompanyId] = useState("12");
 
   const gettingCompletedAppointments = async () => {
     const data = { status: "completed" };
@@ -54,9 +46,11 @@ const IncorporationList = () => {
     }
   };
 
+  console.log("foreing COmpadnsaf", listData);
+
   const handleViewDetails = () => {
-    const serializedData = encodeURIComponent(JSON.stringify(incorporationId));
-    navigate(`/javazdehi/incorporation-list-view-details?id=${serializedData}`);
+    const serializedData = encodeURIComponent(JSON.stringify(companyId));
+    navigate(`/rahyabi/foreign-company-list-view-details?id=${serializedData}`);
   };
 
   useEffect(() => {
@@ -74,10 +68,12 @@ const IncorporationList = () => {
     .map((item, index) => ({
       liscense_number: "56465",
       name: item.visitor.name,
-      contact_no: 980989890,
-      appointment_date: item.appointment_date,
-      appointment_time_range: item.appointment_time_range,
+      country: "هندوستان",
+      contract_no: "0091323242",
+      registration_no_in_afg: "234234",
       contact: item.visitor.contact,
+      status: "registered",
+
       view: (
         <div className="text-center">
           <FontAwesomeIcon
@@ -107,20 +103,26 @@ const IncorporationList = () => {
         width: 200,
       },
       {
-        label: "د اړیکې شمیره",
-        field: "contact_no",
+        label: "هیواد",
+        field: "country",
         sort: "asc",
         width: 200,
       },
       {
-        label: "برښالیک",
-        field: "appointment_date",
+        label: "د اړیکې شمیره",
+        field: "contract_no",
         sort: "asc",
         width: 100,
       },
       {
-        label: "ولایت",
-        field: "appointment_time_range",
+        label: "په افغانستان کې د ثبت شمیره",
+        field: "registration_no_in_afg",
+        sort: "asc",
+        width: 150,
+      },
+      {
+        label: "حالت",
+        field: "status",
         sort: "asc",
         width: 150,
       },
@@ -137,14 +139,15 @@ const IncorporationList = () => {
   return (
     <CCard className="mb-5">
       <CCardHeader className="bg-warning m-0">
-        <h4 className="p-2">د شرکتونو لست</h4>
+        <h4 className="p-2">د بهرنی کمپنیو لست</h4>
       </CCardHeader>
 
       <CCardBody className="mt-0 filter_container">
-        <div className="container mb-5 ">
+        <div className="container mb-4 ">
           <CRow className="py-3 mt-3 filter_container ">
             <div className="filterInput">
               <label className="mx-2">
+                {/* <img src={Filtering} width={20} /> */}
                 <span>د جواز نمبر</span>
               </label>
               <input
@@ -153,16 +156,8 @@ const IncorporationList = () => {
                 id="floatingInput"
               />
             </div>
-            <div className="filterInput">
-              <label className="mx-2">د شرکت نوم</label>
-              <input
-                type="email"
-                class="form-control text-start inputt"
-                id="floatingInput"
-              />
-            </div>
-            <div className="filterInput">
-              <label className="mx-2">د تذکرې شمیره</label>
+            <div className="filterInputName">
+              <label className="mx-2">د کمپنۍ نوم</label>
               <input
                 type="email"
                 class="form-control text-start inputt"
@@ -170,23 +165,7 @@ const IncorporationList = () => {
               />
             </div>
             <div className="filterInput ">
-              <label className="mx-2">د شرکت در رئیس نوم</label>
-              <input
-                type="email"
-                class="form-control inputt"
-                id="floatingInput"
-              />
-            </div>
-            <div className="filterInput ">
-              <label className="mx-2">د شرکت در رئیس نوم</label>
-              <input
-                type="email"
-                class="form-control inputt"
-                id="floatingInput"
-              />
-            </div>
-            <div className="filterInput ">
-              <label className="mx-2">ولایت</label>
+              <label className="mx-2">هیواد</label>
 
               <select
                 id="medicine_export_purpose"
@@ -209,6 +188,39 @@ const IncorporationList = () => {
                 })}
               </select>
             </div>
+
+            <div className="filterInput ">
+              <label className="mx-2">حالت</label>
+
+              <select
+                id="medicine_export_purpose"
+                // value={values.medicine_export_purpose}
+                name="appointment_type"
+                // onChange={(e) =>
+                //   setFieldValue("medicine_export_purpose", e.target.value)
+                // }
+                className="form-control form-select-l inputt"
+              >
+                <option selected disabled className="label_1">
+                  وټاکئ/انتخاب
+                </option>
+                {company_status.map((option) => {
+                  return (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+            <div className="filterInput">
+              <label className="mx-2">د اړیکې شمیره</label>
+              <input
+                type="email"
+                class="form-control text-start inputt"
+                id="floatingInput"
+              />
+            </div>
           </CRow>
 
           <MDBDataTable
@@ -227,22 +239,21 @@ const IncorporationList = () => {
             responsiveSm
             responsiveMd
             responsiveLg
-            className="custom-datatable "
+            className="custom-datatable"
             paginationLabel={["شاته", "مخته"]}
             entriesOptions={[15, 30, 50, 100]}
           />
-          <div style={{ marginTop: "-40px" }}>
+          <div style={{ marginTop: "-50px" }}>
             ټول ریکارډونه<span className="px-2">{listData.length}</span>
           </div>
         </div>
-        {/* 
-        <Modal
+
+        {/* <Modal
           open={isModalOpen}
           onCancel={handleCancel}
           footer={null}
           className="meetingViewModal"
         >
-
           <div className="  border rounded mt-2 mb-3 mt-4 ">
             <h6
               className=" meetingview px-2 py-2 "

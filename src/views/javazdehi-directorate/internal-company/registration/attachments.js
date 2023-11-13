@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import MultiStepFormContext from "../../../../data/MultiStepFormContext";
+import MultiStepFormContext from "src/views/data/MultiStepFormContext";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { Button, Card } from "antd";
@@ -21,7 +21,7 @@ import {
   monthsOptions,
   daysOptions,
   yearOptions,
-} from "../../../../data/global-data";
+} from "src/views/data/global-data";
 
 const TechnicalAndRepresentativeRegistration = () => {
   const { companyAttachments, setCompanyAttachments, next, prev } =

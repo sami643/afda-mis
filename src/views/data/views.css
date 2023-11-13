@@ -298,7 +298,7 @@ input[type="file"]::-webkit-file-upload-button {
 }
 
 input#inputField1::before {
-  content: " \1F4C1   فایل/عکس                    ";
+  content: " \1F4C1   فایل                    ";
   display: inline-block;
   margin-right: 10px;
 }

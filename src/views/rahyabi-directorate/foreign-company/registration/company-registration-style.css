@@ -28,8 +28,27 @@
     width: 50px;
 } */
 
+/* Add this CSS to your stylesheet */
+input[type="file"]::-webkit-file-upload-button {
+  visibility: hidden;
+  display: none;
+}
+
+input#inputField1::before {
+  content: " \1F4C1   فایل                                        ";
+  display: inline-block;
+  margin-right: 10px;
+}
+
+input#inputField2::before {
+  content: " \1F4C1   عکس                                ";
+  display: inline-block;
+  margin-right: 10px;
+}
+
+
 .image-upload-container {
-  margin-top: 10%;
+    margin-top: 10%;
   padding: 1rem;
   display: flex;
   align-items: center;

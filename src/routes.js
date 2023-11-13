@@ -89,9 +89,7 @@ const ProformaView = React.lazy(() =>
   import("./views/rahyabi-directorate/proforma/veiw/proforma-view")
 );
 const CompanyRegister = React.lazy(() =>
-  import(
-    "./views/rahyabi-directorate/companies/foreign-company/registration/main"
-  )
+  import("./views/rahyabi-directorate/foreign-company/registration/main")
 );
 const CreateTechnicalBoard = React.lazy(() =>
   import("./views/rahyabi-directorate/technical-board/create-technical-board")
@@ -108,18 +106,33 @@ const BoardMemberList = React.lazy(() =>
 const addBoardMember = React.lazy(() =>
   import("./views/rahyabi-directorate/technical-board/add-board-member")
 );
+const ForeignCompanyList = React.lazy(() =>
+  import("./views/rahyabi-directorate/foreign-company/list/index")
+);
+const ForeignCompanyListViewDetails = React.lazy(() =>
+  import("./views/rahyabi-directorate/foreign-company/list/view")
+);
 
-// Jawaz Dehiii Directorates
+// JawazDehiii Directorates
 const IncorporationRegistration = React.lazy(() =>
   import("./views/javazdehi-directorate/incorporation/registration/main")
 );
 const IncorporationList = React.lazy(() =>
   import("./views/javazdehi-directorate/incorporation/list/index")
 );
-
+const IncorporationListViewDetails = React.lazy(() =>
+  import("./views/javazdehi-directorate/incorporation/list/view")
+);
 const StaffRegistration = React.lazy(() =>
   import("./views/hr-and-adminstration-directorate/staff-registration")
 );
+const InternalCompanyRegistration = React.lazy(() =>
+  import("./views/javazdehi-directorate/internal-company/registration/main")
+);
+const NationalCompanyRegistration = React.lazy(() =>
+  import("./views/javazdehi-directorate/national-company/registration/index")
+);
+
 // Base
 const Accordion = React.lazy(() => import("./views/base/accordion/Accordion"));
 const Breadcrumbs = React.lazy(() =>
@@ -325,7 +338,7 @@ const routes = [
     element: CreateTechnicalBoard,
   },
   {
-    path: "rahyabi/company-register",
+    path: "rahyabi/foreign-company-register",
     name: "CompanyRegister",
     element: CompanyRegister,
   },
@@ -347,8 +360,18 @@ const routes = [
   },
   {
     path: "rahyabi/add-board-member",
-    name: "TechnicalBoardMembersList",
+    name: "AddMember",
     element: addBoardMember,
+  },
+  {
+    path: "/rahyabi/foreign-company-list",
+    name: "ForeignCompanyList",
+    element: ForeignCompanyList,
+  },
+  {
+    path: "rahyabi/foreign-company-list-view-details",
+    name: "ForeignCompanyListVeiwListDatails",
+    element: ForeignCompanyListViewDetails,
   },
 
   // JAVAZ dehiiii
@@ -362,8 +385,23 @@ const routes = [
     name: "IncorporationList",
     element: IncorporationList,
   },
+  {
+    path: "/javazdehi/incorporation-list-view-details",
+    name: "IncorporationListViewDetails",
+    element: IncorporationListViewDetails,
+  },
 
-  //
+  // {
+  //   path: "/javazdehi/internal-company-register",
+  //   name: "IncorporationListViewDetails",
+  //   element: InternalCompanyRegistration,
+  // },
+
+  {
+    path: "/javazdehi/national-company-register",
+    name: "NationalCompanyRegistration",
+    element: NationalCompanyRegistration,
+  },
 
   // HR Derectorate Staff Registration
   {

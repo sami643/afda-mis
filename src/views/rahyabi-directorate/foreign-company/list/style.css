@@ -2,6 +2,10 @@
   width: 210px !important;
 }
 
+.filterInputName {
+  width: 421px !important;
+}
+
 .filter_container {
   background-color: rgb(220, 252, 252);
   display: flex;

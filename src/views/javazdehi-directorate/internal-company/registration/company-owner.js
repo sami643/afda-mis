@@ -1,28 +1,11 @@
-import React, { useContext, useState, useRef } from "react";
-import MultiStepFormContext from "../../../data/MultiStepFormContext";
-import PhtoUpload from "src/assets/images/photoUpload.png";
+import React, { useContext, useRef, useState } from "react";
+import MultiStepFormContext from "src/views/data/MultiStepFormContext";
 import { Formik, Form } from "formik";
-import * as Yup from "yup";
 import { Button, Card } from "antd";
-import { Input, InputNumber } from "formik-antd";
-import {
-  CButton,
-  CCol,
-  CRow,
-  CCard,
-  CCardHeader,
-  CCardBody,
-} from "@coreui/react";
-import {
-  currencytypeOptions,
-  proformaTypeOptions,
-  provicesGlobalOptions,
-  importerOptions,
-  productiveCompanyproformaOPtions,
-  monthsOptions,
-  daysOptions,
-  yearOptions,
-} from "../../../data/global-data";
+import { DatePicker, Space } from "antd";
+const dateFormat = "YYYY/MM/DD";
+import { CButton, CCol, CRow } from "@coreui/react";
+import PhtoUpload from "src/assets/images/photoUpload.png";
 
 const IncorporationOwner = () => {
   const { ownerDetails, setOwnerDetails, next, prev } =
@@ -100,7 +83,7 @@ const IncorporationOwner = () => {
     <>
       <Formik
         // onSubmit={handleIncorporationSearch}
-        initialValues={{ license_number: "" }}
+        initialValues={setOwnerDetails}
         // validationSchema={incorporationSearchValidationSchema}
         enableReinitialize={true}
       >
@@ -115,7 +98,7 @@ const IncorporationOwner = () => {
           touched,
         }) => (
           <Form>
-            <CRow>
+            <CRow className="px-3">
               <CCol md={6} className="">
                 <div className="image-upload-container">
                   <div className="box-decoration">
@@ -153,9 +136,9 @@ const IncorporationOwner = () => {
               </CCol>
             </CRow>
             <CRow className="justify-content-center mt-5">
-              <CCol md={4} className=" mb-3">
+              <CCol md={6} className=" mb-3">
                 <label className="form-label mr-5" htmlFor="license_number">
-                  د رئیس نوم
+                  نوم
                   <span
                     style={{
                       color: "red",
@@ -187,7 +170,7 @@ const IncorporationOwner = () => {
                   </div>
                 ) : null}
               </CCol>
-              <CCol md={4} className=" mb-3">
+              <CCol md={6} className=" mb-3">
                 <label className="form-label mr-5" htmlFor="license_number">
                   تخلص
                   <span
@@ -221,9 +204,39 @@ const IncorporationOwner = () => {
                   </div>
                 ) : null}
               </CCol>
-              <CCol md={4} className=" mb-3">
+            </CRow>
+
+            <CRow className="justify-content-center">
+              <CCol md={6} className=" mb-3">
                 <label className="form-label mr-5" htmlFor="license_number">
-                  د پلارنوم
+                  د زیږیدنې نیټه
+                  <span
+                    style={{
+                      color: "red",
+                      marginInline: "5px",
+                      paddingTop: "5px",
+                    }}
+                  >
+                    *
+                  </span>
+                </label>
+                <DatePicker
+                  format={dateFormat}
+                  className={`form-control form-select-l ${
+                    errors.license_number && touched.license_number
+                      ? "is-invalid form-select-l    "
+                      : ""
+                  }`}
+                />
+                {errors.license_number && touched.license_number ? (
+                  <div className="invalid-feedback d-block errorMessageStyle mx-3">
+                    {errors.license_number}
+                  </div>
+                ) : null}
+              </CCol>
+              <CCol md={6} className=" mb-3">
+                <label className="form-label mr-5" htmlFor="license_number">
+                  برښنالیک
                   <span
                     style={{
                       color: "red",
@@ -235,7 +248,7 @@ const IncorporationOwner = () => {
                   </span>
                 </label>
                 <input
-                  type="text"
+                  type="email"
                   id="license_number"
                   name="license_number"
                   className={`form-control form-select-l ${
@@ -256,206 +269,8 @@ const IncorporationOwner = () => {
                 ) : null}
               </CCol>
             </CRow>
-
-            <CRow className="justify-content-center">
-              <CCol md={4} className=" mb-3">
-                <label className="form-label mr-5" htmlFor="license_number">
-                  د نیکه نوم
-                  <span
-                    style={{
-                      color: "red",
-                      marginInline: "5px",
-                      paddingTop: "5px",
-                    }}
-                  >
-                    *
-                  </span>
-                </label>
-                <input
-                  type="text"
-                  id="license_number"
-                  name="license_number"
-                  className={`form-control form-select-l ${
-                    errors.license_number && touched.license_number
-                      ? "is-invalid form-select-l    "
-                      : ""
-                  }`}
-                  value={values.license_number}
-                  onChange={(e) =>
-                    setFieldValue("license_number", e.target.value)
-                  }
-                  onBlur={() => setFieldTouched("license_number", true)}
-                />
-                {errors.license_number && touched.license_number ? (
-                  <div className="invalid-feedback d-block errorMessageStyle mx-3">
-                    {errors.license_number}
-                  </div>
-                ) : null}
-              </CCol>
-              <CCol md={4} className=" mb-3">
-                <label className="form-label mr-5" htmlFor="license_number">
-                  جنیست
-                  <span
-                    style={{
-                      color: "red",
-                      marginInline: "5px",
-                      paddingTop: "5px",
-                    }}
-                  >
-                    *
-                  </span>
-                </label>
-                <select
-                  id="medicine_export_purpose"
-                  value={values.medicine_export_purpose}
-                  name="appointment_type"
-                  onChange={(e) =>
-                    setFieldValue("medicine_export_purpose", e.target.value)
-                  }
-                  className={`form-control form-select-l ${
-                    errors.medicine_export_purpose &&
-                    touched.medicine_export_purpose
-                      ? "is-invalid form-select    "
-                      : ""
-                  }`}
-                  aria-label=".form-select- example"
-                >
-                  <option selected disabled>
-                    وټاکئ/انتخاب
-                  </option>
-
-                  {provicesGlobalOptions.map((option) => {
-                    return (
-                      <option key={option.value} value={option.value}>
-                        {option.label}
-                      </option>
-                    );
-                  })}
-                </select>
-                {errors.license_number && touched.license_number ? (
-                  <div className="invalid-feedback d-block errorMessageStyle mx-3">
-                    {errors.license_number}
-                  </div>
-                ) : null}
-              </CCol>
-              <CCol md={4} className=" mb-3">
-                <label className="form-label mr-5" htmlFor="license_number">
-                  د تذکرې/پاسپورټ شمیره
-                  <span
-                    style={{
-                      color: "red",
-                      marginInline: "5px",
-                      paddingTop: "5px",
-                    }}
-                  >
-                    *
-                  </span>
-                </label>
-                <input
-                  type="text"
-                  id="license_number"
-                  name="license_number"
-                  className={`form-control form-select-l ${
-                    errors.license_number && touched.license_number
-                      ? "is-invalid form-select-l   "
-                      : ""
-                  }`}
-                  value={values.license_number}
-                  onChange={(e) =>
-                    setFieldValue("license_number", e.target.value)
-                  }
-                  onBlur={() => setFieldTouched("license_number", true)}
-                />
-                {errors.license_number && touched.license_number ? (
-                  <div className="invalid-feedback d-block errorMessageStyle mx-3">
-                    {errors.license_number}
-                  </div>
-                ) : null}
-              </CCol>
-            </CRow>
-            <CRow className="justify-content-center">
-              <CCol md={4} className=" mb-3">
-                <label className="form-label mr-5" htmlFor="license_number">
-                  د زدکړو کچه
-                  <span
-                    style={{
-                      color: "red",
-                      marginInline: "5px",
-                      paddingTop: "5px",
-                    }}
-                  >
-                    *
-                  </span>
-                </label>
-                <select
-                  id="medicine_export_purpose"
-                  value={values.medicine_export_purpose}
-                  name="appointment_type"
-                  onChange={(e) =>
-                    setFieldValue("medicine_export_purpose", e.target.value)
-                  }
-                  className={`form-control form-select-l ${
-                    errors.medicine_export_purpose &&
-                    touched.medicine_export_purpose
-                      ? "is-invalid form-select    "
-                      : ""
-                  }`}
-                  aria-label=".form-select- example"
-                >
-                  <option selected disabled>
-                    وټاکئ/انتخاب
-                  </option>
-
-                  {provicesGlobalOptions.map((option) => {
-                    return (
-                      <option key={option.value} value={option.value}>
-                        {option.label}
-                      </option>
-                    );
-                  })}
-                </select>
-                {errors.license_number && touched.license_number ? (
-                  <div className="invalid-feedback d-block errorMessageStyle mx-3">
-                    {errors.license_number}
-                  </div>
-                ) : null}
-              </CCol>
-              <CCol md={4} className=" mb-3">
-                <label className="form-label mr-5" htmlFor="license_number">
-                  سهم
-                  <span
-                    style={{
-                      color: "red",
-                      marginInline: "5px",
-                      paddingTop: "5px",
-                    }}
-                  >
-                    *
-                  </span>
-                </label>
-                <input
-                  type="text"
-                  id="license_number"
-                  name="license_number"
-                  className={`form-control form-select-l ${
-                    errors.license_number && touched.license_number
-                      ? "is-invalid form-select-l    "
-                      : ""
-                  }`}
-                  value={values.license_number}
-                  onChange={(e) =>
-                    setFieldValue("license_number", e.target.value)
-                  }
-                  onBlur={() => setFieldTouched("license_number", true)}
-                />
-                {errors.license_number && touched.license_number ? (
-                  <div className="invalid-feedback d-block errorMessageStyle mx-3">
-                    {errors.license_number}
-                  </div>
-                ) : null}
-              </CCol>
-
-              <CCol md={4} className=" mb-3">
+            <CRow className="justify-content-cent">
+              <CCol md={6} className=" mb-3">
                 <label className="form-label mr-5" htmlFor="license_number">
                   د اړیکې شمیره
                   <span
@@ -469,7 +284,7 @@ const IncorporationOwner = () => {
                   </span>
                 </label>
                 <input
-                  type="number"
+                  type="email"
                   id="license_number"
                   name="license_number"
                   className={`form-control form-select-l ${
@@ -489,11 +304,9 @@ const IncorporationOwner = () => {
                   </div>
                 ) : null}
               </CCol>
-            </CRow>
-            <CRow className="">
-              <CCol md={4} className=" mb-3">
+              <CCol md={6} className=" mb-5">
                 <label className="form-label mr-5" htmlFor="license_number">
-                  هیواد
+                  نوټ
                   <span
                     style={{
                       color: "red",
@@ -504,33 +317,21 @@ const IncorporationOwner = () => {
                     *
                   </span>
                 </label>
-                <select
-                  id="medicine_export_purpose"
-                  value={values.medicine_export_purpose}
-                  name="appointment_type"
-                  onChange={(e) =>
-                    setFieldValue("medicine_export_purpose", e.target.value)
-                  }
+                <textarea
+                  type="text"
+                  id="license_number"
+                  name="license_number"
                   className={`form-control form-select-l ${
-                    errors.medicine_export_purpose &&
-                    touched.medicine_export_purpose
-                      ? "is-invalid form-select    "
+                    errors.license_number && touched.license_number
+                      ? "is-invalid form-select-l    "
                       : ""
                   }`}
-                  aria-label=".form-select- example"
-                >
-                  <option selected disabled>
-                    وټاکئ/انتخاب
-                  </option>
-
-                  {provicesGlobalOptions.map((option) => {
-                    return (
-                      <option key={option.value} value={option.value}>
-                        {option.label}
-                      </option>
-                    );
-                  })}
-                </select>
+                  value={values.license_number}
+                  onChange={(e) =>
+                    setFieldValue("license_number", e.target.value)
+                  }
+                  onBlur={() => setFieldTouched("license_number", true)}
+                />
                 {errors.license_number && touched.license_number ? (
                   <div className="invalid-feedback d-block errorMessageStyle mx-3">
                     {errors.license_number}

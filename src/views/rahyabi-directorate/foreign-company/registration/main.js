@@ -4,7 +4,7 @@ import "./company-registration-style.css";
 import { CButton, CCard, CCardBody, CCardHeader, CCol } from "@coreui/react";
 import { useState } from "react";
 import { Steps } from "antd";
-import { Provider } from "../../../../data/MultiStepFormContext";
+import { Provider } from "src/views/data/MultiStepFormContext";
 import CompanyPrimaryDetails from "./company-details";
 import OwnerDetials from "./company-owner";
 import RepresentativeDetails from "./attachments";

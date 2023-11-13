@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
-import MultiStepFormContext from "../../../../data/MultiStepFormContext";
+import MultiStepFormContext from "src/views/data/MultiStepFormContext";
 import { Formik, Form } from "formik";
-import * as Yup from "yup";
 import { Button, Card } from "antd";
 import { Input, InputNumber } from "formik-antd";
 import viewAttachments from "src/assets/images/viewAttachments.png";
+import PhtoUpload from "src/assets/images/photoUpload.png";
 import {
   CButton,
   CCol,
@@ -231,6 +231,12 @@ const IncorporationRegistrationReview = () => {
                   د کمپنۍ د مالک مشخصات
                 </h4>
                 <div className="my-3">
+                  <CRow className="px-3 py-4  d-flex">
+                    <CCol md={2} className="">
+                      <img src={PhtoUpload} width={100} />
+                    </CCol>
+                  </CRow>
+
                   <CRow className="px-3 py-2  d-flex">
                     <CCol md={2} className="">
                       <p className=" mb-1">نوم:</p>
@@ -286,24 +292,6 @@ const IncorporationRegistrationReview = () => {
                       </strong>
                     </CCol>
                     <div className="spacess"></div>
-                    <CCol md={2} className="">
-                      <p className=" mb-0">عکس:</p>
-                    </CCol>
-                    <CCol md={4} className="">
-                      <strong className="">
-                        {/* {companyData?.occupation} */}
-                        <a
-                          // href={`http://localhost:8000/${item.attachment}`}
-                          target="_blank"
-                        >
-                          <img
-                            src={viewAttachments}
-                            width="30"
-                            alt="Attachment"
-                          />
-                        </a>
-                      </strong>
-                    </CCol>
                   </CRow>
                   <CRow className="px-3 pb-2  d-flex">
                     <CCol md={2} className="">
