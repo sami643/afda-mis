@@ -112,6 +112,9 @@ const ForeignCompanyList = React.lazy(() =>
 const ForeignCompanyListViewDetails = React.lazy(() =>
   import("./views/rahyabi-directorate/foreign-company/list/view")
 );
+const ImportedProductedRegister = React.lazy(() =>
+  import("./views/rahyabi-directorate/medicine/registration/index")
+);
 
 // JawazDehiii Directorates
 const IncorporationRegistration = React.lazy(() =>
@@ -131,6 +134,12 @@ const InternalCompanyRegistration = React.lazy(() =>
 );
 const NationalCompanyRegistration = React.lazy(() =>
   import("./views/javazdehi-directorate/national-company/registration/index")
+);
+const NationalCompaniesList = React.lazy(() =>
+  import("./views/javazdehi-directorate/national-company/list/index")
+);
+const NationalCompaniesListDetails = React.lazy(() =>
+  import("./views/javazdehi-directorate/national-company/list/view")
 );
 
 // Base
@@ -373,6 +382,11 @@ const routes = [
     name: "ForeignCompanyListVeiwListDatails",
     element: ForeignCompanyListViewDetails,
   },
+  {
+    path: "rahyabi/imported-product-register",
+    name: "ForeignCompanyListVeiwListDatails",
+    element: ImportedProductedRegister,
+  },
 
   // JAVAZ dehiiii
   {
@@ -401,6 +415,17 @@ const routes = [
     path: "/javazdehi/national-company-register",
     name: "NationalCompanyRegistration",
     element: NationalCompanyRegistration,
+  },
+
+  {
+    path: "/javazdehi/national-company-list",
+    name: "NationalCompaniesList",
+    element: NationalCompaniesList,
+  },
+  {
+    path: "/javazdehi/national-company-list-view",
+    name: "NationalCompaniesList",
+    element: NationalCompaniesListDetails,
   },
 
   // HR Derectorate Staff Registration

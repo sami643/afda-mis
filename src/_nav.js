@@ -188,17 +188,22 @@ export const head_user = [
     to: "/rahyabi/foreign-company-list",
     icon: <CIcon icon={cilMagnifyingGlass} customClassName="nav-icon" />,
   },
-  // {
-  //   component: CNavItem,
-  //   name: <FormattedMessage id="د داخلی فابریکې ثبت" />,
-  //   to: "/javazdehi/internal-company-register",
-  //   icon: <CIcon icon={cilMagnifyingGlass} customClassName="nav-icon" />,
-  // },
-
   {
     component: CNavItem,
     name: <FormattedMessage id="د داخلی فابریکې ثبت" />,
     to: "/javazdehi/national-company-register",
+    icon: <CIcon icon={cilMagnifyingGlass} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: <FormattedMessage id="د داخلی فابریکو لست" />,
+    to: "/javazdehi/national-company-list",
+    icon: <CIcon icon={cilMagnifyingGlass} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: <FormattedMessage id="د توریدي درملو ثبت" />,
+    to: "/rahyabi/imported-product-register",
     icon: <CIcon icon={cilMagnifyingGlass} customClassName="nav-icon" />,
   },
 ];

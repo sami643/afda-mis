@@ -3,7 +3,6 @@ import { CRow, CCol } from "@coreui/react";
 let modalData = {};
 const VisitorData = (props) => {
   modalData = props.data;
-  console.log(" modalData. modalData", modalData);
 
   return (
     <div className="  border rounded mt-3 mb-2 mt-4 ">

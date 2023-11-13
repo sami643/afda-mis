@@ -1,0 +1,26 @@
+.filterInput {
+  width: 210px !important;
+}
+
+.filterInputName {
+  width: 421px !important;
+}
+
+.filter_container {
+  background-color: rgb(220, 252, 252);
+  display: flex;
+  justify-content: center;
+}
+.inputt {
+  height: 37px;
+}
+
+.spacess {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  .spacess {
+    padding: 10px;
+    display: block;
+  }
+}

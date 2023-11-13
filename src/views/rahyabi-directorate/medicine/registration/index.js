@@ -25,7 +25,7 @@ const NationalCompanyRegister = () => {
   };
   return (
     <CCard>
-      <h4 className="p-3 bg-warning">د داخلي فابریکې ثبت</h4>
+      <h4 className="p-3 bg-warning">د توریدي درملو ثبت </h4>
       <CCardBody>
         {/* Steps Header */}
         <CRow className="justify-content-center border rounded py-3 mx-5 px-3">
