@@ -4,6 +4,8 @@
 }
 .main_container {
   margin-inline: 4%;
+  margin-bottom: 10%;
+  margin-top: 3%;
 }
 
 @media screen and (max-width: 768px) {

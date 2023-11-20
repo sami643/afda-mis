@@ -1,12 +1,21 @@
-import { CCard, CCardHeader, CCol, CRow } from "@coreui/react";
+import { CRow, CCol, CButton, CCardHeader } from "@coreui/react";
 import React from "react";
 import { Formik, Form } from "formik";
 import DatePicker from "react-multi-date-picker";
 import arabic from "react-date-object/calendars/arabic";
 import arabic_ar from "react-date-object/locales/arabic_ar";
 import { provicesGlobalOptions } from "src/views/data/global-data";
+import { Button, Card } from "antd";
 
-const CompanyContactAndAddress = () => {
+const CompanyContactAndAddress = ({ onFormSubmit, onStepBack }) => {
+  const handleForm = (values) => {
+    onFormSubmit({ ...values, step: 2 });
+  };
+
+  const stepBack = () => {
+    onStepBack();
+  };
+
   const serviceOptions = [
     {
       value: "1",
@@ -23,8 +32,8 @@ const CompanyContactAndAddress = () => {
         <h3 className="mx-0">د فابریکې پته او د اړیکې مشخصات</h3>
       </CCardHeader>
       <Formik
-        // onSubmit={handleIncorporationSearch}
-        initialValues={{ license_number: "" }}
+        onSubmit={handleForm}
+        initialValues={{}}
         // validationSchema={incorporationSearchValidationSchema}
         enableReinitialize={true}
       >
@@ -45,14 +54,12 @@ const CompanyContactAndAddress = () => {
                   </span>
                 </label>
                 <select
-                  id="directorate"
-                  value={values.directorate}
-                  name="directorate"
-                  onChange={(e) => setFieldValue("directorate", e.target.value)}
+                  id="province"
+                  value={values.province}
+                  name="province"
+                  onChange={(e) => setFieldValue("province", e.target.value)}
                   className={`form-control  ${
-                    errors.directorate && touched.directorate
-                      ? "is-invalid     "
-                      : ""
+                    errors.province && touched.province ? "is-invalid     " : ""
                   }`}
                 >
                   <option>وټاکئ/انتخاب</option>
@@ -65,9 +72,9 @@ const CompanyContactAndAddress = () => {
                     );
                   })}
                 </select>
-                {errors.directorate && touched.directorate ? (
+                {errors.province && touched.province ? (
                   <div className="invalid-feedback  errorMessageStyle mr-2 mb-3 mt-0">
-                    {errors.directorate}
+                    {errors.province}
                   </div>
                 ) : null}
               </CCol>
@@ -381,6 +388,19 @@ const CompanyContactAndAddress = () => {
                 ) : null}
               </CCol>
             </CRow>
+            <div
+              className={
+                "form__item button__items d-flex justify-content-between m-5"
+              }
+            >
+              <Button type={"default"} className="mx-2" onClick={stepBack}>
+                شاته
+              </Button>
+
+              <CButton type="submit" className="btn-sm btn   px-4 py-2 mx-2 ">
+                مخته
+              </CButton>
+            </div>
           </Form>
         )}
       </Formik>

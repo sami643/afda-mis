@@ -16,19 +16,19 @@ const NationalCompanyRegister = () => {
   const [active, setActiveStep] = useState(1);
 
   const handleStepsBack = () => {
-    active !== 1 ? setActiveStep(active - 1) : null;
-    active !== 1 ? setStep(step - 1) : null;
+    setActiveStep(active - 1);
+    setStep(step - 1);
   };
-  const handleStepsNext = () => {
-    active !== 5 ? setActiveStep(active + 1) : null;
-    active !== 5 ? setStep(step + 1) : null;
+  const handleStepsNext = (dataFromChild) => {
+    active !== 5 ? setActiveStep(dataFromChild.step + 1) : null;
+    active !== 5 ? setStep(dataFromChild.step + 1) : null;
   };
   return (
     <CCard>
       <h4 className="p-3 bg-warning">د داخلي فابریکې ثبت</h4>
       <CCardBody>
         {/* Steps Header */}
-        <CRow className="justify-content-center border rounded py-3 mx-5 px-3">
+        <CRow className="justify-content-center border rounded py-3  mx-5 px-3">
           {step === 1 ? (
             <CCol
               md={2}
@@ -141,30 +141,38 @@ const NationalCompanyRegister = () => {
           )}
         </CRow>
         {/* Components */}
-        <CRow className="justify-content-center my-5  border rounded main_container">
-          {active === 1 && <CompanyDetails />}
-          {active === 2 && <CompanyContactAndAddress />}
-          {active === 3 && <CompanyOnwner />}
-          {active === 4 && <CompanyRepresenterAndTechnicalManager />}
-          {active === 5 && <Attachment />}
+        <CRow className="justify-content-center  border rounded main_container">
+          {active === 1 && (
+            <CompanyDetails
+              onFormSubmit={handleStepsNext}
+              onStepBack={handleStepsBack}
+            />
+          )}
+          {active === 2 && (
+            <CompanyContactAndAddress
+              onFormSubmit={handleStepsNext}
+              onStepBack={handleStepsBack}
+            />
+          )}
+          {active === 3 && (
+            <CompanyOnwner
+              onFormSubmit={handleStepsNext}
+              onStepBack={handleStepsBack}
+            />
+          )}
+          {active === 4 && (
+            <CompanyRepresenterAndTechnicalManager
+              onFormSubmit={handleStepsNext}
+              onStepBack={handleStepsBack}
+            />
+          )}
+          {active === 5 && (
+            <Attachment
+              onFormSubmit={handleStepsNext}
+              onStepBack={handleStepsBack}
+            />
+          )}
         </CRow>
-        <div
-          className={
-            "form__item button__items d-flex justify-content-between m-5"
-          }
-        >
-          <Button type={"default"} className="mx-2" onClick={handleStepsBack}>
-            شاته
-          </Button>
-
-          <CButton
-            type="submit"
-            className="btn-sm btn   px-4 py-2 mx-2 "
-            onClick={handleStepsNext}
-          >
-            {active === 5 ? "ثبت" : "مخته"}
-          </CButton>
-        </div>
       </CCardBody>
     </CCard>
   );

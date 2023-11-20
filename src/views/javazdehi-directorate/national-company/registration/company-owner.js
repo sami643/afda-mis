@@ -1,5 +1,6 @@
-import { CCard, CCardHeader, CCol, CRow } from "@coreui/react";
+import { CCard, CCardHeader, CCol, CRow, CButton } from "@coreui/react";
 import React, { useState, useRef } from "react";
+import { Button, Card } from "antd";
 import "./style.css";
 import { Formik, Form } from "formik";
 import dayjs from "dayjs";
@@ -9,7 +10,9 @@ import arabic_ar from "react-date-object/locales/arabic_ar";
 const dateFormat = "YYYY/MM/DD";
 import PhtoUpload from "src/assets/images/photoUpload.png";
 import { provicesGlobalOptions } from "src/views/data/global-data";
-const OwnerDetails = () => {
+import { nationalCompanyValidationSchema } from "src/views/data/validation";
+
+const OwnerDetails = ({ onFormSubmit, onStepBack }) => {
   const [image, setImage] = useState(null);
   const hiddenFileInput = useRef(null);
 
@@ -78,15 +81,23 @@ const OwnerDetails = () => {
     hiddenFileInput.current.click();
   };
 
+  const handleForm = (values) => {
+    onFormSubmit({ ...values, step: 3 });
+  };
+
+  const stepBack = () => {
+    onStepBack();
+  };
+
   return (
     <>
       <CCardHeader className="mx-0">
         <h3 className="mx-0">د فابریکې د مالک مشخصات</h3>
       </CCardHeader>
       <Formik
-        // onSubmit={handleIncorporationSearch}
-        initialValues={{ license_number: "" }}
-        // validationSchema={incorporationSearchValidationSchema}
+        onSubmit={handleForm}
+        initialValues={{ factory_name: "" }}
+        // validationSchema={nationalCompanyValidationSchema}
         enableReinitialize={true}
       >
         {({ values, setFieldValue, setFieldTouched, errors, touched }) => (
@@ -144,22 +155,22 @@ const OwnerDetails = () => {
                 </label>
                 <input
                   type="text"
-                  id="license_number"
-                  name="license_number"
+                  id="factory_name"
+                  name="factory_name"
                   className={`form-control form-select-l ${
-                    errors.license_number && touched.license_number
+                    errors.factory_name && touched.factory_name
                       ? "is-invalid form-select-l    "
                       : ""
                   }`}
-                  value={values.license_number}
+                  value={values.factory_name}
                   onChange={(e) =>
-                    setFieldValue("license_number", e.target.value)
+                    setFieldValue("factory_name", e.target.value)
                   }
-                  onBlur={() => setFieldTouched("license_number", true)}
+                  onBlur={() => setFieldTouched("factory_name", true)}
                 />
-                {errors.license_number && touched.license_number ? (
+                {errors.factory_name && touched.factory_name ? (
                   <div className="invalid-feedback d-block errorMessageStyle mx-3">
-                    {errors.license_number}
+                    {errors.factory_name}
                   </div>
                 ) : null}
               </CCol>
@@ -422,6 +433,19 @@ const OwnerDetails = () => {
                 ) : null}
               </CCol>
             </CRow>
+            <div
+              className={
+                "form__item button__items d-flex justify-content-between m-5"
+              }
+            >
+              <Button type={"default"} className="mx-2" onClick={stepBack}>
+                شاته
+              </Button>
+
+              <CButton type="submit" className="btn-sm btn   px-4 py-2 mx-2 ">
+                مخته
+              </CButton>
+            </div>
           </Form>
         )}
       </Formik>

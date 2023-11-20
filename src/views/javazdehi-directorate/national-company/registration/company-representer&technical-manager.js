@@ -1,4 +1,5 @@
-import { CCard, CCardHeader, CCol, CRow } from "@coreui/react";
+import { CCard, CCardHeader, CCol, CRow, CButton } from "@coreui/react";
+import { Button, Card } from "antd";
 import React, { useState, useRef } from "react";
 import "./style.css";
 import { Formik, Form } from "formik";
@@ -10,7 +11,10 @@ const dateFormat = "YYYY/MM/DD";
 import PhtoUpload from "src/assets/images/photoUpload.png";
 import { provicesGlobalOptions } from "src/views/data/global-data";
 
-const CompanyRepresenterAndTechnicalStaffDetails = () => {
+const CompanyRepresenterAndTechnicalStaffDetails = ({
+  onFormSubmit,
+  onStepBack,
+}) => {
   const [image, setImage] = useState(null);
   const hiddenFileInput = useRef(null);
 
@@ -79,13 +83,19 @@ const CompanyRepresenterAndTechnicalStaffDetails = () => {
     hiddenFileInput.current.click();
   };
 
+  const handleForm = (values) => {
+    onFormSubmit({ ...values, step: 4 });
+  };
+  const stepBack = () => {
+    onStepBack();
+  };
   return (
     <>
       <CCardHeader className="mx-0">
         <h3 className="mx-0">د فابریکې د نماینده مشخصات</h3>
       </CCardHeader>
       <Formik
-        // onSubmit={handleIncorporationSearch}
+        onSubmit={handleForm}
         initialValues={{ license_number: "" }}
         // validationSchema={incorporationSearchValidationSchema}
         enableReinitialize={true}
@@ -738,6 +748,19 @@ const CompanyRepresenterAndTechnicalStaffDetails = () => {
                 ) : null}
               </CCol>
             </CRow>
+            <div
+              className={
+                "form__item button__items d-flex justify-content-between m-5"
+              }
+            >
+              <Button type={"default"} className="mx-2" onClick={stepBack}>
+                شاته
+              </Button>
+
+              <CButton type="submit" className="btn-sm btn   px-4 py-2 mx-2 ">
+                مخته
+              </CButton>
+            </div>
           </Form>
         )}
       </Formik>

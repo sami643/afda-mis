@@ -99,3 +99,15 @@ export const NGOMedicineValidationSchema = Yup.object().shape({
 export const searchEmplyeeValidationSchema = Yup.object().shape({
   hr_code: Yup.string().required("مهرباني وکړئ د کارمند hrکوډ ولیکئ  "),
 });
+export const nationalCompanyDetailsValidationSchema = Yup.object().shape({
+  company_name_in_dari: Yup.string().required("د فابریکې نوم اړین دی "),
+  company_name_in_english: Yup.string().required(
+    "د فابریکې انګریزي نوم اړین دی "
+  ),
+  // company_license: Yup.string().required("د جواز نمبر اړین دی "),
+  // initial_budget: Yup.string().required("ابتدایي بودیجه اړینه ده "),
+  // productـstype: Yup.string().required("د تولیدي اقلامو ډول اړین دی "),
+  // service_type: Yup.string().required("د خدماتو ډول اړین دی "),
+  // tax_date: Yup.string().required("د تکس نیټه اړینه ده "),
+  // date_of_establishment: Yup.string().required("د تاسیس نیټه اړینه ده "),
+});

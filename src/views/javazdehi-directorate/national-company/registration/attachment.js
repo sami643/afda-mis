@@ -6,8 +6,9 @@ import dayjs from "dayjs";
 import DatePicker from "react-multi-date-picker";
 import arabic from "react-date-object/calendars/arabic";
 import arabic_ar from "react-date-object/locales/arabic_ar";
+import { Button } from "antd";
 const dateFormat = "YYYY/MM/DD";
-const Attachment = () => {
+const Attachment = ({ onFormSubmit, onStepBack }) => {
   const serviceOptions = [
     {
       value: "1",
@@ -19,6 +20,13 @@ const Attachment = () => {
     },
   ];
 
+  const handleForm = (values) => {
+    onFormSubmit({ ...values, step: 5 });
+  };
+  const stepBack = () => {
+    onStepBack();
+  };
+
   return (
     <>
       <CCardHeader className="mx-0">
@@ -26,7 +34,7 @@ const Attachment = () => {
       </CCardHeader>
 
       <Formik
-        // onSubmit={handleIncorporationSearch}
+        onSubmit={handleForm}
         initialValues={{ license_number: "" }}
         // validationSchema={incorporationSearchValidationSchema}
         enableReinitialize={true}
@@ -81,6 +89,19 @@ const Attachment = () => {
                 />
               </CCol>
             </CRow>
+            <div
+              className={
+                "form__item button__items d-flex justify-content-between m-5"
+              }
+            >
+              <Button type={"default"} className="mx-2" onClick={stepBack}>
+                شاته
+              </Button>
+
+              <CButton type="submit" className="btn-sm btn   px-4 py-2 mx-2 ">
+                ثبت
+              </CButton>
+            </div>
           </Form>
         )}
       </Formik>
