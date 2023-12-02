@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import {
   CButton,
@@ -12,25 +12,28 @@ import {
   CInputGroupText,
   CRow,
 } from "@coreui/react";
+import { Link } from "react-router-dom";
 import CIcon from "@coreui/icons-react";
-import { cilLockLocked, cilUser } from "@coreui/icons";
+import { cilLockLocked, cilUser, cilMobile, cilDialpad } from "@coreui/icons";
+import { useLocation, useNavigate } from "react-router-dom";
 import LOGO from "../../../assets/images/afda_logo.png";
+import "./style.css";
 import "./../page-style.css";
 
 const Register = () => {
-  const directorateOptions = [
-    { value: "1", label: "جواز دهی" },
-    { value: "2", label: "راهیابی" },
-    { value: "3", label: "پلان" },
-    { value: "4", label: "اداره و منابع" },
-  ];
+  const navigate = useNavigate();
+  const navigateToUpdatePage = (isRegister) => {
+    const serializedData = encodeURIComponent(JSON.stringify(isRegister));
+    navigate(`/otp-part-2?isRegistered=${serializedData}`);
+  };
+
   return (
     <div className="  min-vh-100 d-flex flex-row  align-items-center pagesContainer">
       <CContainer>
-        <CRow className="justify-content-center">
+        <CRow className="justify-content-end">
           <CCol md={9} lg={7} xl={6}>
             <CCard className="mx-4">
-              <CCardBody className="p-4">
+              <CCardBody className="register_form_body">
                 <Formik
                   // onSubmit={newAppointment}
                   initialValues={{
@@ -54,23 +57,27 @@ const Register = () => {
                     touched,
                   }) => (
                     <Form className="text-center">
-                      {" "}
                       <img src={LOGO} width={100} height={100} />
                       <h3 className="text-center mb-5">نوی اکونټ</h3>
                       <CInputGroup className="mb-3">
-                        <CInputGroupText>
-                          <CIcon icon={cilUser} />
+                        <CInputGroupText className="no_diplay_on_smaller_than_300">
+                          <CIcon icon={cilMobile} />
                         </CInputGroupText>
-                        <CFormInput placeholder="نوم" autoComplete="username" />
-                      </CInputGroup>
-                      <CInputGroup className="mb-3">
-                        <CInputGroupText>@</CInputGroupText>
                         <CFormInput
-                          placeholder="آیډی/بر ښنالیک"
-                          autoComplete="email"
+                          placeholder="د ثبت شوي تلفن شمیره"
+                          autoComplete="username"
                         />
                       </CInputGroup>
                       <CInputGroup className="mb-3">
+                        <CInputGroupText className="no_diplay_on_smaller_than_300">
+                          <CIcon icon={cilDialpad} />
+                        </CInputGroupText>
+                        <CFormInput
+                          placeholder="د جواز شمیره"
+                          autoComplete="email"
+                        />
+                      </CInputGroup>
+                      {/* <CInputGroup className="mb-3">
                         <CInputGroupText>
                           <CIcon icon={cilLockLocked} />
                         </CInputGroupText>
@@ -89,8 +96,8 @@ const Register = () => {
                           placeholder="د پسورډ تکرار"
                           autoComplete="new-password"
                         />
-                      </CInputGroup>
-                      <CCol md={12} className="mb-5">
+                      </CInputGroup> */}
+                      {/* <CCol md={12} className="mb-5">
                         <label className="form-label mx-3 " htmlFor="subject">
                           رول/ رتبه
                           <span
@@ -105,7 +112,6 @@ const Register = () => {
                         </label>
                         <select
                           id="appointment_type"
-                          // value={values.appointment_type}
                           name="appointment_type"
                           onChange={(e) =>
                             setFieldValue("appointment_type", e.target.value)
@@ -127,14 +133,28 @@ const Register = () => {
                             );
                           })}
                         </select>
-                        {/* {errors.appointment_type && touched.appointment_type ? (
+                        {errors.appointment_type && touched.appointment_type ? (
                       <div className="invalid-feedback  errorMessageStyle mr-2 mb-3 mt-0">
                         {errors.appointment_type}
                       </div>
-                    ) : null} */}
-                      </CCol>
-                      <div className="d-grid mb-3">
-                        <CButton color="primary">اکونټ جوړول</CButton>
+                    ) : null}
+                      </CCol> */}
+                      <div className="d-grid mb-3 my-5">
+                        <CButton
+                          color="success d-grid "
+                          style={{ color: "white" }}
+                          onClick={() => {
+                            navigateToUpdatePage(true);
+                          }}
+                        >
+                          اکونټ جوړول
+                        </CButton>
+                      </div>
+
+                      <div className="d-grid mb-5 ">
+                        <Link to="/login" className="d-grid mb-5 no-underline ">
+                          <CButton color="primary no-underline ">ننوتل</CButton>
+                        </Link>
                       </div>
                     </Form>
                   )}

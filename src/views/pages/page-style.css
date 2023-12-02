@@ -1,4 +1,21 @@
 .pagesContainer {
-  background-color: #00e5fa;
+  /* background-color: #00e5fa; */
+  background-image: url("./../../assets/images/222222222222222222.jpg"); /* Replace with the path to your image */
+  background-size: cover; /* Adjust as needed */
+  background-position: center; /* Adjust as needed */
 }
 
+.register_form_body {
+  padding-inline: 40px !important;
+}
+@media (max-width: 600px) {
+  .register_form_body {
+    padding-inline: 10px !important;
+  }
+}
+
+@media (max-width: 300px) {
+  .no_diplay_on_smaller_than_300 {
+    display: none !important;
+  }
+}

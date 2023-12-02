@@ -1,3 +1,10 @@
 .textUunderlinePosition {
   text-underline-position: under;
 }
+
+.pagesContainer {
+  /* background-color: #00e5fa; */
+  background-image: url("./../../../assets/images/222222222222222222.jpg"); /* Replace with the path to your image */
+  background-size: cover; /* Adjust as needed */
+  background-position: center; /* Adjust as needed */
+}

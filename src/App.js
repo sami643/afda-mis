@@ -19,8 +19,11 @@ const Register = React.lazy(() => import("./views/pages/register/Register"));
 const LandingPage = React.lazy(() =>
   import("./views/pages/landing-page/pages/landinHome")
 );
-const ResetPassword = React.lazy(() =>
-  import("./views/pages/reset-password/reset-password")
+const OTPPartOne = React.lazy(() =>
+  import("./views/pages/reset-password(otp Checking)/part-1")
+);
+const OTPPartTwo = React.lazy(() =>
+  import("./views/pages/reset-password(otp Checking)/part-2")
 );
 
 const App = () => {
@@ -48,9 +51,15 @@ const App = () => {
             />
             <Route
               exact
-              path="/reset-password"
-              name="Reset Password"
-              element={<ResetPassword />}
+              path="/otp-part-1"
+              name="OTP Part One"
+              element={<OTPPartOne />}
+            />
+            <Route
+              exact
+              path="/otp-part-2"
+              name="OTP Part Two"
+              element={<OTPPartTwo />}
             />
             <Route
               path="*"

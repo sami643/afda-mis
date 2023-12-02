@@ -19,18 +19,33 @@ import {
   CInputGroupText,
   CRow,
 } from "@coreui/react";
-
+import { Icon } from "react-icons-kit";
+import { eyeOff } from "react-icons-kit/feather/eyeOff";
+import { eye } from "react-icons-kit/feather/eye";
 import CIcon from "@coreui/icons-react";
 import { cilLockLocked, cilUser } from "@coreui/icons";
 import { loginAPI } from "./../../../api/utils";
 import { loginValidationSchema } from "./../../data/validation";
 import { useNavigate } from "react-router-dom";
+import { ProfileAPI } from "src/api/utils";
 
 const Login = () => {
   const navigate = useNavigate();
   const { logUser, setLogUser } = useContext(AuthContext);
+  const [type, setType] = useState("password");
+  const [icon, setIcon] = useState(eyeOff);
   const [isAdmin, setIsAdmin] = useState(true);
   const [ifneeded, setIfNeeded] = useState(false);
+
+  const handleToggle = () => {
+    if (type === "password") {
+      setIcon(eye);
+      setType("text");
+    } else {
+      setIcon(eyeOff);
+      setType("password");
+    }
+  };
 
   const handleLogin = async (values) => {
     const data = { username_or_email: values.email, password: values.password };
@@ -38,10 +53,18 @@ const Login = () => {
       const response = await loginAPI(data);
       const token = response.data.access;
       const userRole = response.data.role;
-      setLogUser(response.data);
+      const dirId = response.data.user_directorate.id;
+      const dirName = response.data.user_directorate.name;
+      const user = response.data.user_id;
+      const userLoginId = response.data.user_idd;
       if (token) {
+        setLogUser(token);
         localStorage.setItem("token", token);
         localStorage.setItem("user_role", userRole);
+        localStorage.setItem("dirId", dirId);
+        localStorage.setItem("dirName", dirName);
+        localStorage.setItem("user", user);
+        localStorage.setItem("userLoginId", userLoginId);
         navigate("/dashboard");
         notification.open({
           message: (
@@ -70,7 +93,12 @@ const Login = () => {
   return (
     <div className="  min-vh-100 d-flex flex-row align-items-center pagesContainer">
       <CContainer className="">
-        <CRow className="justify-content-center">
+        <CRow>
+          <CCol>
+            <h1>AFDA LOGO</h1>
+          </CCol>
+        </CRow>
+        <CRow className="justify-content-end">
           <CCol md={8}>
             <CCardGroup>
               <CCard className="p-4">
@@ -128,13 +156,20 @@ const Login = () => {
                         </CInputGroup>
                         <CInputGroup className="mb-4">
                           <CInputGroupText>
-                            <CIcon icon={cilLockLocked} />
+                            <span class="flex justify-around items-center">
+                              <Icon
+                                class="absolute mr-10"
+                                onClick={handleToggle}
+                                icon={icon}
+                                size={16}
+                              />
+                            </span>
                           </CInputGroupText>
                           <input
                             dir="ltr"
                             id="password"
                             placeholder="پسورد"
-                            type="password"
+                            type={type}
                             name="password"
                             className={`form-control form-select-md ${
                               errors.password && touched.password
@@ -147,64 +182,26 @@ const Login = () => {
                             }
                             onBlur={() => setFieldTouched("password", true)}
                           />
+
                           {errors.password && touched.password ? (
                             <div className="invalid-feedback d-block errorMessageStyle mr-2">
                               {errors.password}
                             </div>
                           ) : null}
                         </CInputGroup>
-                        {/* <CCol md={12} className="mb-5">
-                          <label className="form-label mx-3 " htmlFor="subject">
-                            رول/ رتبه
-                            <span
-                              style={{
-                                color: "red",
-                                marginInline: "5px",
-                                paddingTop: "5px",
-                              }}
-                            >
-                              *
-                            </span>
-                          </label>
-                          <select
-                            id="appointment_type"
-                            // value={values.appointment_type}
-                            name="appointment_type"
-                            onChange={(e) =>
-                              setFieldValue("appointment_type", e.target.value)
-                            }
-                            className={`form-control form-select-md ${
-                              errors.appointment_type &&
-                              touched.appointment_type
-                                ? "is-invalid form-select-sm    "
-                                : ""
-                            }`}
-                            aria-label=".form-select-sm example"
-                          >
-                            <option>وټاکئ/انتخاب</option>
-
-                            {directorateOptions.map((option) => {
-                              return (
-                                <option key={option.value} value={option.value}>
-                                  {option.label}
-                                </option>
-                              );
-                            })}
-                          </select>
-                      
-                        </CCol> */}
                         <CRow>
                           <CCol xs={8} className="text-right">
-                            {/* <Link
-                              to="/reset-password"
+                            <Link
+                              to="/otp-part-1"
                               className="px-0 textUunderlinePosition"
                             >
                               آیا پسورد مو هیر شوی؟
-                            </Link> */}
+                            </Link>
                           </CCol>
                           <CCol xs={4}>
                             <CButton
-                              color="primary"
+                              color="success"
+                              style={{ color: "white" }}
                               className="px-4"
                               type="submit"
                             >
@@ -227,7 +224,7 @@ const Login = () => {
                     <p>د افغانستان د خوړو او درملو ملی اداره</p>
                     <p className="pl">اداره ملی غذا و ادویه افغانستان </p>
 
-                    {ifneeded && isAdmin && (
+                    {1 == 1 && (
                       <Link to="/register">
                         <CButton
                           color="primary"
